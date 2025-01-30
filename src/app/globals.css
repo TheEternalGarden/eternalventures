@@ -2,9 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global cursor style */
+:root, html, body,
+*, *::before, *::after,
+button, a, input, select, textarea,
+div, span, p, h1, h2, h3, h4, h5, h6,
+[role="button"], [type="button"], [type="submit"], [type="reset"],
+a:hover, button:hover, input:hover {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' style='font-size: 16px'><text style='font-family: -apple-system, BlinkMacSystemFont; fill: black;' y='13'>⌘</text></svg>") 8 8, none !important;
+}
+
+/* Ensure no element can override the cursor */
+* {
+  cursor: inherit !important;
+}
+
+/* Remove old cursor styles */
+.command-cursor {
+  display: none;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.section-content {
+  transform-origin: 50% 100%;
+  transition: transform 1s ease-out;
+  will-change: transform;
+}
+
+.section-content.fade-out {
+  transform: perspective(1000px) rotateX(25deg) translateY(-100px);
+  opacity: 0;
+}
+
+.section-content.fade-in {
+  animation: fadeInFromBottom 1s ease-out forwards;
+}
+
+@keyframes fadeInFromBottom {
+  from {
+    transform: perspective(1000px) rotateX(25deg) translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: perspective(1000px) rotateX(0deg) translateY(0);
+    opacity: 1;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,4 +78,46 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+.chrome-text {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #b8b8b8 30%,
+    #7a7a7a 50%,
+    #b8b8b8 70%,
+    #ffffff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: all 0.3s ease;
+}
+
+.menu-item-underline {
+  position: relative;
+}
+
+.menu-item-underline::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 50%;
+  background-color: black;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.menu-item-underline.active::after {
+  width: 100%;
+}
+
+/* Custom cursor for command symbol */
+@font-face {
+  font-family: 'Apple Symbols';
+  src: local('Apple Symbols');
 }
