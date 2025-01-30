@@ -9,6 +9,9 @@ const nextConfig = {
   },
   output: 'export',
   trailingSlash: true,
+  experimental: {
+    optimizeCss: true
+  }
 }
 
 module.exports = nextConfig 
