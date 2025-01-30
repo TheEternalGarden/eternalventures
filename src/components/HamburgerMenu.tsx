@@ -61,7 +61,7 @@ export default function HamburgerMenu({ onNavigate }: HamburgerMenuProps) {
               }}
               onMouseEnter={() => setHoveredItem(index)}
               onMouseLeave={() => setHoveredItem(null)}
-              className={`font-['Helios_Extended'] text-base text-black transition-all duration-500 min-w-[200px] text-center px-8 py-2 ${
+              className={`font-[var(--font-helios)] text-base text-black transition-all duration-500 min-w-[200px] text-center px-8 py-2 ${
                 hoveredItem !== null && hoveredItem !== index ? 'opacity-20' : 'opacity-100'
               }`}
             >

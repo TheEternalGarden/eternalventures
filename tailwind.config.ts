@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        helios: ['var(--font-helios)'],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

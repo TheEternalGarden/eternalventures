@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import localFont from 'next/font/local';
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   display: 'swap',
+});
+
+const helios = localFont({
+  src: '../../public/fonts/HeliosExt.otf',
+  variable: '--font-helios',
 });
 
 export const metadata: Metadata = {
@@ -19,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} ${helios.variable} antialiased`}>
         {children}
       </body>
     </html>
