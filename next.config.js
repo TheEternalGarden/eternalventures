@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+
+// Configuration for static site generation
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
