@@ -2,58 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global cursor style */
-:root, html, body,
-*, *::before, *::after,
-button, a, input, select, textarea,
-div, span, p, h1, h2, h3, h4, h5, h6,
-[role="button"], [type="button"], [type="submit"], [type="reset"],
-a:hover, button:hover, input:hover {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' style='font-size: 16px'><text style='font-family: -apple-system, BlinkMacSystemFont; fill: black;' y='13'>⌘</text></svg>") 8 8, none !important;
+@layer base {
+  :root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    color: rgb(var(--foreground-rgb));
+    background: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+  }
+
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+  }
 }
 
-/* Ensure no element can override the cursor */
-* {
-  cursor: inherit !important;
-}
+@layer components {
+  .section-content {
+    transform-origin: 50% 100%;
+    transition: transform 1s ease-out;
+    will-change: transform;
+  }
 
-/* Remove old cursor styles */
-.command-cursor {
-  display: none;
-}
+  .section-content.fade-out {
+    transform: perspective(1000px) rotateX(25deg) translateY(-100px);
+    opacity: 0;
+  }
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+  .section-content.fade-in {
+    animation: fadeInFromBottom 1s ease-out forwards;
+  }
 
-html {
-  scroll-behavior: smooth;
-}
+  .menu-item-underline {
+    position: relative;
+  }
 
-* {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
+  .menu-item-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 50%;
+    background-color: black;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+  }
 
-*::-webkit-scrollbar {
-  display: none;
-}
+  .menu-item-underline.active::after {
+    width: 100%;
+  }
 
-.section-content {
-  transform-origin: 50% 100%;
-  transition: transform 1s ease-out;
-  will-change: transform;
-}
-
-.section-content.fade-out {
-  transform: perspective(1000px) rotateX(25deg) translateY(-100px);
-  opacity: 0;
-}
-
-.section-content.fade-in {
-  animation: fadeInFromBottom 1s ease-out forwards;
+  .chrome-text {
+    background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #b8b8b8 30%,
+      #7a7a7a 50%,
+      #b8b8b8 70%,
+      #ffffff 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: all 0.3s ease;
+  }
 }
 
 @keyframes fadeInFromBottom {
@@ -67,53 +93,28 @@ html {
   }
 }
 
+/* Global cursor style */
+*, *::before, *::after,
+button, a, input, select, textarea,
+div, span, p, h1, h2, h3, h4, h5, h6 {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' style='font-size: 16px'><text style='font-family: -apple-system, BlinkMacSystemFont; fill: black;' y='13'>⌘</text></svg>") 8 8, none !important;
+}
+
+/* Ensure no element can override the cursor */
+* {
+  cursor: inherit !important;
+}
+
+/* Remove old cursor styles */
+.command-cursor {
+  display: none;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
-}
-
-.chrome-text {
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #b8b8b8 30%,
-    #7a7a7a 50%,
-    #b8b8b8 70%,
-    #ffffff 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  transition: all 0.3s ease;
-}
-
-.menu-item-underline {
-  position: relative;
-}
-
-.menu-item-underline::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 1px;
-  bottom: -2px;
-  left: 50%;
-  background-color: black;
-  transform: translateX(-50%);
-  transition: width 0.3s ease;
-}
-
-.menu-item-underline.active::after {
-  width: 100%;
 }
 
 /* Custom cursor for command symbol */
