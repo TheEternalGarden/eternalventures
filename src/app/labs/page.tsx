@@ -79,7 +79,7 @@ export default function Labs() {
           height={80}
           priority
         />
-        <h1 className="text-2xl font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+        <h1 className="text-sm font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
           LABS
         </h1>
         <div className="text-center text-sm font-thin max-w-2xl" style={{ fontFamily: 'var(--font-helios-ext)' }}>
