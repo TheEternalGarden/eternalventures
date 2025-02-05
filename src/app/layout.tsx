@@ -6,7 +6,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 const heliosExt = localFont({
-  src: './fonts/HeliosExt.otf',
+  src: '../../public/fonts/HeliosExt.otf',
   variable: '--font-helios-ext',
   display: 'swap',
   preload: true,
