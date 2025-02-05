@@ -576,11 +576,10 @@ export default function Home() {
         }}>
           <Link href="/about">
             <Image
-              src="/ETERNAL VENTURES - no ventures.png"
-              alt="Eternal Logo"
-              width={80}
-              height={80}
-              priority
+              src="/images/ETERNAL VENTURES - no ventures.png"
+              alt="Eternal Ventures Logo"
+              width={500}
+              height={500}
             />
           </Link>
           <div className="flex flex-col items-center gap-2">
@@ -600,7 +599,7 @@ export default function Home() {
         }}>
           <Link href="/labs">
             <Image
-              src="/ETERNAL VENTURES - no ventures.png"
+              src="/images/ETERNAL VENTURES - no ventures.png"
               alt="Eternal Labs Logo"
               width={80}
               height={80}
@@ -623,7 +622,7 @@ export default function Home() {
         }}>
           <Link href="/garden">
             <Image
-              src="/ETERNAL VENTURES - no ventures.png"
+              src="/images/ETERNAL VENTURES - no ventures.png"
               alt="Eternal Garden Logo"
               width={80}
               height={80}
@@ -646,7 +645,7 @@ export default function Home() {
         }}>
           <Link href="/music">
             <Image
-              src="/ETERNAL VENTURES - no ventures.png"
+              src="/images/ETERNAL VENTURES - no ventures.png"
               alt="Eternal Music Logo"
               width={80}
               height={80}
