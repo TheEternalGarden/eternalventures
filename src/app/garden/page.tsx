@@ -192,7 +192,7 @@ export default function Garden() {
           <div className="w-full flex justify-center items-center px-4">
             <div className="relative w-[600px] h-[400px] overflow-hidden bg-white">
               <Image
-                src="/images/garden/sara.png"
+                src="/images/garden/sara.jpg"
                 alt="Garden Gallery Image"
                 width={600}
                 height={400}
