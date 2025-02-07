@@ -71,17 +71,13 @@ export default function About() {
     if (!isFirstTextComplete) return;
     
     let currentIndex = 0;
-    let isDeleting = false;
-    let timeoutId: NodeJS.Timeout;
     
     const typeText = () => {
-      if (!isDeleting) {
-        if (currentIndex <= description.length) {
-          const symbolsForRest = currentIndex < description.length ? 
-            getRandomSymbols(description.length - currentIndex) : '';
-          setDescriptionText(description.slice(0, currentIndex) + symbolsForRest);
-          currentIndex++;
-        }
+      if (currentIndex <= description.length) {
+        const symbolsForRest = currentIndex < description.length ? 
+          getRandomSymbols(description.length - currentIndex) : '';
+        setDescriptionText(description.slice(0, currentIndex) + symbolsForRest);
+        currentIndex++;
       }
     };
 
@@ -89,7 +85,6 @@ export default function About() {
 
     return () => {
       clearInterval(interval);
-      if (timeoutId) clearTimeout(timeoutId);
     };
   }, [isFirstTextComplete]);
 
