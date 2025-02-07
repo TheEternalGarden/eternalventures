@@ -578,7 +578,7 @@ export default function Home() {
             <Image
               src="/images/ETERNAL VENTURES - no ventures.png"
               alt="Eternal Ventures Logo"
-              width={500}
+              width={300}
               height={500}
             />
           </Link>
