@@ -197,10 +197,8 @@ export default function Garden() {
                 width={600}
                 height={400}
                 priority
-                quality={85}
+                unoptimized
                 style={{ 
-                  width: '100%',
-                  height: '100%',
                   objectFit: 'cover',
                   objectPosition: 'center'
                 }}
