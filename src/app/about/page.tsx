@@ -76,7 +76,7 @@ export default function About() {
     };
   }, [currentWordIndex]);
 
-  // Description text animation
+  // Description text animation - starts after first text is complete
   useEffect(() => {
     if (!isFirstTextComplete) return;
     
@@ -96,39 +96,12 @@ export default function About() {
 
     const interval = setInterval(typeText, 65);
 
-    return () => {
-      clearInterval(interval);
-    };
+    return () => clearInterval(interval);
   }, [isFirstTextComplete]);
 
-  // Founded text animation
+  // Mission text animation - starts after description is complete
   useEffect(() => {
     if (!isDescriptionComplete) return;
-    
-    let currentIndex = 0;
-    
-    const typeText = () => {
-      if (currentIndex <= founded.length) {
-        const symbolsForRest = currentIndex < founded.length ? 
-          getRandomSymbols(founded.length - currentIndex) : '';
-        setFoundedText(founded.slice(0, currentIndex) + symbolsForRest);
-        currentIndex++;
-        if (currentIndex > founded.length) {
-          setIsFoundedComplete(true);
-        }
-      }
-    };
-
-    const interval = setInterval(typeText, 65);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [isDescriptionComplete]);
-
-  // Mission text animation
-  useEffect(() => {
-    if (!isFoundedComplete) return;
     
     let currentIndex = 0;
     
@@ -138,14 +111,35 @@ export default function About() {
           getRandomSymbols(mission.length - currentIndex) : '';
         setMissionText(mission.slice(0, currentIndex) + symbolsForRest);
         currentIndex++;
+        if (currentIndex > mission.length) {
+          setIsFoundedComplete(true);
+        }
       }
     };
 
     const interval = setInterval(typeText, 65);
 
-    return () => {
-      clearInterval(interval);
+    return () => clearInterval(interval);
+  }, [isDescriptionComplete]);
+
+  // Founded text animation - starts after mission is complete
+  useEffect(() => {
+    if (!isFoundedComplete) return;
+    
+    let currentIndex = 0;
+    
+    const typeText = () => {
+      if (currentIndex <= founded.length) {
+        const symbolsForRest = currentIndex < founded.length ? 
+          getRandomSymbols(founded.length - currentIndex) : '';
+        setFoundedText(founded.slice(0, currentIndex) + symbolsForRest);
+        currentIndex++;
+      }
     };
+
+    const interval = setInterval(typeText, 65);
+
+    return () => clearInterval(interval);
   }, [isFoundedComplete]);
 
   // Blinking cursor effects
