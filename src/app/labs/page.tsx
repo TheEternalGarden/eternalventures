@@ -104,16 +104,42 @@ export default function Labs() {
           <div className="w-6 h-px bg-black"></div>
         </div>
 
-        {/* Menu Items */}
-        {showMenu && (
-          <div className="absolute top-0 right-0 mt-6 text-right">
+        {/* Menu Container */}
+        <div className={`fixed inset-0 flex items-center justify-center transition-opacity duration-300 ${
+          showMenu ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}>
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-white opacity-90"></div>
+          
+          {/* Menu Content */}
+          <div className="relative z-10 flex flex-col gap-10 items-center">
+            {/* Home Link */}
+            <div className={`relative menu-item-container ${hoveredItem === 'home' ? 'menu-item-hover' : ''}`}>
+              <Link
+                href="/"
+                onMouseEnter={() => setHoveredItem('home')}
+                onMouseLeave={() => setHoveredItem(null)}
+                className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
+                style={{
+                  fontFamily: 'var(--font-helios-ext)',
+                  opacity: !hoveredItem || hoveredItem === 'home' ? 1 : 0.3
+                }}
+              >
+                HOME
+              </Link>
+              <div 
+                className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
+                style={{ transform: hoveredItem === 'home' ? 'scaleX(1)' : 'scaleX(0)' }}
+              ></div>
+            </div>
+
             {/* Garden Link */}
             <div className={`relative menu-item-container ${hoveredItem === 'garden' ? 'menu-item-hover' : ''}`}>
               <Link
                 href="/garden"
                 onMouseEnter={() => setHoveredItem('garden')}
                 onMouseLeave={() => setHoveredItem(null)}
-                className="block py-1 text-xs tracking-wider"
+                className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
                 style={{
                   fontFamily: 'var(--font-helios-ext)',
                   opacity: !hoveredItem || hoveredItem === 'garden' ? 1 : 0.3
@@ -122,8 +148,28 @@ export default function Labs() {
                 GARDEN
               </Link>
               <div 
-                className="absolute bottom-0 left-0 w-full h-px bg-black transform origin-right transition-transform duration-300"
+                className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
                 style={{ transform: hoveredItem === 'garden' ? 'scaleX(1)' : 'scaleX(0)' }}
+              ></div>
+            </div>
+
+            {/* Labs Link */}
+            <div className={`relative menu-item-container ${hoveredItem === 'labs' ? 'menu-item-hover' : ''}`}>
+              <Link
+                href="/labs"
+                onMouseEnter={() => setHoveredItem('labs')}
+                onMouseLeave={() => setHoveredItem(null)}
+                className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
+                style={{
+                  fontFamily: 'var(--font-helios-ext)',
+                  opacity: !hoveredItem || hoveredItem === 'labs' ? 1 : 0.3
+                }}
+              >
+                LABS
+              </Link>
+              <div 
+                className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
+                style={{ transform: hoveredItem === 'labs' ? 'scaleX(1)' : 'scaleX(0)' }}
               ></div>
             </div>
 
@@ -133,7 +179,7 @@ export default function Labs() {
                 href="/music"
                 onMouseEnter={() => setHoveredItem('music')}
                 onMouseLeave={() => setHoveredItem(null)}
-                className="block py-1 text-xs tracking-wider"
+                className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
                 style={{
                   fontFamily: 'var(--font-helios-ext)',
                   opacity: !hoveredItem || hoveredItem === 'music' ? 1 : 0.3
@@ -142,7 +188,7 @@ export default function Labs() {
                 MUSIC
               </Link>
               <div 
-                className="absolute bottom-0 left-0 w-full h-px bg-black transform origin-right transition-transform duration-300"
+                className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
                 style={{ transform: hoveredItem === 'music' ? 'scaleX(1)' : 'scaleX(0)' }}
               ></div>
             </div>
@@ -153,7 +199,7 @@ export default function Labs() {
                 href="/about"
                 onMouseEnter={() => setHoveredItem('about')}
                 onMouseLeave={() => setHoveredItem(null)}
-                className="block py-1 text-xs tracking-wider"
+                className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
                 style={{
                   fontFamily: 'var(--font-helios-ext)',
                   opacity: !hoveredItem || hoveredItem === 'about' ? 1 : 0.3
@@ -162,7 +208,7 @@ export default function Labs() {
                 ABOUT
               </Link>
               <div 
-                className="absolute bottom-0 left-0 w-full h-px bg-black transform origin-right transition-transform duration-300"
+                className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
                 style={{ transform: hoveredItem === 'about' ? 'scaleX(1)' : 'scaleX(0)' }}
               ></div>
             </div>
@@ -173,7 +219,7 @@ export default function Labs() {
                 href="/team"
                 onMouseEnter={() => setHoveredItem('team')}
                 onMouseLeave={() => setHoveredItem(null)}
-                className="block py-1 text-xs tracking-wider"
+                className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
                 style={{
                   fontFamily: 'var(--font-helios-ext)',
                   opacity: !hoveredItem || hoveredItem === 'team' ? 1 : 0.3
@@ -182,12 +228,12 @@ export default function Labs() {
                 TEAM
               </Link>
               <div 
-                className="absolute bottom-0 left-0 w-full h-px bg-black transform origin-right transition-transform duration-300"
+                className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
                 style={{ transform: hoveredItem === 'team' ? 'scaleX(1)' : 'scaleX(0)' }}
               ></div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
