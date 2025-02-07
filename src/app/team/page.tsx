@@ -136,6 +136,7 @@ export default function Team() {
       // Calculate opacity based on scroll position
       const scrollPercentage = position / pageHeight;
       
+      // First page fades out from 1 to 0
       if (scrollPercentage <= 1) {
         setOpacity(1 - scrollPercentage);
       } else {
@@ -311,7 +312,7 @@ export default function Team() {
       {/* Second Page */}
       <main className="min-h-screen flex flex-col items-center justify-center gap-8"
         style={{ 
-          opacity: Math.max(0, Math.min(1, scrollPosition / pageHeight - 0.5)),
+          opacity: Math.min(1, Math.max(0, (scrollPosition / pageHeight - 0.5) * 2)),
           transition: 'opacity 0.3s ease-in-out'
         }}>
         <Image
