@@ -15,9 +15,13 @@ export default function Team() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [opacity, setOpacity] = useState(1);
   const [pageHeight, setPageHeight] = useState(0);
+  const [claireRoleText, setClaireRoleText] = useState("");
+  const [showClaireRoleCursor, setShowClaireRoleCursor] = useState(true);
+  const [isTkRoleComplete, setIsTkRoleComplete] = useState(false);
   
   const title = "TEAM";
-  const role = "TK: CEO & FOUNDER";
+  const tkRole = "TK // CEO & FOUNDER";
+  const claireRole = "CLAIRE // CO-FOUNDER";
 
   // Set initial page height
   useEffect(() => {
@@ -69,17 +73,38 @@ export default function Team() {
     return () => clearInterval(interval);
   }, []);
 
-  // Role text animation - starts after title is complete
+  // TK role text animation
   useEffect(() => {
-    if (!isFirstTextComplete) return;
+    let currentIndex = 0;
+    
+    const typeText = () => {
+      if (currentIndex <= tkRole.length) {
+        const symbolsForRest = currentIndex < tkRole.length ? 
+          getRandomSymbols(tkRole.length - currentIndex) : '';
+        setRoleText(tkRole.slice(0, currentIndex) + symbolsForRest);
+        currentIndex++;
+        if (currentIndex > tkRole.length) {
+          setIsTkRoleComplete(true);
+        }
+      }
+    };
+
+    const interval = setInterval(typeText, 65);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Claire role text animation - starts after TK's role is complete
+  useEffect(() => {
+    if (!isTkRoleComplete) return;
     
     let currentIndex = 0;
     
     const typeText = () => {
-      if (currentIndex <= role.length) {
-        const symbolsForRest = currentIndex < role.length ? 
-          getRandomSymbols(role.length - currentIndex) : '';
-        setRoleText(role.slice(0, currentIndex) + symbolsForRest);
+      if (currentIndex <= claireRole.length) {
+        const symbolsForRest = currentIndex < claireRole.length ? 
+          getRandomSymbols(claireRole.length - currentIndex) : '';
+        setClaireRoleText(claireRole.slice(0, currentIndex) + symbolsForRest);
         currentIndex++;
       }
     };
@@ -87,13 +112,14 @@ export default function Team() {
     const interval = setInterval(typeText, 65);
 
     return () => clearInterval(interval);
-  }, [isFirstTextComplete]);
+  }, [isTkRoleComplete]);
 
   // Blinking cursor effect
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setShowCursor(prev => !prev);
       setShowRoleCursor(prev => !prev);
+      setShowClaireRoleCursor(prev => !prev);
     }, 530);
 
     return () => clearInterval(cursorInterval);
@@ -283,7 +309,7 @@ export default function Team() {
       </main>
 
       {/* Second Page */}
-      <main className="min-h-screen flex flex-col items-center justify-center"
+      <main className="min-h-screen flex flex-col items-center justify-center gap-8"
         style={{ 
           opacity: Math.max(0, Math.min(1, scrollPosition / pageHeight - 0.5)),
           transition: 'opacity 0.3s ease-in-out'
@@ -295,6 +321,12 @@ export default function Team() {
           height={300}
           priority
         />
+        <div 
+          className="text-black text-xs tracking-wider font-thin mt-8"
+          style={{ fontFamily: 'var(--font-helios-ext)' }}
+        >
+          {claireRoleText}{showClaireRoleCursor && <span className="opacity-50">|</span>}
+        </div>
       </main>
     </div>
   );
