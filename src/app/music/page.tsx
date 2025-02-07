@@ -29,7 +29,7 @@ export default function Music() {
     return Array(length).fill(0).map(() => getRandomSymbol()).join('');
   };
 
-  // Top text animation (looping)
+  // Top text animation
   useEffect(() => {
     let currentIndex = 0;
     let isDeleting = false;
@@ -60,7 +60,6 @@ export default function Music() {
     };
 
     const interval = setInterval(typeText, isDeleting ? 40 : 65);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -83,7 +82,6 @@ export default function Music() {
     };
 
     const interval = setInterval(typeText, 65);
-
     return () => clearInterval(interval);
   }, [isTopTextComplete]);
 
@@ -103,7 +101,6 @@ export default function Music() {
     };
 
     const interval = setInterval(typeText, 65);
-
     return () => clearInterval(interval);
   }, [isCenterTextComplete]);
 
@@ -122,4 +119,51 @@ export default function Music() {
     <main className="min-h-screen flex flex-col items-center justify-center gap-8 relative">
       {/* Top Text */}
       <div 
-        className="absolute top-20 text-black text-xs 
+        className="absolute top-20 text-black text-xs tracking-wider font-thin"
+        style={{ fontFamily: 'var(--font-helios-ext)' }}
+      >
+        {topText}{showTopCursor && <span className="opacity-50">|</span>}
+      </div>
+
+      {/* Center Content */}
+      <div className="flex flex-col items-center gap-4">
+        {/* Logo */}
+        <Image
+          src="/images/ETERNAL VENTURES - no ventures.png"
+          alt="Eternal Ventures Logo"
+          width={150}
+          height={150}
+          priority
+        />
+
+        {/* MUSIC Text */}
+        <div 
+          className="text-black text-xs tracking-wider font-thin mt-2"
+          style={{ fontFamily: 'var(--font-helios-ext)' }}
+        >
+          {centerText}{showCenterCursor && <span className="opacity-50">|</span>}
+        </div>
+
+        {/* Description Text */}
+        <div 
+          className="text-black text-xs tracking-wider font-thin mt-4 text-center max-w-md"
+          style={{ fontFamily: 'var(--font-helios-ext)' }}
+        >
+          {descriptionText}{showDescriptionCursor && <span className="opacity-50">|</span>}
+        </div>
+      </div>
+
+      {/* Hamburger Menu */}
+      <div 
+        className="fixed top-8 right-8 z-50 cursor-default"
+        onMouseEnter={() => setShowMenu(true)}
+        onMouseLeave={() => {
+          setShowMenu(false);
+          setHoveredItem(null);
+        }}
+      >
+        {/* ... existing hamburger menu code ... */}
+      </div>
+    </main>
+  );
+}
