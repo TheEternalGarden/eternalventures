@@ -188,7 +188,7 @@ export default function Garden() {
           {/* Gallery Container */}
           <div className="w-full flex justify-center items-center px-4">
             <div 
-              className="relative w-[600px] h-[400px] bg-cover bg-center bg-no-repeat"
+              className="relative w-[800px] h-[600px] bg-contain bg-center bg-no-repeat"
               style={{
                 backgroundImage: `url('/images/sara.jpg')`,
               }}
