@@ -192,16 +192,21 @@ export default function Garden() {
           <div className="w-full overflow-x-auto scrollbar-hide">
             <div className="flex gap-8 px-8 min-w-max">
               {/* Gallery Image */}
-              <div className="relative w-[600px] h-[400px]">
+              <div className="relative w-[800px] h-[500px]">
                 <Image
                   src="/images/garden/17.png"
                   alt="Garden Gallery Image"
                   fill
-                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 800px) 100vw, 800px"
+                  priority
+                  quality={100}
+                  style={{ 
+                    objectFit: 'contain',
+                    objectPosition: 'center'
+                  }}
                   className="transition-transform duration-300 hover:scale-105"
                 />
               </div>
-              {/* Add more images here as needed */}
             </div>
           </div>
         </div>
