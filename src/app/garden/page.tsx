@@ -190,15 +190,17 @@ export default function Garden() {
 
           {/* Gallery Container */}
           <div className="w-full flex justify-center items-center px-4">
-            <div className="relative w-[1000px] h-[600px]">
+            <div className="relative w-[1000px] h-[600px] overflow-hidden">
               <Image
                 src="/images/garden/17.png"
                 alt="Garden Gallery Image"
-                fill
-                sizes="(max-width: 1000px) 100vw, 1000px"
+                width={1000}
+                height={600}
                 priority
                 quality={100}
                 style={{ 
+                  width: '100%',
+                  height: '100%',
                   objectFit: 'cover',
                   objectPosition: 'center'
                 }}
