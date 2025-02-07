@@ -19,3 +19,6 @@ Requred: Add the sequencing animation from the home page description
 Step 3: Fix all other links 
 Actual: GARDEN, MUSIC, ABOUT, TEAM in the nav bar open up 404 pages on click 
 Required: Each of these options should open up the respective page 
+Step 4: Scale down logo sie on home page 
+Actual: Logo is too big 
+Required: Logo should be scaled down 

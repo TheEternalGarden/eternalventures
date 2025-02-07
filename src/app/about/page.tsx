@@ -12,7 +12,7 @@ export default function About() {
       const timer = setTimeout(() => {
         setDisplayedWords(prev => [...prev, words[currentWordIndex]]);
         setCurrentWordIndex(prev => prev + 1);
-      }, 500); // Adjust timing as needed
+      }, 1000); // Increased delay for better visibility
 
       return () => clearTimeout(timer);
     }
@@ -23,12 +23,22 @@ export default function About() {
       <Image
         src="/images/ETERNAL VENTURES - no ventures.png"
         alt="Eternal Ventures Logo"
-        width={300}
-        height={300}
+        width={150}
+        height={150}
       />
-      <div className="flex flex-col items-center gap-2">
+      <div className="flex flex-col items-center gap-4">
         {displayedWords.map((word, index) => (
-          <p key={index} className="text-2xl">{word}</p>
+          <p 
+            key={index} 
+            className="text-xl"
+            style={{
+              opacity: 0,
+              animation: `fadeIn 0.5s ease-in-out forwards`,
+              animationDelay: `${index * 0.5}s`
+            }}
+          >
+            {word}
+          </p>
         ))}
       </div>
     </main>
