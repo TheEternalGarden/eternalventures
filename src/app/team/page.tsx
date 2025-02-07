@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export default function Team() {
   const [text, setText] = useState("");
@@ -60,13 +61,20 @@ export default function Team() {
   }, []);
 
   return (
-    <main className="min-h-screen flex flex-col items-center pt-20">
+    <main className="min-h-screen flex flex-col items-center pt-20 gap-8">
       <div 
         className="text-black text-xs tracking-wider font-thin"
         style={{ fontFamily: 'var(--font-helios-ext)' }}
       >
         {text}{showCursor && <span className="opacity-50">|</span>}
       </div>
+      <Image
+        src="/images/tkheadshot.jpg"
+        alt="Team Member Headshot"
+        width={300}
+        height={300}
+        className="mt-8"
+      />
     </main>
   );
 }
