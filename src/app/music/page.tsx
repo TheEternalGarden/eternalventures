@@ -6,14 +6,14 @@ import Link from 'next/link';
 export default function Music() {
   const [showMenu, setShowMenu] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const [text, setText] = useState("");
+  const [topText, setTopText] = useState("");
   const [centerText, setCenterText] = useState("");
-  const [showCursor, setShowCursor] = useState(true);
+  const [showTopCursor, setShowTopCursor] = useState(true);
   const [showCenterCursor, setShowCenterCursor] = useState(true);
   const [isTopTextComplete, setIsTopTextComplete] = useState(false);
 
-  const topText = "ETERNAL MUSIC";
-  const centerText = "MUSIC";
+  const eternalMusicText = "ETERNAL MUSIC";
+  const musicText = "MUSIC";
 
   // Symbol generation functions
   const getRandomSymbol = () => {
@@ -32,12 +32,12 @@ export default function Music() {
     
     const typeText = () => {
       if (!isDeleting) {
-        if (currentIndex <= topText.length) {
-          const symbolsForRest = currentIndex < topText.length ? 
-            getRandomSymbols(topText.length - currentIndex) : '';
-          setText(topText.slice(0, currentIndex) + symbolsForRest);
+        if (currentIndex <= eternalMusicText.length) {
+          const symbolsForRest = currentIndex < eternalMusicText.length ? 
+            getRandomSymbols(eternalMusicText.length - currentIndex) : '';
+          setTopText(eternalMusicText.slice(0, currentIndex) + symbolsForRest);
           currentIndex++;
-          if (currentIndex > topText.length) {
+          if (currentIndex > eternalMusicText.length) {
             setIsTopTextComplete(true);
             setTimeout(() => {
               isDeleting = true;
@@ -47,7 +47,7 @@ export default function Music() {
       } else {
         if (currentIndex > 0) {
           const symbolsForRest = getRandomSymbols(currentIndex - 1);
-          setText(topText.slice(0, currentIndex - 1) + symbolsForRest);
+          setTopText(eternalMusicText.slice(0, currentIndex - 1) + symbolsForRest);
           currentIndex--;
         } else {
           isDeleting = false;
@@ -67,10 +67,10 @@ export default function Music() {
     let currentIndex = 0;
     
     const typeText = () => {
-      if (currentIndex <= centerText.length) {
-        const symbolsForRest = currentIndex < centerText.length ? 
-          getRandomSymbols(centerText.length - currentIndex) : '';
-        setCenterText(centerText.slice(0, currentIndex) + symbolsForRest);
+      if (currentIndex <= musicText.length) {
+        const symbolsForRest = currentIndex < musicText.length ? 
+          getRandomSymbols(musicText.length - currentIndex) : '';
+        setCenterText(musicText.slice(0, currentIndex) + symbolsForRest);
         currentIndex++;
       }
     };
@@ -83,7 +83,7 @@ export default function Music() {
   // Blinking cursor effect
   useEffect(() => {
     const cursorInterval = setInterval(() => {
-      setShowCursor(prev => !prev);
+      setShowTopCursor(prev => !prev);
       setShowCenterCursor(prev => !prev);
     }, 530);
 
@@ -97,7 +97,7 @@ export default function Music() {
         className="absolute top-20 text-black text-xs tracking-wider font-thin"
         style={{ fontFamily: 'var(--font-helios-ext)' }}
       >
-        {text}{showCursor && <span className="opacity-50">|</span>}
+        {topText}{showTopCursor && <span className="opacity-50">|</span>}
       </div>
 
       {/* Center Logo */}
