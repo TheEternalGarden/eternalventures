@@ -179,12 +179,6 @@ export default function About() {
           className="text-black text-xs tracking-wider font-thin mt-4 text-center"
           style={{ fontFamily: 'var(--font-helios-ext)' }}
         >
-          {foundedText}{showFoundedCursor && <span className="opacity-50">|</span>}
-        </div>
-        <div 
-          className="text-black text-xs tracking-wider font-thin mt-4 text-center"
-          style={{ fontFamily: 'var(--font-helios-ext)' }}
-        >
           {descriptionText}{showDescriptionCursor && <span className="opacity-50">|</span>}
         </div>
         <div 
@@ -192,6 +186,12 @@ export default function About() {
           style={{ fontFamily: 'var(--font-helios-ext)' }}
         >
           {missionText}{showMissionCursor && <span className="opacity-50">|</span>}
+        </div>
+        <div 
+          className="text-black text-xs tracking-wider font-thin mt-4 text-center"
+          style={{ fontFamily: 'var(--font-helios-ext)' }}
+        >
+          {foundedText}{showFoundedCursor && <span className="opacity-50">|</span>}
         </div>
       </div>
     </main>
