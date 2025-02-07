@@ -250,11 +250,12 @@ export default function Team() {
       
       {/* Second image */}
       <Image
-        src="/images/claireheadshot.jpg"
+        src={'/images/claireheadshot.png'}
         alt="Claire Headshot"
         width={300}
         height={300}
         className="mt-32"
+        priority
       />
     </main>
   );
