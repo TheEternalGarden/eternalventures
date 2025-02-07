@@ -163,7 +163,96 @@ export default function Music() {
             setHoveredItem(null);
           }}
         >
-          {/* ... existing hamburger menu code ... */}
+          {/* Menu Icon */}
+          <div className="flex flex-col items-end gap-1.5">
+            <div className="w-6 h-px bg-black"></div>
+            <div className="w-6 h-px bg-black"></div>
+          </div>
+
+          {/* Menu Items */}
+          {showMenu && (
+            <div className="absolute top-0 right-0 mt-6 text-right">
+              {/* Garden Link */}
+              <div className={`relative menu-item-container ${hoveredItem === 'garden' ? 'menu-item-hover' : ''}`}>
+                <Link
+                  href="/garden"
+                  onMouseEnter={() => setHoveredItem('garden')}
+                  onMouseLeave={() => setHoveredItem(null)}
+                  className="block py-1 text-xs tracking-wider"
+                  style={{
+                    fontFamily: 'var(--font-helios-ext)',
+                    opacity: !hoveredItem || hoveredItem === 'garden' ? 1 : 0.3
+                  }}
+                >
+                  GARDEN
+                </Link>
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-px bg-black transform origin-right transition-transform duration-300"
+                  style={{ transform: hoveredItem === 'garden' ? 'scaleX(1)' : 'scaleX(0)' }}
+                ></div>
+              </div>
+
+              {/* Labs Link */}
+              <div className={`relative menu-item-container ${hoveredItem === 'labs' ? 'menu-item-hover' : ''}`}>
+                <Link
+                  href="/labs"
+                  onMouseEnter={() => setHoveredItem('labs')}
+                  onMouseLeave={() => setHoveredItem(null)}
+                  className="block py-1 text-xs tracking-wider"
+                  style={{
+                    fontFamily: 'var(--font-helios-ext)',
+                    opacity: !hoveredItem || hoveredItem === 'labs' ? 1 : 0.3
+                  }}
+                >
+                  LABS
+                </Link>
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-px bg-black transform origin-right transition-transform duration-300"
+                  style={{ transform: hoveredItem === 'labs' ? 'scaleX(1)' : 'scaleX(0)' }}
+                ></div>
+              </div>
+
+              {/* About Link */}
+              <div className={`relative menu-item-container ${hoveredItem === 'about' ? 'menu-item-hover' : ''}`}>
+                <Link
+                  href="/about"
+                  onMouseEnter={() => setHoveredItem('about')}
+                  onMouseLeave={() => setHoveredItem(null)}
+                  className="block py-1 text-xs tracking-wider"
+                  style={{
+                    fontFamily: 'var(--font-helios-ext)',
+                    opacity: !hoveredItem || hoveredItem === 'about' ? 1 : 0.3
+                  }}
+                >
+                  ABOUT
+                </Link>
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-px bg-black transform origin-right transition-transform duration-300"
+                  style={{ transform: hoveredItem === 'about' ? 'scaleX(1)' : 'scaleX(0)' }}
+                ></div>
+              </div>
+
+              {/* Team Link */}
+              <div className={`relative menu-item-container ${hoveredItem === 'team' ? 'menu-item-hover' : ''}`}>
+                <Link
+                  href="/team"
+                  onMouseEnter={() => setHoveredItem('team')}
+                  onMouseLeave={() => setHoveredItem(null)}
+                  className="block py-1 text-xs tracking-wider"
+                  style={{
+                    fontFamily: 'var(--font-helios-ext)',
+                    opacity: !hoveredItem || hoveredItem === 'team' ? 1 : 0.3
+                  }}
+                >
+                  TEAM
+                </Link>
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-px bg-black transform origin-right transition-transform duration-300"
+                  style={{ transform: hoveredItem === 'team' ? 'scaleX(1)' : 'scaleX(0)' }}
+                ></div>
+              </div>
+            </div>
+          )}
         </div>
       </main>
     </div>
