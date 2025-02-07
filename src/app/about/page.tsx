@@ -12,7 +12,7 @@ export default function About() {
       const timer = setTimeout(() => {
         setDisplayedWords(prev => [...prev, words[currentWordIndex]]);
         setCurrentWordIndex(prev => prev + 1);
-      }, 1000); // Increased delay for better visibility
+      }, 1000);
 
       return () => clearTimeout(timer);
     }
@@ -32,9 +32,8 @@ export default function About() {
             key={index} 
             className="text-xl"
             style={{
-              opacity: 0,
-              animation: `fadeIn 0.5s ease-in-out forwards`,
-              animationDelay: `${index * 0.5}s`
+              opacity: 1,
+              transition: 'opacity 0.5s ease-in-out',
             }}
           >
             {word}
