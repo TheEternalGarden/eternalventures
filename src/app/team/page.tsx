@@ -14,9 +14,15 @@ export default function Team() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [opacity, setOpacity] = useState(1);
+  const [pageHeight, setPageHeight] = useState(0);
   
   const title = "TEAM";
   const role = "TK: CEO & FOUNDER";
+
+  // Set initial page height
+  useEffect(() => {
+    setPageHeight(window.innerHeight);
+  }, []);
 
   // Symbol generation functions
   const getRandomSymbol = () => {
@@ -95,12 +101,13 @@ export default function Team() {
 
   // Handle scroll effect
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const handleScroll = () => {
       const position = window.scrollY;
       setScrollPosition(position);
       
       // Calculate opacity based on scroll position
-      const pageHeight = window.innerHeight;
       const scrollPercentage = position / pageHeight;
       
       if (scrollPercentage <= 1) {
@@ -112,7 +119,7 @@ export default function Team() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [pageHeight]);
 
   return (
     <div className="relative">
@@ -278,7 +285,7 @@ export default function Team() {
       {/* Second Page */}
       <main className="min-h-screen flex flex-col items-center justify-center"
         style={{ 
-          opacity: Math.max(0, Math.min(1, scrollPosition / window.innerHeight - 0.5)),
+          opacity: Math.max(0, Math.min(1, scrollPosition / pageHeight - 0.5)),
           transition: 'opacity 0.3s ease-in-out'
         }}>
         <Image
