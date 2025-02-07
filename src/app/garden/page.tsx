@@ -179,34 +179,31 @@ export default function Garden() {
         </main>
 
         {/* Second Page - Gallery */}
-        <div className="h-screen flex flex-col items-center justify-start pt-20 relative snap-start bg-white">
+        <div className="h-screen flex flex-col items-center justify-center relative snap-start bg-white">
           {/* Gallery Description Text */}
           <div 
-            className="text-black text-xs tracking-wider font-thin mb-12 text-center max-w-[800px] whitespace-nowrap px-4"
+            className="text-black text-xs tracking-wider font-thin mb-16 text-center max-w-[800px] whitespace-nowrap px-4"
             style={{ fontFamily: 'var(--font-helios-ext)' }}
           >
             {galleryText}{showGalleryCursor && <span className="opacity-50">|</span>}
           </div>
 
           {/* Gallery Container */}
-          <div className="w-full overflow-x-auto scrollbar-hide">
-            <div className="flex gap-8 px-8 min-w-max">
-              {/* Gallery Image */}
-              <div className="relative w-[800px] h-[500px]">
-                <Image
-                  src="/images/garden/17.png"
-                  alt="Garden Gallery Image"
-                  fill
-                  sizes="(max-width: 800px) 100vw, 800px"
-                  priority
-                  quality={100}
-                  style={{ 
-                    objectFit: 'contain',
-                    objectPosition: 'center'
-                  }}
-                  className="transition-transform duration-300 hover:scale-105"
-                />
-              </div>
+          <div className="w-full flex justify-center items-center px-4">
+            <div className="relative w-[1000px] h-[600px]">
+              <Image
+                src="/images/garden/17.png"
+                alt="Garden Gallery Image"
+                fill
+                sizes="(max-width: 1000px) 100vw, 1000px"
+                priority
+                quality={100}
+                style={{ 
+                  objectFit: 'contain',
+                  objectPosition: 'center'
+                }}
+                className="transition-transform duration-300 hover:scale-105"
+              />
             </div>
           </div>
         </div>
