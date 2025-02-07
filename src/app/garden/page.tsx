@@ -14,10 +14,13 @@ export default function Garden() {
   const [showDescriptionCursor, setShowDescriptionCursor] = useState(true);
   const [isTopTextComplete, setIsTopTextComplete] = useState(false);
   const [isCenterTextComplete, setIsCenterTextComplete] = useState(false);
+  const [galleryText, setGalleryText] = useState("");
+  const [showGalleryCursor, setShowGalleryCursor] = useState(true);
 
   const eternalGardenText = "ETERNAL GARDEN";
   const gardenText = "GARDEN";
   const description = "A SCI-FI FANTASY EPIC ABOUT A MYSTICAL SEED THAT SPAWNS INFINITE WORLDS.";
+  const galleryDescription = "A SCI-FI FANTASY EPIC ABOUT A MYSTICAL SEED THAT SPAWNS INFINITE WORLDS.";
 
   // Symbol generation functions
   const getRandomSymbol = () => {
@@ -104,12 +107,30 @@ export default function Garden() {
     return () => clearInterval(interval);
   }, [isCenterTextComplete]);
 
-  // Blinking cursor effect
+  // Gallery text animation
+  useEffect(() => {
+    let currentIndex = 0;
+    
+    const typeText = () => {
+      if (currentIndex <= galleryDescription.length) {
+        const symbolsForRest = currentIndex < galleryDescription.length ? 
+          getRandomSymbols(galleryDescription.length - currentIndex) : '';
+        setGalleryText(galleryDescription.slice(0, currentIndex) + symbolsForRest);
+        currentIndex++;
+      }
+    };
+
+    const interval = setInterval(typeText, 65);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Update blinking cursor effect to include gallery cursor
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setShowTopCursor(prev => !prev);
       setShowCenterCursor(prev => !prev);
       setShowDescriptionCursor(prev => !prev);
+      setShowGalleryCursor(prev => !prev);
     }, 530);
 
     return () => clearInterval(cursorInterval);
@@ -158,10 +179,29 @@ export default function Garden() {
         </main>
 
         {/* Second Page - Gallery */}
-        <div className="h-screen flex flex-col items-center justify-center relative snap-start bg-white">
-          <div className="w-full max-w-[1200px] px-4">
-            <div className="grid grid-cols-3 gap-4">
-              {/* Gallery images will go here */}
+        <div className="h-screen flex flex-col items-center justify-start pt-20 relative snap-start bg-white">
+          {/* Gallery Description Text */}
+          <div 
+            className="text-black text-xs tracking-wider font-thin mb-12 text-center max-w-[800px] whitespace-nowrap px-4"
+            style={{ fontFamily: 'var(--font-helios-ext)' }}
+          >
+            {galleryText}{showGalleryCursor && <span className="opacity-50">|</span>}
+          </div>
+
+          {/* Gallery Container */}
+          <div className="w-full overflow-x-auto scrollbar-hide">
+            <div className="flex gap-8 px-8 min-w-max">
+              {/* Gallery Image */}
+              <div className="relative w-[600px] h-[400px]">
+                <Image
+                  src="/images/garden/17.png"
+                  alt="Garden Gallery Image"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+              {/* Add more images here as needed */}
             </div>
           </div>
         </div>
