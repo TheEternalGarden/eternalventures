@@ -19,3 +19,12 @@ export default function About() {
   const description = "ETERNAL VENTURES IS A STUDIO SPECIALIZING IN CREATIVE RESEARCH.";
   const founded = "FOUNDED IN 2023";
   const mission = "SPEARHEADED BY ETERNAL LABS, OUR TEAM BUILDS AT THE INTERSECTION OF TECHNOLOGY, ART AND STORYTELLING. THESE INNOVATIONS FUEL THE OUTPUT OF OUR OTHER CORE VENTURES, ETERNAL GARDEN AND ETERNAL MUSIC.";
+
+  return (
+    <main>
+      <div>
+        {/* Rest of the component content */}
+      </div>
+    </main>
+  );
+}
