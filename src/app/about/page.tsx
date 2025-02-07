@@ -5,12 +5,22 @@ import { useEffect, useState } from 'react';
 export default function About() {
   const [text, setText] = useState("");
   const [descriptionText, setDescriptionText] = useState("");
+  const [foundedText, setFoundedText] = useState("");
+  const [missionText, setMissionText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
   const [showDescriptionCursor, setShowDescriptionCursor] = useState(true);
+  const [showFoundedCursor, setShowFoundedCursor] = useState(true);
+  const [showMissionCursor, setShowMissionCursor] = useState(true);
+  
   const words = ['VENTURES', 'LABS', 'MUSIC', 'GARDEN'];
   const description = "ETERNAL VENTURES IS A STUDIO SPECIALIZING IN CREATIVE RESEARCH.";
+  const founded = "FOUNDED IN 2023";
+  const mission = "SPEARHEADED BY ETERNAL LABS, OUR TEAM BUILDS AT THE INTERSECTION OF TECHNOLOGY, ART AND STORYTELLING. THESE INNOVATIONS FUEL THE OUTPUT OF OUR OTHER CORE VENTURES, ETERNAL GARDEN AND ETERNAL MUSIC.";
+  
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isFirstTextComplete, setIsFirstTextComplete] = useState(false);
+  const [isDescriptionComplete, setIsDescriptionComplete] = useState(false);
+  const [isFoundedComplete, setIsFoundedComplete] = useState(false);
 
   // Add symbol generation functions
   const getRandomSymbol = () => {
@@ -78,6 +88,9 @@ export default function About() {
           getRandomSymbols(description.length - currentIndex) : '';
         setDescriptionText(description.slice(0, currentIndex) + symbolsForRest);
         currentIndex++;
+        if (currentIndex > description.length) {
+          setIsDescriptionComplete(true);
+        }
       }
     };
 
@@ -88,11 +101,60 @@ export default function About() {
     };
   }, [isFirstTextComplete]);
 
+  // Founded text animation
+  useEffect(() => {
+    if (!isDescriptionComplete) return;
+    
+    let currentIndex = 0;
+    
+    const typeText = () => {
+      if (currentIndex <= founded.length) {
+        const symbolsForRest = currentIndex < founded.length ? 
+          getRandomSymbols(founded.length - currentIndex) : '';
+        setFoundedText(founded.slice(0, currentIndex) + symbolsForRest);
+        currentIndex++;
+        if (currentIndex > founded.length) {
+          setIsFoundedComplete(true);
+        }
+      }
+    };
+
+    const interval = setInterval(typeText, 65);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isDescriptionComplete]);
+
+  // Mission text animation
+  useEffect(() => {
+    if (!isFoundedComplete) return;
+    
+    let currentIndex = 0;
+    
+    const typeText = () => {
+      if (currentIndex <= mission.length) {
+        const symbolsForRest = currentIndex < mission.length ? 
+          getRandomSymbols(mission.length - currentIndex) : '';
+        setMissionText(mission.slice(0, currentIndex) + symbolsForRest);
+        currentIndex++;
+      }
+    };
+
+    const interval = setInterval(typeText, 65);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isFoundedComplete]);
+
   // Blinking cursor effects
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setShowCursor(prev => !prev);
       setShowDescriptionCursor(prev => !prev);
+      setShowFoundedCursor(prev => !prev);
+      setShowMissionCursor(prev => !prev);
     }, 530);
 
     return () => clearInterval(cursorInterval);
@@ -106,7 +168,7 @@ export default function About() {
         width={150}
         height={150}
       />
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-4 max-w-2xl px-4">
         <div 
           className="text-black text-xs tracking-wider font-thin"
           style={{ fontFamily: 'var(--font-helios-ext)' }}
@@ -114,10 +176,22 @@ export default function About() {
           {text}{showCursor && <span className="opacity-50">|</span>}
         </div>
         <div 
-          className="text-black text-xs tracking-wider font-thin mt-4"
+          className="text-black text-xs tracking-wider font-thin mt-4 text-center"
+          style={{ fontFamily: 'var(--font-helios-ext)' }}
+        >
+          {foundedText}{showFoundedCursor && <span className="opacity-50">|</span>}
+        </div>
+        <div 
+          className="text-black text-xs tracking-wider font-thin mt-4 text-center"
           style={{ fontFamily: 'var(--font-helios-ext)' }}
         >
           {descriptionText}{showDescriptionCursor && <span className="opacity-50">|</span>}
+        </div>
+        <div 
+          className="text-black text-xs tracking-wider font-thin mt-4 text-center"
+          style={{ fontFamily: 'var(--font-helios-ext)' }}
+        >
+          {missionText}{showMissionCursor && <span className="opacity-50">|</span>}
         </div>
       </div>
     </main>
