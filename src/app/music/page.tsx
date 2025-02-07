@@ -8,12 +8,16 @@ export default function Music() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [topText, setTopText] = useState("");
   const [centerText, setCenterText] = useState("");
+  const [descriptionText, setDescriptionText] = useState("");
   const [showTopCursor, setShowTopCursor] = useState(true);
   const [showCenterCursor, setShowCenterCursor] = useState(true);
+  const [showDescriptionCursor, setShowDescriptionCursor] = useState(true);
   const [isTopTextComplete, setIsTopTextComplete] = useState(false);
+  const [isCenterTextComplete, setIsCenterTextComplete] = useState(false);
 
   const eternalMusicText = "ETERNAL MUSIC";
   const musicText = "MUSIC";
+  const description = "A RECORD LABEL DEVELOPING WORLD BUILDING EXPERIENCES.";
 
   // Symbol generation functions
   const getRandomSymbol = () => {
@@ -60,7 +64,7 @@ export default function Music() {
     return () => clearInterval(interval);
   }, []);
 
-  // Center text animation - starts after top text is complete
+  // Center text animation
   useEffect(() => {
     if (!isTopTextComplete) return;
     
@@ -72,6 +76,9 @@ export default function Music() {
           getRandomSymbols(musicText.length - currentIndex) : '';
         setCenterText(musicText.slice(0, currentIndex) + symbolsForRest);
         currentIndex++;
+        if (currentIndex > musicText.length) {
+          setIsCenterTextComplete(true);
+        }
       }
     };
 
@@ -80,11 +87,32 @@ export default function Music() {
     return () => clearInterval(interval);
   }, [isTopTextComplete]);
 
+  // Description text animation
+  useEffect(() => {
+    if (!isCenterTextComplete) return;
+    
+    let currentIndex = 0;
+    
+    const typeText = () => {
+      if (currentIndex <= description.length) {
+        const symbolsForRest = currentIndex < description.length ? 
+          getRandomSymbols(description.length - currentIndex) : '';
+        setDescriptionText(description.slice(0, currentIndex) + symbolsForRest);
+        currentIndex++;
+      }
+    };
+
+    const interval = setInterval(typeText, 65);
+
+    return () => clearInterval(interval);
+  }, [isCenterTextComplete]);
+
   // Blinking cursor effect
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setShowTopCursor(prev => !prev);
       setShowCenterCursor(prev => !prev);
+      setShowDescriptionCursor(prev => !prev);
     }, 530);
 
     return () => clearInterval(cursorInterval);
@@ -100,21 +128,32 @@ export default function Music() {
         {topText}{showTopCursor && <span className="opacity-50">|</span>}
       </div>
 
-      {/* Center Logo */}
-      <Image
-        src="/images/ETERNAL VENTURES - no ventures.png"
-        alt="Eternal Ventures Logo"
-        width={150}
-        height={150}
-        priority
-      />
+      {/* Center Content */}
+      <div className="flex flex-col items-center gap-4">
+        {/* Logo */}
+        <Image
+          src="/images/ETERNAL VENTURES - no ventures.png"
+          alt="Eternal Ventures Logo"
+          width={150}
+          height={150}
+          priority
+        />
 
-      {/* Center Text */}
-      <div 
-        className="text-black text-xs tracking-wider font-thin"
-        style={{ fontFamily: 'var(--font-helios-ext)' }}
-      >
-        {centerText}{showCenterCursor && <span className="opacity-50">|</span>}
+        {/* MUSIC Text */}
+        <div 
+          className="text-black text-xs tracking-wider font-thin mt-2"
+          style={{ fontFamily: 'var(--font-helios-ext)' }}
+        >
+          {centerText}{showCenterCursor && <span className="opacity-50">|</span>}
+        </div>
+
+        {/* Description Text */}
+        <div 
+          className="text-black text-xs tracking-wider font-thin mt-4 text-center max-w-md"
+          style={{ fontFamily: 'var(--font-helios-ext)' }}
+        >
+          {descriptionText}{showDescriptionCursor && <span className="opacity-50">|</span>}
+        </div>
       </div>
 
       {/* Hamburger Menu */}
