@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Garden() {
@@ -152,12 +151,10 @@ export default function Garden() {
           {/* Center Content */}
           <div className="flex flex-col items-center gap-4">
             {/* Logo */}
-            <Image
+            <img
               src="/images/ETERNAL VENTURES - no ventures.png"
               alt="Eternal Ventures Logo"
-              width={150}
-              height={150}
-              priority
+              className="w-[150px] h-[150px] object-contain"
             />
 
             {/* GARDEN Text */}
@@ -191,18 +188,10 @@ export default function Garden() {
           {/* Gallery Container */}
           <div className="w-full flex justify-center items-center px-4">
             <div className="relative w-[600px] h-[400px] overflow-hidden bg-white">
-              <Image
+              <img
                 src="/images/garden/sara.jpg"
                 alt="Garden Gallery Image"
-                width={600}
-                height={400}
-                priority
-                unoptimized
-                style={{ 
-                  objectFit: 'cover',
-                  objectPosition: 'center'
-                }}
-                className="transition-transform duration-300 hover:scale-105"
+                className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
               />
             </div>
           </div>
