@@ -4,9 +4,13 @@ import { useEffect, useState } from 'react';
 
 export default function About() {
   const [text, setText] = useState("");
+  const [descriptionText, setDescriptionText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
+  const [showDescriptionCursor, setShowDescriptionCursor] = useState(true);
   const words = ['VENTURES', 'LABS', 'MUSIC', 'GARDEN'];
+  const description = "ETERNAL VENTURES IS A STUDIO SPECIALIZING IN CREATIVE RESEARCH.";
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [isFirstTextComplete, setIsFirstTextComplete] = useState(false);
 
   // Add symbol generation functions
   const getRandomSymbol = () => {
@@ -18,6 +22,7 @@ export default function About() {
     return Array(length).fill(0).map(() => getRandomSymbol()).join('');
   };
 
+  // First text animation
   useEffect(() => {
     let currentIndex = 0;
     let isDeleting = false;
@@ -33,6 +38,7 @@ export default function About() {
           setText(currentWord.slice(0, currentIndex) + symbolsForRest);
           currentIndex++;
           if (currentIndex > currentWord.length) {
+            setIsFirstTextComplete(true);
             timeoutId = setTimeout(() => {
               isDeleting = true;
               currentIndex = currentWord.length;
@@ -60,10 +66,38 @@ export default function About() {
     };
   }, [currentWordIndex]);
 
-  // Blinking cursor effect
+  // Description text animation
+  useEffect(() => {
+    if (!isFirstTextComplete) return;
+    
+    let currentIndex = 0;
+    let isDeleting = false;
+    let timeoutId: NodeJS.Timeout;
+    
+    const typeText = () => {
+      if (!isDeleting) {
+        if (currentIndex <= description.length) {
+          const symbolsForRest = currentIndex < description.length ? 
+            getRandomSymbols(description.length - currentIndex) : '';
+          setDescriptionText(description.slice(0, currentIndex) + symbolsForRest);
+          currentIndex++;
+        }
+      }
+    };
+
+    const interval = setInterval(typeText, 65);
+
+    return () => {
+      clearInterval(interval);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [isFirstTextComplete]);
+
+  // Blinking cursor effects
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setShowCursor(prev => !prev);
+      setShowDescriptionCursor(prev => !prev);
     }, 530);
 
     return () => clearInterval(cursorInterval);
@@ -83,6 +117,12 @@ export default function About() {
           style={{ fontFamily: 'var(--font-helios-ext)' }}
         >
           {text}{showCursor && <span className="opacity-50">|</span>}
+        </div>
+        <div 
+          className="text-black text-xs tracking-wider font-thin mt-4"
+          style={{ fontFamily: 'var(--font-helios-ext)' }}
+        >
+          {descriptionText}{showDescriptionCursor && <span className="opacity-50">|</span>}
         </div>
       </div>
     </main>
