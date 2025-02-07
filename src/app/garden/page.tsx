@@ -187,11 +187,23 @@ export default function Garden() {
 
           {/* Gallery Container */}
           <div className="w-full flex justify-center items-center px-4">
-            <div className="relative w-[600px] h-[400px] overflow-hidden bg-white">
+            <div className="relative w-[600px] h-[400px] overflow-hidden">
               <img
                 src="/images/garden/sara.jpg"
                 alt="Garden Gallery Image"
-                className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+                onError={(e) => {
+                  console.error('Image failed to load:', e);
+                  const img = e.target as HTMLImageElement;
+                  console.log('Attempted image path:', img.src);
+                }}
+                onLoad={() => {
+                  console.log('Image loaded successfully');
+                }}
               />
             </div>
           </div>
