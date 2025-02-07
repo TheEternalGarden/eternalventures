@@ -199,7 +199,7 @@ export default function Garden() {
                 priority
                 quality={100}
                 style={{ 
-                  objectFit: 'contain',
+                  objectFit: 'cover',
                   objectPosition: 'center'
                 }}
                 className="transition-transform duration-300 hover:scale-105"
