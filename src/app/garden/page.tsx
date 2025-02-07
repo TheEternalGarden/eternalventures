@@ -190,25 +190,21 @@ export default function Garden() {
 
           {/* Gallery Container */}
           <div className="w-full flex justify-center items-center px-4">
-            <div className="relative w-[800px] h-[500px] overflow-hidden bg-white">
+            <div className="relative w-[600px] h-[400px] overflow-hidden bg-white">
               <Image
-                src="/images/garden/17.png"
+                src="/images/garden/sara.png"
                 alt="Garden Gallery Image"
-                width={800}
-                height={500}
+                width={600}
+                height={400}
                 priority
-                loading="eager"
-                quality={75}
+                quality={85}
                 style={{ 
-                  maxWidth: '100%',
-                  height: 'auto',
-                  objectFit: 'contain',
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
                   objectPosition: 'center'
                 }}
                 className="transition-transform duration-300 hover:scale-105"
-                onError={(e) => {
-                  console.error('Error loading image:', e);
-                }}
               />
             </div>
           </div>
