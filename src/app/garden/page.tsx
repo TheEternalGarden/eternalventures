@@ -189,7 +189,7 @@ export default function Garden() {
           <div className="w-full flex justify-center items-center px-4">
             <div className="relative w-[600px] h-[400px] overflow-hidden">
               <img
-                src="/images/garden/sara.jpg"
+                src="/images/sara.jpg"
                 alt="Garden Gallery Image"
                 style={{
                   width: '100%',
