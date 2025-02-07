@@ -147,7 +147,7 @@ export default function Music() {
 
           {/* Description Text */}
           <div 
-            className="text-black text-xs tracking-wider font-thin mt-4 text-center max-w-md"
+            className="text-black text-xs tracking-wider font-thin mt-4 text-center max-w-[800px] whitespace-nowrap"
             style={{ fontFamily: 'var(--font-helios-ext)' }}
           >
             {descriptionText}{showDescriptionCursor && <span className="opacity-50">|</span>}
