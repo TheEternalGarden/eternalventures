@@ -65,4 +65,50 @@ export default function Team() {
     let currentIndex = 0;
     
     const typeText = () => {
-      if (currentIndex <
+      if (currentIndex <= role.length) {
+        const symbolsForRest = currentIndex < role.length ? 
+          getRandomSymbols(role.length - currentIndex) : '';
+        setRoleText(role.slice(0, currentIndex) + symbolsForRest);
+        currentIndex++;
+      }
+    };
+
+    const interval = setInterval(typeText, 65);
+
+    return () => clearInterval(interval);
+  }, [isFirstTextComplete]);
+
+  // Blinking cursor effect
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor(prev => !prev);
+      setShowRoleCursor(prev => !prev);
+    }, 530);
+
+    return () => clearInterval(cursorInterval);
+  }, []);
+
+  return (
+    <main className="min-h-screen flex flex-col items-center pt-20 gap-8">
+      <div 
+        className="text-black text-xs tracking-wider font-thin"
+        style={{ fontFamily: 'var(--font-helios-ext)' }}
+      >
+        {text}{showCursor && <span className="opacity-50">|</span>}
+      </div>
+      <Image
+        src="/images/tkheadshot.jpg"
+        alt="Team Member Headshot"
+        width={300}
+        height={300}
+        className="mt-32"
+      />
+      <div 
+        className="text-black text-xs tracking-wider font-thin mt-8"
+        style={{ fontFamily: 'var(--font-helios-ext)' }}
+      >
+        {roleText}{showRoleCursor && <span className="opacity-50">|</span>}
+      </div>
+    </main>
+  );
+}
