@@ -73,7 +73,7 @@ export default function Team() {
         alt="Team Member Headshot"
         width={300}
         height={300}
-        className="mt-8"
+        className="mt-32"
       />
     </main>
   );
