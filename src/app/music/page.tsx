@@ -14,8 +14,6 @@ export default function Music() {
   const [showDescriptionCursor, setShowDescriptionCursor] = useState(true);
   const [isTopTextComplete, setIsTopTextComplete] = useState(false);
   const [isCenterTextComplete, setIsCenterTextComplete] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [pageHeight, setPageHeight] = useState(0);
 
   const eternalMusicText = "ETERNAL MUSIC";
   const musicText = "MUSIC";
@@ -117,37 +115,8 @@ export default function Music() {
     return () => clearInterval(cursorInterval);
   }, []);
 
-  // Set initial page height
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setPageHeight(window.innerHeight);
-    }
-  }, []);
-
-  // Handle scroll effect
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const handleScroll = () => {
-      const position = window.scrollY;
-      setScrollPosition(position);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [pageHeight]);
-
-  // Function to scroll to second page
-  const scrollToSecondPage = () => {
-    window.scrollTo({
-      top: pageHeight,
-      behavior: 'smooth'
-    });
-  };
-
   return (
     <div className="relative">
-      {/* First Page */}
       <main className="min-h-screen flex flex-col items-center justify-center gap-8 relative">
         {/* Top Text */}
         <div 
@@ -183,26 +152,6 @@ export default function Music() {
           >
             {descriptionText}{showDescriptionCursor && <span className="opacity-50">|</span>}
           </div>
-
-          {/* Arrow Button */}
-          <button 
-            onClick={scrollToSecondPage}
-            className="mt-8 transition-transform duration-300 hover:translate-y-1 cursor-default"
-          >
-            <svg 
-              width="24" 
-              height="24" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="1" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            >
-              <line x1="12" y1="5" x2="12" y2="19" />
-              <polyline points="19 12 12 19 5 12" />
-            </svg>
-          </button>
         </div>
 
         {/* Hamburger Menu */}
@@ -215,26 +164,6 @@ export default function Music() {
           }}
         >
           {/* ... existing hamburger menu code ... */}
-        </div>
-      </main>
-
-      {/* Second Page with Video */}
-      <main 
-        className="min-h-screen flex flex-col items-center justify-center"
-        style={{ 
-          opacity: Math.min(1, Math.max(0, (scrollPosition / pageHeight - 0.5) * 2)),
-          transition: 'opacity 0.3s ease-in-out'
-        }}
-      >
-        <div className="w-full max-w-6xl px-4">
-          <video 
-            className="w-full h-auto"
-            controls
-            playsInline
-          >
-            <source src="/videos/darksidetrailer.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
         </div>
       </main>
     </div>
