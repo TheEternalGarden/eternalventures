@@ -579,7 +579,7 @@ export default function Home() {
               src="/images/ETERNAL VENTURES - no ventures.png"
               alt="Eternal Ventures Logo"
               width={300}
-              height={500}
+              height={300}
             />
           </Link>
           <div className="flex flex-col items-center gap-2">
