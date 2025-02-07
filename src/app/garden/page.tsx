@@ -117,40 +117,52 @@ export default function Garden() {
 
   return (
     <div className="relative">
-      <main className="min-h-screen flex flex-col items-center justify-center gap-8 relative">
-        {/* Top Text */}
-        <div 
-          className="absolute top-20 text-black text-xs tracking-wider font-thin"
-          style={{ fontFamily: 'var(--font-helios-ext)' }}
-        >
-          {topText}{showTopCursor && <span className="opacity-50">|</span>}
-        </div>
-
-        {/* Center Content */}
-        <div className="flex flex-col items-center gap-4">
-          {/* Logo */}
-          <Image
-            src="/images/ETERNAL VENTURES - no ventures.png"
-            alt="Eternal Ventures Logo"
-            width={150}
-            height={150}
-            priority
-          />
-
-          {/* GARDEN Text */}
+      <div className="h-screen snap-y snap-mandatory overflow-y-scroll">
+        {/* First Page */}
+        <main className="h-screen flex flex-col items-center justify-center gap-8 relative snap-start">
+          {/* Top Text */}
           <div 
-            className="text-black text-xs tracking-wider font-thin mt-2"
+            className="absolute top-20 text-black text-xs tracking-wider font-thin"
             style={{ fontFamily: 'var(--font-helios-ext)' }}
           >
-            {centerText}{showCenterCursor && <span className="opacity-50">|</span>}
+            {topText}{showTopCursor && <span className="opacity-50">|</span>}
           </div>
 
-          {/* Description Text */}
-          <div 
-            className="text-black text-xs tracking-wider font-thin mt-4 text-center max-w-[800px] whitespace-nowrap"
-            style={{ fontFamily: 'var(--font-helios-ext)' }}
-          >
-            {descriptionText}{showDescriptionCursor && <span className="opacity-50">|</span>}
+          {/* Center Content */}
+          <div className="flex flex-col items-center gap-4">
+            {/* Logo */}
+            <Image
+              src="/images/ETERNAL VENTURES - no ventures.png"
+              alt="Eternal Ventures Logo"
+              width={150}
+              height={150}
+              priority
+            />
+
+            {/* GARDEN Text */}
+            <div 
+              className="text-black text-xs tracking-wider font-thin mt-2"
+              style={{ fontFamily: 'var(--font-helios-ext)' }}
+            >
+              {centerText}{showCenterCursor && <span className="opacity-50">|</span>}
+            </div>
+
+            {/* Description Text */}
+            <div 
+              className="text-black text-xs tracking-wider font-thin mt-4 text-center max-w-[800px] whitespace-nowrap"
+              style={{ fontFamily: 'var(--font-helios-ext)' }}
+            >
+              {descriptionText}{showDescriptionCursor && <span className="opacity-50">|</span>}
+            </div>
+          </div>
+        </main>
+
+        {/* Second Page - Gallery */}
+        <div className="h-screen flex flex-col items-center justify-center relative snap-start bg-white">
+          <div className="w-full max-w-[1200px] px-4">
+            <div className="grid grid-cols-3 gap-4">
+              {/* Gallery images will go here */}
+            </div>
           </div>
         </div>
 
@@ -300,7 +312,7 @@ export default function Garden() {
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 } 
