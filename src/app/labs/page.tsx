@@ -75,14 +75,14 @@ export default function Labs() {
         <Image
           src="/images/ETERNAL VENTURES - no ventures.png"
           alt="Eternal Labs Logo"
-          width={80}
-          height={80}
+          width={150}
+          height={150}
           priority
         />
-        <h1 className="text-sm font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+        <h1 className="text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
           LABS
         </h1>
-        <div className="text-center text-sm font-thin max-w-2xl" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+        <div className="text-center text-xs font-thin max-w-[800px] whitespace-nowrap" style={{ fontFamily: 'var(--font-helios-ext)' }}>
           {text}{showCursor && <span className="opacity-50">|</span>}
         </div>
       </div>
