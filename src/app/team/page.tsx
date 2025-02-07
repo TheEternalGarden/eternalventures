@@ -5,8 +5,13 @@ import Image from 'next/image';
 
 export default function Team() {
   const [text, setText] = useState("");
+  const [roleText, setRoleText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
+  const [showRoleCursor, setShowRoleCursor] = useState(true);
+  const [isFirstTextComplete, setIsFirstTextComplete] = useState(false);
+  
   const title = "TEAM";
+  const role = "TK: CEO & FOUNDER";
 
   // Symbol generation functions
   const getRandomSymbol = () => {
@@ -31,6 +36,7 @@ export default function Team() {
           setText(title.slice(0, currentIndex) + symbolsForRest);
           currentIndex++;
           if (currentIndex > title.length) {
+            setIsFirstTextComplete(true);
             setTimeout(() => {
               isDeleting = true;
             }, 1000);
@@ -52,10 +58,31 @@ export default function Team() {
     return () => clearInterval(interval);
   }, []);
 
+  // Role text animation - starts after title is complete
+  useEffect(() => {
+    if (!isFirstTextComplete) return;
+    
+    let currentIndex = 0;
+    
+    const typeText = () => {
+      if (currentIndex <= role.length) {
+        const symbolsForRest = currentIndex < role.length ? 
+          getRandomSymbols(role.length - currentIndex) : '';
+        setRoleText(role.slice(0, currentIndex) + symbolsForRest);
+        currentIndex++;
+      }
+    };
+
+    const interval = setInterval(typeText, 65);
+
+    return () => clearInterval(interval);
+  }, [isFirstTextComplete]);
+
   // Blinking cursor effect
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setShowCursor(prev => !prev);
+      setShowRoleCursor(prev => !prev);
     }, 530);
 
     return () => clearInterval(cursorInterval);
@@ -76,6 +103,12 @@ export default function Team() {
         height={300}
         className="mt-32"
       />
+      <div 
+        className="text-black text-xs tracking-wider font-thin mt-8"
+        style={{ fontFamily: 'var(--font-helios-ext)' }}
+      >
+        {roleText}{showRoleCursor && <span className="opacity-50">|</span>}
+      </div>
     </main>
   );
 }
