@@ -238,6 +238,26 @@ export default function Music() {
                 ></div>
               </div>
 
+              {/* Music Link */}
+              <div className={`relative menu-item-container ${hoveredItem === 'music' ? 'menu-item-hover' : ''}`}>
+                <Link
+                  href="/music"
+                  onMouseEnter={() => setHoveredItem('music')}
+                  onMouseLeave={() => setHoveredItem(null)}
+                  className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
+                  style={{
+                    fontFamily: 'var(--font-helios-ext)',
+                    opacity: !hoveredItem || hoveredItem === 'music' ? 1 : 0.3
+                  }}
+                >
+                  MUSIC
+                </Link>
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
+                  style={{ transform: hoveredItem === 'music' ? 'scaleX(1)' : 'scaleX(0)' }}
+                ></div>
+              </div>
+
               {/* About Link */}
               <div className={`relative menu-item-container ${hoveredItem === 'about' ? 'menu-item-hover' : ''}`}>
                 <Link
