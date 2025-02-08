@@ -226,16 +226,33 @@ export default function Music() {
                   playsInline
                   preload="metadata"
                   poster="/images/ETERNAL VENTURES - no ventures.png"
-                  onLoadStart={() => console.log('Video load started')}
-                  onLoadedMetadata={() => console.log('Video metadata loaded')}
-                  onLoadedData={() => console.log('Video data loaded')}
+                  onLoadStart={() => {
+                    console.log('Video load started');
+                    if (videoRef.current) {
+                      videoRef.current.muted = true; // Start muted
+                    }
+                  }}
+                  onCanPlay={() => {
+                    console.log('Video can play');
+                    if (videoRef.current) {
+                      videoRef.current.muted = false; // Unmute once ready
+                    }
+                  }}
                   onError={(e) => {
-                    console.error('Video error:', e);
-                    setVideoError('Error loading video. Please try again.');
+                    const target = e.target as HTMLVideoElement;
+                    const error = target.error;
+                    console.error('Video error details:', {
+                      code: error?.code,
+                      message: error?.message,
+                      networkState: target.networkState,
+                      readyState: target.readyState,
+                      currentSrc: target.currentSrc
+                    });
+                    setVideoError(`Error loading video (${error?.code}): ${error?.message || 'Unknown error'}`);
                   }}
                 >
                   <source 
-                    src="videos/darksidetrailer.mp4" 
+                    src="/videos/darksidetrailer.mp4" 
                     type="video/mp4"
                   />
                   Your browser does not support the video tag.
