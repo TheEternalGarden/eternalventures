@@ -223,26 +223,13 @@ export default function Garden() {
           </div>
 
           {/* Gallery Container */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full z-0 overflow-x-auto scrollbar-hide">
-            <div className="flex gap-8 px-8 min-w-max mx-auto">
-              {/* Sara */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <img
-                  src="/images/garden/sara.jpg"
-                  alt="Sara"
-                  className="w-full h-full object-contain"
-                  loading="eager"
-                />
-              </div>
-              {/* TK */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <img
-                  src="/images/garden/tkcompressed.jpg"
-                  alt="TK"
-                  className="w-full h-full object-contain"
-                  loading="eager"
-                />
-              </div>
+          <div className="flex justify-center items-center w-full h-full">
+            <div className="w-[800px] h-[600px] bg-white">
+              <img
+                src="/images/garden/sara.jpg"
+                alt="Sara"
+                className="w-full h-full object-contain"
+              />
             </div>
           </div>
         </div>
