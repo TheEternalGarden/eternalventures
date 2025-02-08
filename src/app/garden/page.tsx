@@ -227,20 +227,24 @@ export default function Garden() {
             <div className="flex gap-8 px-8 min-w-max mx-auto">
               {/* Sara */}
               <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <img
+                <Image
                   src="/images/garden/sara.jpg"
                   alt="Sara"
-                  className="w-full h-full object-contain"
-                  loading="eager"
+                  width={800}
+                  height={600}
+                  className="object-contain"
+                  priority
                 />
               </div>
               {/* TK */}
               <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <img
+                <Image
                   src="/images/garden/tkcompressed.jpg"
                   alt="TK"
-                  className="w-full h-full object-contain"
-                  loading="eager"
+                  width={800}
+                  height={600}
+                  className="object-contain"
+                  priority
                 />
               </div>
             </div>
@@ -347,4 +351,53 @@ export default function Garden() {
                 </Link>
                 <div 
                   className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
-                  style={{ transform: hoveredItem === 'musi
+                  style={{ transform: hoveredItem === 'music' ? 'scaleX(1)' : 'scaleX(0)' }}
+                ></div>
+              </div>
+
+              {/* About Link */}
+              <div className={`relative menu-item-container ${hoveredItem === 'about' ? 'menu-item-hover' : ''}`}>
+                <Link
+                  href="/about"
+                  onMouseEnter={() => setHoveredItem('about')}
+                  onMouseLeave={() => setHoveredItem(null)}
+                  className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
+                  style={{
+                    fontFamily: 'var(--font-helios-ext)',
+                    opacity: !hoveredItem || hoveredItem === 'about' ? 1 : 0.3
+                  }}
+                >
+                  ABOUT
+                </Link>
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
+                  style={{ transform: hoveredItem === 'about' ? 'scaleX(1)' : 'scaleX(0)' }}
+                ></div>
+              </div>
+
+              {/* Team Link */}
+              <div className={`relative menu-item-container ${hoveredItem === 'team' ? 'menu-item-hover' : ''}`}>
+                <Link
+                  href="/team"
+                  onMouseEnter={() => setHoveredItem('team')}
+                  onMouseLeave={() => setHoveredItem(null)}
+                  className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
+                  style={{
+                    fontFamily: 'var(--font-helios-ext)',
+                    opacity: !hoveredItem || hoveredItem === 'team' ? 1 : 0.3
+                  }}
+                >
+                  TEAM
+                </Link>
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
+                  style={{ transform: hoveredItem === 'team' ? 'scaleX(1)' : 'scaleX(0)' }}
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+} 
