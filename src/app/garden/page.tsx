@@ -214,20 +214,19 @@ export default function Garden() {
       >
         {/* First Page */}
         <main className="h-screen flex flex-col items-center justify-center gap-8 relative snap-start">
-          <div 
-            className="absolute inset-0 bg-white transition-opacity duration-500"
-            style={{ opacity: Math.max(0, scrollProgress * 2) }}
-          />
-          {/* Top Text */}
-          <div 
-            className="absolute top-20 text-black text-xs tracking-wider font-thin"
-            style={{ fontFamily: 'var(--font-helios-ext)' }}
-          >
-            {topText}{showTopCursor && <span className="opacity-50">|</span>}
-          </div>
+          <div className="flex flex-col items-center gap-4" style={{ 
+            opacity: scrollProgress > 0.5 ? 0 : 1,
+            transform: `translateY(${scrollProgress * 20}px)`,
+            transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out'
+          }}>
+            {/* Top Text */}
+            <div 
+              className="absolute top-20 text-black text-xs tracking-wider font-thin"
+              style={{ fontFamily: 'var(--font-helios-ext)' }}
+            >
+              {topText}{showTopCursor && <span className="opacity-50">|</span>}
+            </div>
 
-          {/* Center Content */}
-          <div className="flex flex-col items-center gap-4">
             {/* Logo */}
             <img
               src="/images/ETERNAL VENTURES - no ventures.png"
@@ -255,100 +254,102 @@ export default function Garden() {
 
         {/* Second Page - Gallery */}
         <div className="h-screen relative snap-start bg-white">
-          <div 
-            className="absolute inset-0 bg-white transition-opacity duration-500"
-            style={{ opacity: Math.max(0, 1 - (scrollProgress * 2 - 1)) }}
-          />
-          {/* Gallery Description Text */}
-          <div 
-            className="absolute top-20 left-1/2 transform -translate-x-1/2 text-black text-xs tracking-wider font-thin text-center max-w-[800px] whitespace-nowrap px-4 z-10"
-            style={{ fontFamily: 'var(--font-helios-ext)' }}
-          >
-            {galleryDescriptionText}{showGalleryDescriptionCursor && <span className="opacity-50">|</span>}
-          </div>
-
-          {/* Gallery Container */}
-          <div className="flex flex-col justify-center items-center w-full h-full">
+          <div className="h-full" style={{ 
+            opacity: scrollProgress < 0.5 ? 0 : (scrollProgress > 1.5 ? 0 : 1),
+            transform: `translateY(${(scrollProgress - 1) * 20}px)`,
+            transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out'
+          }}>
+            {/* Gallery Description Text */}
             <div 
-              className="flex overflow-x-auto snap-x snap-mandatory w-full scrollbar-hide gallery-container"
-              onScroll={handleScroll}
+              className="absolute top-20 left-1/2 transform -translate-x-1/2 text-black text-xs tracking-wider font-thin text-center max-w-[800px] whitespace-nowrap px-4 z-10"
+              style={{ fontFamily: 'var(--font-helios-ext)' }}
             >
-              {/* First Image */}
-              <div className="flex-none w-full h-full snap-center flex justify-center items-center">
-                <div className="w-[1000px] h-[750px]">
-                  <img
-                    src="/images/garden/sara.jpg"
-                    alt="Sara"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </div>
-              {/* Second Image */}
-              <div className="flex-none w-full h-full snap-center flex justify-center items-center">
-                <div className="w-[1000px] h-[750px]">
-                  <img
-                    src="/images/garden/tkcompressed.jpg"
-                    alt="TK"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </div>
-              {/* Third Image */}
-              <div className="flex-none w-full h-full snap-center flex justify-center items-center">
-                <div className="w-[1000px] h-[750px]">
-                  <img
-                    src="/images/garden/refisings.jpg"
-                    alt="Refisings"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </div>
-              {/* Fourth Image */}
-              <div className="flex-none w-full h-full snap-center flex justify-center items-center">
-                <div className="w-[1000px] h-[750px]">
-                  <img
-                    src="/images/garden/kaicompressed.jpg"
-                    alt="Kai"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </div>
-              {/* Fifth Image */}
-              <div className="flex-none w-full h-full snap-center flex justify-center items-center">
-                <div className="w-[1000px] h-[750px]">
-                  <img
-                    src="/images/garden/kevincompressed.jpg"
-                    alt="Kevin"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </div>
-              {/* Sixth Image */}
-              <div className="flex-none w-full h-full snap-center flex justify-center items-center">
-                <div className="w-[1000px] h-[750px]">
-                  <img
-                    src="/images/garden/dominocompressed.jpg"
-                    alt="Domino"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </div>
+              {galleryDescriptionText}{showGalleryDescriptionCursor && <span className="opacity-50">|</span>}
             </div>
 
-            {/* Navigation Dots */}
-            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex gap-4">
-              {Array.from({ length: totalImages }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => scrollToImage(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    currentImageIndex === index 
-                      ? 'bg-black scale-125' 
-                      : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
-                  aria-label={`Go to image ${index + 1}`}
-                />
-              ))}
+            {/* Gallery Container */}
+            <div className="h-full flex flex-col justify-center items-center">
+              <div 
+                className="flex overflow-x-auto snap-x snap-mandatory w-full scrollbar-hide gallery-container"
+                onScroll={handleScroll}
+              >
+                {/* First Image */}
+                <div className="flex-none w-full h-full snap-center flex justify-center items-center">
+                  <div className="w-[1000px] h-[750px]">
+                    <img
+                      src="/images/garden/sara.jpg"
+                      alt="Sara"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
+                {/* Second Image */}
+                <div className="flex-none w-full h-full snap-center flex justify-center items-center">
+                  <div className="w-[1000px] h-[750px]">
+                    <img
+                      src="/images/garden/tkcompressed.jpg"
+                      alt="TK"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
+                {/* Third Image */}
+                <div className="flex-none w-full h-full snap-center flex justify-center items-center">
+                  <div className="w-[1000px] h-[750px]">
+                    <img
+                      src="/images/garden/refisings.jpg"
+                      alt="Refisings"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
+                {/* Fourth Image */}
+                <div className="flex-none w-full h-full snap-center flex justify-center items-center">
+                  <div className="w-[1000px] h-[750px]">
+                    <img
+                      src="/images/garden/kaicompressed.jpg"
+                      alt="Kai"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
+                {/* Fifth Image */}
+                <div className="flex-none w-full h-full snap-center flex justify-center items-center">
+                  <div className="w-[1000px] h-[750px]">
+                    <img
+                      src="/images/garden/kevincompressed.jpg"
+                      alt="Kevin"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
+                {/* Sixth Image */}
+                <div className="flex-none w-full h-full snap-center flex justify-center items-center">
+                  <div className="w-[1000px] h-[750px]">
+                    <img
+                      src="/images/garden/dominocompressed.jpg"
+                      alt="Domino"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation Dots */}
+              <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex gap-4">
+                {Array.from({ length: totalImages }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => scrollToImage(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      currentImageIndex === index 
+                        ? 'bg-black scale-125' 
+                        : 'bg-gray-300 hover:bg-gray-400'
+                    }`}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
