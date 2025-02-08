@@ -18,7 +18,7 @@ const nextConfig = {
       test: /\.(mp4|webm)$/i,
       type: 'asset/resource',
       generator: {
-        filename: 'static/media/[name][ext]'
+        filename: 'videos/[name][ext]'
       }
     });
     return config;
