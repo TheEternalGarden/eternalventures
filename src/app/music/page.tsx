@@ -14,10 +14,19 @@ export default function Music() {
   const [showDescriptionCursor, setShowDescriptionCursor] = useState(true);
   const [isTopTextComplete, setIsTopTextComplete] = useState(false);
   const [isCenterTextComplete, setIsCenterTextComplete] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const eternalMusicText = "ETERNAL MUSIC";
   const musicText = "MUSIC";
   const description = "A RECORD LABEL DEVELOPING WORLD BUILDING EXPERIENCES.";
+
+  const handlePageScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const scrollPosition = container.scrollTop;
+    const windowHeight = container.clientHeight;
+    const progress = scrollPosition / windowHeight;
+    setScrollProgress(progress);
+  };
 
   // Symbol generation functions
   const getRandomSymbol = () => {
@@ -117,40 +126,70 @@ export default function Music() {
 
   return (
     <div className="relative">
-      <main className="min-h-screen flex flex-col items-center justify-center gap-8 relative">
-        {/* Top Text */}
-        <div 
-          className="absolute top-20 text-black text-xs tracking-wider font-thin"
-          style={{ fontFamily: 'var(--font-helios-ext)' }}
-        >
-          {topText}{showTopCursor && <span className="opacity-50">|</span>}
-        </div>
-
-        {/* Center Content */}
-        <div className="flex flex-col items-center gap-4">
-          {/* Logo */}
-          <Image
-            src="/images/ETERNAL VENTURES - no ventures.png"
-            alt="Eternal Ventures Logo"
-            width={150}
-            height={150}
-            priority
-          />
-
-          {/* MUSIC Text */}
+      <div 
+        className="h-screen snap-y snap-mandatory overflow-y-scroll"
+        onScroll={handlePageScroll}
+      >
+        {/* First Page */}
+        <main className="h-screen flex flex-col items-center justify-center gap-8 relative snap-start">
+          {/* Top Text */}
           <div 
-            className="text-black text-xs tracking-wider font-thin mt-2"
+            className="absolute top-20 left-1/2 transform -translate-x-1/2 text-black text-xs tracking-wider font-thin"
             style={{ fontFamily: 'var(--font-helios-ext)' }}
           >
-            {centerText}{showCenterCursor && <span className="opacity-50">|</span>}
+            {topText}{showTopCursor && <span className="opacity-50">|</span>}
           </div>
 
-          {/* Description Text */}
-          <div 
-            className="text-black text-xs tracking-wider font-thin mt-4 text-center max-w-[800px] whitespace-nowrap"
-            style={{ fontFamily: 'var(--font-helios-ext)' }}
-          >
-            {descriptionText}{showDescriptionCursor && <span className="opacity-50">|</span>}
+          <div className="flex flex-col items-center gap-4" style={{ 
+            opacity: scrollProgress > 0.5 ? 0 : 1,
+            transform: `translateY(${scrollProgress * 20}px)`,
+            transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out'
+          }}>
+            {/* Logo */}
+            <Image
+              src="/images/ETERNAL VENTURES - no ventures.png"
+              alt="Eternal Ventures Logo"
+              width={150}
+              height={150}
+              priority
+            />
+
+            {/* MUSIC Text */}
+            <div 
+              className="text-black text-xs tracking-wider font-thin mt-2"
+              style={{ fontFamily: 'var(--font-helios-ext)' }}
+            >
+              {centerText}{showCenterCursor && <span className="opacity-50">|</span>}
+            </div>
+
+            {/* Description Text */}
+            <div 
+              className="text-black text-xs tracking-wider font-thin mt-4 text-center max-w-[800px] whitespace-nowrap"
+              style={{ fontFamily: 'var(--font-helios-ext)' }}
+            >
+              {descriptionText}{showDescriptionCursor && <span className="opacity-50">|</span>}
+            </div>
+          </div>
+        </main>
+
+        {/* Second Page - Video */}
+        <div className="h-screen relative snap-start bg-white">
+          <div className="h-full flex items-center justify-center" style={{ 
+            opacity: scrollProgress < 0.5 ? 0 : (scrollProgress > 1.5 ? 0 : 1),
+            transform: `translateY(${(scrollProgress - 1) * 20}px)`,
+            transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out'
+          }}>
+            <div className="w-[1280px] h-[720px] relative">
+              <video
+                className="w-full h-full object-contain"
+                controls
+                playsInline
+                preload="metadata"
+              >
+                <source src="/videos/your-video-name.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
         </div>
 
@@ -300,7 +339,7 @@ export default function Music() {
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
