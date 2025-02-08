@@ -219,33 +219,56 @@ export default function Music() {
                 className="w-full h-full"
                 controls
                 playsInline
-                preload="metadata"
+                preload="auto"
                 poster="/images/ETERNAL VENTURES - no ventures.png"
+                onLoadStart={() => {
+                  console.log('Video load started');
+                }}
+                onLoadedData={() => {
+                  console.log('Video data loaded');
+                }}
                 onLoadedMetadata={(e) => {
                   console.log('Video metadata loaded:', {
                     duration: e.currentTarget.duration,
-                    readyState: e.currentTarget.readyState
+                    readyState: e.currentTarget.readyState,
+                    videoWidth: e.currentTarget.videoWidth,
+                    videoHeight: e.currentTarget.videoHeight
                   });
                 }}
                 onPlay={() => {
                   console.log('Play attempted');
                   if (videoRef.current) {
-                    videoRef.current.play().catch(error => {
-                      console.error('Play failed:', error);
-                      setVideoError(error.message);
-                    });
+                    const playPromise = videoRef.current.play();
+                    if (playPromise !== undefined) {
+                      playPromise
+                        .then(() => console.log('Video playback started successfully'))
+                        .catch(error => {
+                          console.error('Playback failed:', error);
+                          setVideoError(error.message);
+                        });
+                    }
                   }
+                }}
+                onError={(e) => {
+                  const video = e.currentTarget;
+                  console.error('Video error:', {
+                    error: video.error,
+                    networkState: video.networkState,
+                    readyState: video.readyState,
+                    currentSrc: video.currentSrc,
+                    src: video.src
+                  });
                 }}
               >
                 <source 
                   src="/videos/darksidetrailer.mp4" 
                   type="video/mp4"
-                  onError={(e) => {
-                    console.error('Source error:', e);
-                    setVideoError('Error loading video source');
-                  }}
                 />
-                Your browser does not support the video tag.
+                {videoError && (
+                  <div className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50">
+                    Error: {videoError}
+                  </div>
+                )}
               </video>
             </div>
           </div>
