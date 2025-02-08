@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Garden() {
   const [showMenu, setShowMenu] = useState(false);
@@ -225,51 +226,58 @@ export default function Garden() {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full z-0 overflow-x-auto scrollbar-hide">
             <div className="flex gap-8 px-8 min-w-max mx-auto transition-transform duration-300 ease-in-out">
               {/* Sara */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300">
-                <img
+              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
+                <Image
                   src="/images/garden/sara.jpg"
                   alt="Sara"
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-cover"
+                  priority
                 />
               </div>
               {/* Kai */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300">
-                <img
+              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
+                <Image
                   src="/images/garden/kaicompressed.jpg"
                   alt="Kai"
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-cover"
                 />
               </div>
               {/* Kevin */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300">
-                <img
+              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
+                <Image
                   src="/images/garden/kevincompressed.jpg"
                   alt="Kevin"
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-cover"
                 />
               </div>
               {/* Refisings */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300">
-                <img
+              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
+                <Image
                   src="/images/garden/refisings.jpg"
                   alt="Refisings"
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-cover"
                 />
               </div>
               {/* Domino */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300">
-                <img
+              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
+                <Image
                   src="/images/garden/dominocompressed.jpg"
                   alt="Domino"
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-cover"
                 />
               </div>
               {/* TK */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300">
-                <img
+              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
+                <Image
                   src="/images/garden/tkcompressed.jpg"
                   alt="TK"
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-cover"
                 />
               </div>
             </div>
