@@ -24,6 +24,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${heliosExt.variable} ${inter.className}`}>
+      <head>
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src * blob: data:; img-src 'self' data:; font-src 'self' data:; connect-src *;"
+        />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
