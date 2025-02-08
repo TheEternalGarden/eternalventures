@@ -224,12 +224,14 @@ export default function Music() {
                 onLoadStart={() => {
                   console.log('Video load started');
                   if (videoRef.current) {
+                    const videoElement = videoRef.current;
+                    videoElement.load(); // Force reload
                     console.log('Initial video state:', {
-                      src: videoRef.current.currentSrc || videoRef.current.src,
-                      readyState: videoRef.current.readyState,
-                      networkState: videoRef.current.networkState,
-                      paused: videoRef.current.paused,
-                      error: videoRef.current.error
+                      src: videoElement.currentSrc || videoElement.src,
+                      readyState: videoElement.readyState,
+                      networkState: videoElement.networkState,
+                      paused: videoElement.paused,
+                      error: videoElement.error
                     });
                   }
                 }}
@@ -241,9 +243,29 @@ export default function Music() {
                     message: error?.message,
                     networkState: video.networkState,
                     readyState: video.readyState,
-                    currentSrc: video.currentSrc || video.src
+                    currentSrc: video.currentSrc || video.src,
+                    error: error
                   });
-                  setVideoError(error?.message || 'Error loading video');
+                  if (error) {
+                    switch (error.code) {
+                      case 1:
+                        setVideoError('The video loading was aborted');
+                        break;
+                      case 2:
+                        setVideoError('Network error while loading video');
+                        break;
+                      case 3:
+                        setVideoError('Error decoding video');
+                        break;
+                      case 4:
+                        setVideoError('Video format not supported');
+                        break;
+                      default:
+                        setVideoError(`Error loading video: ${error.message}`);
+                    }
+                  } else {
+                    setVideoError('Unknown error loading video');
+                  }
                 }}
                 onCanPlay={() => {
                   console.log('Video can play');
@@ -253,12 +275,12 @@ export default function Music() {
                 }}
               >
                 <source 
-                  src="/darksidetrailer.mp4"
+                  src="./videos/darksidetrailer.mp4"
                   type="video/mp4"
                 />
                 {videoError && (
                   <div className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50">
-                    Error: {videoError}
+                    {videoError}
                   </div>
                 )}
               </video>

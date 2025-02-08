@@ -10,8 +10,21 @@ const nextConfig = {
   distDir: 'out',
   // Configure static file handling
   experimental: {
-    appDir: true,
-    serverActions: true
+    appDir: true
+  },
+  // Configure webpack for media files
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(mp4|webm)$/i,
+      use: {
+        loader: 'file-loader',
+        options: {
+          publicPath: '/_next',
+          name: 'static/media/[name].[hash].[ext]',
+        },
+      },
+    });
+    return config;
   }
 }
 
