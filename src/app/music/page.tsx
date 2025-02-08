@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -18,6 +18,8 @@ export default function Music() {
   const [isTopTextComplete, setIsTopTextComplete] = useState(false);
   const [isCenterTextComplete, setIsCenterTextComplete] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoError, setVideoError] = useState<string | null>(null);
 
   const eternalMusicText = "ETERNAL MUSIC";
   const musicText = "MUSIC";
@@ -127,6 +129,15 @@ export default function Music() {
     return () => clearInterval(cursorInterval);
   }, []);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.addEventListener('error', (e) => {
+        console.error('Video error:', e);
+        setVideoError('Error loading video');
+      });
+    }
+  }, []);
+
   return (
     <div className="relative">
       <div 
@@ -183,21 +194,21 @@ export default function Music() {
             transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out'
           }}>
             <div className="w-[1280px] h-[720px] relative bg-black rounded-lg overflow-hidden">
-              <ReactPlayer
-                url="/videos/darksidetrailer.mp4"
-                width="100%"
-                height="100%"
-                controls={true}
-                playing={false}
-                muted={true}
-                config={{
-                  file: {
-                    attributes: {
-                      controlsList: 'nodownload'
-                    }
-                  }
-                }}
-              />
+              {videoError ? (
+                <div className="absolute inset-0 flex items-center justify-center text-white">
+                  {videoError}
+                </div>
+              ) : (
+                <video
+                  ref={videoRef}
+                  className="w-full h-full"
+                  controls
+                  preload="auto"
+                >
+                  <source src="/videos/darksidetrailer.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              )}
             </div>
           </div>
         </div>
