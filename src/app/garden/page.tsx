@@ -224,12 +224,23 @@ export default function Garden() {
 
           {/* Gallery Container */}
           <div className="flex justify-center items-center w-full h-full">
-            <div className="w-[800px] h-[600px] bg-white">
-              <img
-                src="/images/garden/sara.jpg"
-                alt="Sara"
-                className="w-full h-full object-contain"
-              />
+            <div className="flex overflow-x-auto snap-x snap-mandatory w-full px-4 gap-8 scrollbar-hide">
+              {/* First Image */}
+              <div className="flex-none w-[800px] h-[600px] snap-center">
+                <img
+                  src="/images/garden/sara.jpg"
+                  alt="Sara"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              {/* Second Image */}
+              <div className="flex-none w-[800px] h-[600px] snap-center">
+                <img
+                  src="/images/garden/tkcompressed.jpg"
+                  alt="TK"
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>
