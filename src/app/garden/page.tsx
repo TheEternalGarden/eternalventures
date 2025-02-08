@@ -19,6 +19,7 @@ export default function Garden() {
   const [galleryDescriptionText, setGalleryDescriptionText] = useState("");
   const [showGalleryDescriptionCursor, setShowGalleryDescriptionCursor] = useState(true);
   const [showGalleryCursor, setShowGalleryCursor] = useState(true);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const eternalGardenText = "ETERNAL GARDEN";
   const gardenText = "GARDEN";
@@ -47,6 +48,14 @@ export default function Garden() {
     if (newIndex !== currentImageIndex) {
       setCurrentImageIndex(newIndex);
     }
+  };
+
+  const handlePageScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const scrollPosition = container.scrollTop;
+    const windowHeight = container.clientHeight;
+    const progress = scrollPosition / windowHeight;
+    setScrollProgress(progress);
   };
 
   // Symbol generation functions
@@ -199,9 +208,16 @@ export default function Garden() {
 
   return (
     <div className="relative">
-      <div className="h-screen snap-y snap-mandatory overflow-y-scroll">
+      <div 
+        className="h-screen snap-y snap-mandatory overflow-y-scroll"
+        onScroll={handlePageScroll}
+      >
         {/* First Page */}
         <main className="h-screen flex flex-col items-center justify-center gap-8 relative snap-start">
+          <div 
+            className="absolute inset-0 bg-white transition-opacity duration-500"
+            style={{ opacity: Math.max(0, 1 - scrollProgress * 2) }}
+          />
           {/* Top Text */}
           <div 
             className="absolute top-20 text-black text-xs tracking-wider font-thin"
@@ -239,6 +255,10 @@ export default function Garden() {
 
         {/* Second Page - Gallery */}
         <div className="h-screen relative snap-start bg-white">
+          <div 
+            className="absolute inset-0 bg-white transition-opacity duration-500"
+            style={{ opacity: Math.max(0, scrollProgress * 2 - 1) }}
+          />
           {/* Gallery Description Text */}
           <div 
             className="absolute top-20 left-1/2 transform -translate-x-1/2 text-black text-xs tracking-wider font-thin text-center max-w-[800px] whitespace-nowrap px-4 z-10"
