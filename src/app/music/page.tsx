@@ -184,12 +184,15 @@ export default function Music() {
                 className="w-full h-full object-contain"
                 controls
                 playsInline
-                preload="auto"
-                poster="/videos/darksidetrailer.mp4"
+                autoPlay={false}
                 muted
+                controlsList="nodownload"
+                style={{ backgroundColor: 'black' }}
               >
-                <source src="/videos/darksidetrailer.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
+                <source 
+                  src="/videos/darksidetrailer.mp4#t=0.1" 
+                  type="video/mp4" 
+                />
               </video>
             </div>
           </div>
