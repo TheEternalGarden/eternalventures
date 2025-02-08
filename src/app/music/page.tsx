@@ -128,6 +128,14 @@ export default function Music() {
 
   useEffect(() => {
     if (videoRef.current) {
+      // Add canplay event listener
+      videoRef.current.addEventListener('canplay', () => {
+        console.log('Video can play');
+        if (videoRef.current) {
+          videoRef.current.muted = false;
+        }
+      });
+
       videoRef.current.addEventListener('error', (e) => {
         console.error('Video error event:', e);
         const video = e.target as HTMLVideoElement;
@@ -216,10 +224,9 @@ export default function Music() {
                   className="w-full h-full"
                   controls
                   playsInline
-                  autoPlay={false}
-                  preload="metadata"
+                  preload="auto"
                   poster="/images/ETERNAL VENTURES - no ventures.png"
-                  muted={false}
+                  muted // Start muted, will unmute after canplay event
                   onLoadStart={() => console.log('Video load started')}
                   onLoadedMetadata={() => console.log('Video metadata loaded')}
                   onLoadedData={() => console.log('Video data loaded')}
