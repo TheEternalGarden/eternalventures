@@ -222,52 +222,45 @@ export default function Music() {
                 className="w-full h-full"
                 controls
                 playsInline
-                preload="metadata"
+                preload="auto"
                 poster="/images/ETERNAL VENTURES - no ventures.png"
                 onLoadStart={() => {
                   console.log('Video load started');
                   if (videoRef.current) {
                     const videoElement = videoRef.current;
-                    videoElement.load(); // Force reload
                     console.log('Initial video state:', {
                       src: videoElement.currentSrc || videoElement.src,
                       readyState: videoElement.readyState,
                       networkState: videoElement.networkState,
                       paused: videoElement.paused,
-                      error: videoElement.error
                     });
                   }
                 }}
                 onError={(e) => {
                   const video = e.currentTarget;
                   const error = video.error;
-                  console.error('Video error details:', {
-                    code: error?.code,
-                    message: error?.message,
-                    networkState: video.networkState,
-                    readyState: video.readyState,
-                    currentSrc: video.currentSrc || video.src,
-                    error: error
-                  });
+                  console.error('Video error details:', error);
                   if (error) {
+                    let errorMessage = '';
                     switch (error.code) {
-                      case 1:
-                        setVideoError('The video loading was aborted');
+                      case MediaError.MEDIA_ERR_ABORTED:
+                        errorMessage = 'Video playback was aborted';
                         break;
-                      case 2:
-                        setVideoError('Network error while loading video');
+                      case MediaError.MEDIA_ERR_NETWORK:
+                        errorMessage = 'Network error occurred while loading video';
                         break;
-                      case 3:
-                        setVideoError('Error decoding video');
+                      case MediaError.MEDIA_ERR_DECODE:
+                        errorMessage = 'Video decoding error';
                         break;
-                      case 4:
-                        setVideoError('Video format not supported');
+                      case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
+                        errorMessage = 'Video format or MIME type not supported';
                         break;
                       default:
-                        setVideoError(`Error loading video: ${error.message}`);
+                        errorMessage = `Unknown error: ${error.message}`;
                     }
+                    setVideoError(errorMessage);
                   } else {
-                    setVideoError('Unknown error loading video');
+                    setVideoError('Unknown error occurred');
                   }
                 }}
                 onCanPlay={() => {
@@ -276,8 +269,8 @@ export default function Music() {
                     videoRef.current.muted = false;
                   }
                 }}
-                src="/videos/darksidetrailer.mp4"
               >
+                <source src="/static/media/darksidetrailer.mp4" type="video/mp4" />
                 {videoError && (
                   <div className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50">
                     {videoError}
