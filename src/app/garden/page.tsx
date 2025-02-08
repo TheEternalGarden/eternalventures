@@ -14,6 +14,8 @@ export default function Garden() {
   const [isTopTextComplete, setIsTopTextComplete] = useState(false);
   const [isCenterTextComplete, setIsCenterTextComplete] = useState(false);
   const [galleryText, setGalleryText] = useState("");
+  const [galleryDescriptionText, setGalleryDescriptionText] = useState("");
+  const [showGalleryDescriptionCursor, setShowGalleryDescriptionCursor] = useState(true);
   const [showGalleryCursor, setShowGalleryCursor] = useState(true);
 
   const eternalGardenText = "ETERNAL GARDEN";
@@ -123,13 +125,47 @@ export default function Garden() {
     return () => clearInterval(interval);
   }, []);
 
-  // Update blinking cursor effect to include gallery cursor
+  // Gallery description text animation
+  useEffect(() => {
+    let currentIndex = 0;
+    let isDeleting = false;
+    
+    const typeText = () => {
+      if (!isDeleting) {
+        if (currentIndex <= galleryDescription.length) {
+          const symbolsForRest = currentIndex < galleryDescription.length ? 
+            getRandomSymbols(galleryDescription.length - currentIndex) : '';
+          setGalleryDescriptionText(galleryDescription.slice(0, currentIndex) + symbolsForRest);
+          currentIndex++;
+          if (currentIndex > galleryDescription.length) {
+            setTimeout(() => {
+              isDeleting = true;
+            }, 1000);
+          }
+        }
+      } else {
+        if (currentIndex > 0) {
+          const symbolsForRest = getRandomSymbols(currentIndex - 1);
+          setGalleryDescriptionText(galleryDescription.slice(0, currentIndex - 1) + symbolsForRest);
+          currentIndex--;
+        } else {
+          isDeleting = false;
+        }
+      }
+    };
+
+    const interval = setInterval(typeText, isDeleting ? 40 : 65);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Update blinking cursor effect to include gallery cursors
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setShowTopCursor(prev => !prev);
       setShowCenterCursor(prev => !prev);
       setShowDescriptionCursor(prev => !prev);
       setShowGalleryCursor(prev => !prev);
+      setShowGalleryDescriptionCursor(prev => !prev);
     }, 530);
 
     return () => clearInterval(cursorInterval);
@@ -179,10 +215,10 @@ export default function Garden() {
         <div className="h-screen relative snap-start bg-white">
           {/* Gallery Description Text */}
           <div 
-            className="absolute top-1/3 left-1/2 transform -translate-x-1/2 text-black text-xs tracking-wider font-thin text-center max-w-[800px] whitespace-nowrap px-4"
+            className="absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-32 text-black text-xs tracking-wider font-thin text-center max-w-[800px] whitespace-nowrap px-4"
             style={{ fontFamily: 'var(--font-helios-ext)' }}
           >
-            {galleryText}{showGalleryCursor && <span className="opacity-50">|</span>}
+            {galleryDescriptionText}{showGalleryDescriptionCursor && <span className="opacity-50">|</span>}
           </div>
 
           {/* Gallery Container */}
