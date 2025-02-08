@@ -6,6 +6,7 @@ import Image from 'next/image';
 export default function Garden() {
   const [showMenu, setShowMenu] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [topText, setTopText] = useState("");
   const [centerText, setCenterText] = useState("");
   const [descriptionText, setDescriptionText] = useState("");
@@ -23,6 +24,30 @@ export default function Garden() {
   const gardenText = "GARDEN";
   const description = "A SCI-FI FANTASY EPIC ABOUT A MYSTICAL SEED THAT SPAWNS INFINITE WORLDS.";
   const galleryDescription = "A SCI-FI FANTASY EPIC ABOUT A MYSTICAL SEED THAT SPAWNS INFINITE WORLDS.";
+
+  const totalImages = 6;
+
+  const scrollToImage = (index: number) => {
+    const galleryContainer = document.querySelector('.gallery-container');
+    if (galleryContainer) {
+      const imageWidth = galleryContainer.clientWidth;
+      galleryContainer.scrollTo({
+        left: imageWidth * index,
+        behavior: 'smooth'
+      });
+      setCurrentImageIndex(index);
+    }
+  };
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const scrollPosition = container.scrollLeft;
+    const imageWidth = container.clientWidth;
+    const newIndex = Math.round(scrollPosition / imageWidth);
+    if (newIndex !== currentImageIndex) {
+      setCurrentImageIndex(newIndex);
+    }
+  };
 
   // Symbol generation functions
   const getRandomSymbol = () => {
@@ -223,8 +248,11 @@ export default function Garden() {
           </div>
 
           {/* Gallery Container */}
-          <div className="flex justify-center items-center w-full h-full">
-            <div className="flex overflow-x-auto snap-x snap-mandatory w-full scrollbar-hide">
+          <div className="flex flex-col justify-center items-center w-full h-full">
+            <div 
+              className="flex overflow-x-auto snap-x snap-mandatory w-full scrollbar-hide gallery-container"
+              onScroll={handleScroll}
+            >
               {/* First Image */}
               <div className="flex-none w-full h-full snap-center flex justify-center items-center">
                 <div className="w-[1000px] h-[750px]">
@@ -285,6 +313,22 @@ export default function Garden() {
                   />
                 </div>
               </div>
+            </div>
+
+            {/* Navigation Dots */}
+            <div className="flex gap-4 mt-8">
+              {Array.from({ length: totalImages }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToImage(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    currentImageIndex === index 
+                      ? 'bg-black scale-125' 
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  aria-label={`Go to image ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
