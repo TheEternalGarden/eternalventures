@@ -215,14 +215,14 @@ export default function Garden() {
         <div className="h-screen relative snap-start bg-white">
           {/* Gallery Description Text */}
           <div 
-            className="absolute top-1/4 left-1/2 transform -translate-x-1/2 text-black text-xs tracking-wider font-thin text-center max-w-[800px] whitespace-nowrap px-4"
+            className="absolute top-20 left-1/2 transform -translate-x-1/2 text-black text-xs tracking-wider font-thin text-center max-w-[800px] whitespace-nowrap px-4 z-10"
             style={{ fontFamily: 'var(--font-helios-ext)' }}
           >
             {galleryDescriptionText}{showGalleryDescriptionCursor && <span className="opacity-50">|</span>}
           </div>
 
           {/* Gallery Container */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0">
             <div 
               className="relative w-[1200px] h-[800px] bg-contain bg-center bg-no-repeat"
               style={{
