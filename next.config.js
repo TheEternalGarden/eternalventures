@@ -4,6 +4,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    remotePatterns: [],
     unoptimized: true,
   },
   output: 'export',
