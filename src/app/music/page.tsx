@@ -179,12 +179,14 @@ export default function Music() {
             transform: `translateY(${(scrollProgress - 1) * 20}px)`,
             transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out'
           }}>
-            <div className="w-[1280px] h-[720px] relative">
+            <div className="w-[1280px] h-[720px] relative bg-black rounded-lg overflow-hidden">
               <video
                 className="w-full h-full object-contain"
                 controls
                 playsInline
-                preload="metadata"
+                preload="auto"
+                poster="/videos/darksidetrailer.mp4"
+                muted
               >
                 <source src="/videos/darksidetrailer.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
