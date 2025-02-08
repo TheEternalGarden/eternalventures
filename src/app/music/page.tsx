@@ -219,49 +219,35 @@ export default function Music() {
                 className="w-full h-full"
                 controls
                 playsInline
-                preload="auto"
+                preload="metadata"
                 poster="/images/ETERNAL VENTURES - no ventures.png"
                 onLoadStart={() => {
                   console.log('Video load started');
-                }}
-                onLoadedData={() => {
-                  console.log('Video data loaded');
-                }}
-                onLoadedMetadata={(e) => {
-                  console.log('Video metadata loaded:', {
-                    duration: e.currentTarget.duration,
-                    readyState: e.currentTarget.readyState,
-                    videoWidth: e.currentTarget.videoWidth,
-                    videoHeight: e.currentTarget.videoHeight
-                  });
-                }}
-                onPlay={() => {
-                  console.log('Play attempted');
                   if (videoRef.current) {
-                    const playPromise = videoRef.current.play();
-                    if (playPromise !== undefined) {
-                      playPromise
-                        .then(() => console.log('Video playback started successfully'))
-                        .catch(error => {
-                          console.error('Playback failed:', error);
-                          setVideoError(error.message);
-                        });
-                    }
+                    console.log('Initial video state:', {
+                      src: videoRef.current.currentSrc || videoRef.current.src,
+                      readyState: videoRef.current.readyState,
+                      networkState: videoRef.current.networkState,
+                      paused: videoRef.current.paused,
+                      error: videoRef.current.error
+                    });
                   }
                 }}
                 onError={(e) => {
                   const video = e.currentTarget;
-                  console.error('Video error:', {
-                    error: video.error,
+                  const error = video.error;
+                  console.error('Video error details:', {
+                    code: error?.code,
+                    message: error?.message,
                     networkState: video.networkState,
                     readyState: video.readyState,
-                    currentSrc: video.currentSrc,
-                    src: video.src
+                    currentSrc: video.currentSrc || video.src
                   });
+                  setVideoError(error?.message || 'Error loading video');
                 }}
               >
                 <source 
-                  src="/videos/darksidetrailer.mp4" 
+                  src="videos/darksidetrailer.mp4"
                   type="video/mp4"
                 />
                 {videoError && (

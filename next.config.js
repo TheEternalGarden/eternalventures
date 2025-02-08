@@ -4,25 +4,10 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  // Ensure static files are handled correctly
+  // Basic configuration for static export
   trailingSlash: true,
   assetPrefix: '',
-  // Configure static file serving
-  distDir: 'out',
-  // Configure static file handling
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.(mp4|webm)$/i,
-      type: 'asset/resource',
-      generator: {
-        filename: 'static/media/[name][ext]'
-      }
-    });
-    return config;
-  },
-  experimental: {
-    staticPageGenerationTimeout: 300
-  }
+  distDir: 'out'
 }
 
 module.exports = nextConfig 
