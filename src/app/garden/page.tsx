@@ -216,7 +216,7 @@ export default function Garden() {
         <main className="h-screen flex flex-col items-center justify-center gap-8 relative snap-start">
           <div 
             className="absolute inset-0 bg-white transition-opacity duration-500"
-            style={{ opacity: Math.max(0, 1 - scrollProgress * 2) }}
+            style={{ opacity: Math.max(0, scrollProgress * 2) }}
           />
           {/* Top Text */}
           <div 
@@ -257,7 +257,7 @@ export default function Garden() {
         <div className="h-screen relative snap-start bg-white">
           <div 
             className="absolute inset-0 bg-white transition-opacity duration-500"
-            style={{ opacity: Math.max(0, scrollProgress * 2 - 1) }}
+            style={{ opacity: Math.max(0, 1 - (scrollProgress * 2 - 1)) }}
           />
           {/* Gallery Description Text */}
           <div 
