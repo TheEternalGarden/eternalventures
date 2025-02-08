@@ -215,7 +215,7 @@ export default function Garden() {
         <div className="h-screen relative snap-start bg-white">
           {/* Gallery Description Text */}
           <div 
-            className="absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-32 text-black text-xs tracking-wider font-thin text-center max-w-[800px] whitespace-nowrap px-4"
+            className="absolute top-1/4 left-1/2 transform -translate-x-1/2 text-black text-xs tracking-wider font-thin text-center max-w-[800px] whitespace-nowrap px-4"
             style={{ fontFamily: 'var(--font-helios-ext)' }}
           >
             {galleryDescriptionText}{showGalleryDescriptionCursor && <span className="opacity-50">|</span>}
