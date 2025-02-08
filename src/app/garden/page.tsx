@@ -223,61 +223,14 @@ export default function Garden() {
           </div>
 
           {/* Gallery Container */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full z-0 overflow-x-auto scrollbar-hide">
-            <div className="flex gap-8 px-8 min-w-max mx-auto transition-transform duration-300 ease-in-out">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full z-0">
+            <div className="flex justify-center">
               {/* Sara */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <Image
+              <div className="relative w-[800px] h-[600px] bg-white">
+                <img
                   src="/images/garden/sara.jpg"
                   alt="Sara"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-              {/* Kai */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <Image
-                  src="/images/garden/kaicompressed.jpg"
-                  alt="Kai"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              {/* Kevin */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <Image
-                  src="/images/garden/kevincompressed.jpg"
-                  alt="Kevin"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              {/* Refisings */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <Image
-                  src="/images/garden/refisings.jpg"
-                  alt="Refisings"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              {/* Domino */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <Image
-                  src="/images/garden/dominocompressed.jpg"
-                  alt="Domino"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              {/* TK */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <Image
-                  src="/images/garden/tkcompressed.jpg"
-                  alt="TK"
-                  fill
-                  className="object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
             </div>
@@ -387,6 +340,53 @@ export default function Garden() {
                   style={{ transform: hoveredItem === 'music' ? 'scaleX(1)' : 'scaleX(0)' }}
                 ></div>
               </div>
+
+              {/* About Link */}
+              <div className={`relative menu-item-container ${hoveredItem === 'about' ? 'menu-item-hover' : ''}`}>
+                <Link
+                  href="/about"
+                  onMouseEnter={() => setHoveredItem('about')}
+                  onMouseLeave={() => setHoveredItem(null)}
+                  className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
+                  style={{
+                    fontFamily: 'var(--font-helios-ext)',
+                    opacity: !hoveredItem || hoveredItem === 'about' ? 1 : 0.3
+                  }}
+                >
+                  ABOUT
+                </Link>
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
+                  style={{ transform: hoveredItem === 'about' ? 'scaleX(1)' : 'scaleX(0)' }}
+                ></div>
+              </div>
+
+              {/* Team Link */}
+              <div className={`relative menu-item-container ${hoveredItem === 'team' ? 'menu-item-hover' : ''}`}>
+                <Link
+                  href="/team"
+                  onMouseEnter={() => setHoveredItem('team')}
+                  onMouseLeave={() => setHoveredItem(null)}
+                  className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
+                  style={{
+                    fontFamily: 'var(--font-helios-ext)',
+                    opacity: !hoveredItem || hoveredItem === 'team' ? 1 : 0.3
+                  }}
+                >
+                  TEAM
+                </Link>
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
+                  style={{ transform: hoveredItem === 'team' ? 'scaleX(1)' : 'scaleX(0)' }}
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}  </div>
 
               {/* About Link */}
               <div className={`relative menu-item-container ${hoveredItem === 'about' ? 'menu-item-hover' : ''}`}>
