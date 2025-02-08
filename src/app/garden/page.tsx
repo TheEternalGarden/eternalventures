@@ -176,17 +176,17 @@ export default function Garden() {
         </main>
 
         {/* Second Page - Gallery */}
-        <div className="h-screen flex flex-col items-center justify-center relative snap-start bg-white">
+        <div className="h-screen relative snap-start bg-white">
           {/* Gallery Description Text */}
           <div 
-            className="text-black text-xs tracking-wider font-thin mb-64 mt-96 text-center max-w-[800px] whitespace-nowrap px-4"
+            className="absolute top-1/3 left-1/2 transform -translate-x-1/2 text-black text-xs tracking-wider font-thin text-center max-w-[800px] whitespace-nowrap px-4"
             style={{ fontFamily: 'var(--font-helios-ext)' }}
           >
             {galleryText}{showGalleryCursor && <span className="opacity-50">|</span>}
           </div>
 
           {/* Gallery Container */}
-          <div className="w-full flex justify-center items-center px-4">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div 
               className="relative w-[1200px] h-[800px] bg-contain bg-center bg-no-repeat"
               style={{
@@ -342,7 +342,3 @@ export default function Garden() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
-} 
