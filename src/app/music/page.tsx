@@ -219,16 +219,31 @@ export default function Music() {
                 className="w-full h-full"
                 controls
                 playsInline
-                autoPlay={false}
-                loop={false}
-                muted={false}
-                preload="none"
+                preload="metadata"
                 poster="/images/ETERNAL VENTURES - no ventures.png"
-                controlsList="nodownload"
+                onLoadedMetadata={(e) => {
+                  console.log('Video metadata loaded:', {
+                    duration: e.currentTarget.duration,
+                    readyState: e.currentTarget.readyState
+                  });
+                }}
+                onPlay={() => {
+                  console.log('Play attempted');
+                  if (videoRef.current) {
+                    videoRef.current.play().catch(error => {
+                      console.error('Play failed:', error);
+                      setVideoError(error.message);
+                    });
+                  }
+                }}
               >
                 <source 
                   src="/videos/darksidetrailer.mp4" 
                   type="video/mp4"
+                  onError={(e) => {
+                    console.error('Source error:', e);
+                    setVideoError('Error loading video source');
+                  }}
                 />
                 Your browser does not support the video tag.
               </video>
