@@ -292,6 +292,7 @@ export default function Garden() {
                     src="/images/garden/lithian2compressed.jpg"
                     alt="Lithian"
                     className="w-full h-full object-contain"
+                    loading="lazy"
                   />
                 </div>
               </div>
