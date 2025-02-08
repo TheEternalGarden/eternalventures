@@ -223,10 +223,10 @@ export default function Garden() {
 
           {/* Gallery Container */}
           <div className="absolute top-1/2 left-0 right-0 transform -translate-y-1/2 z-0 overflow-x-auto scrollbar-hide">
-            <div className="flex gap-8 px-8 min-w-max">
+            <div className="flex gap-8 px-8 min-w-max mx-auto transition-transform duration-300 ease-in-out">
               {/* First Image (sara.jpg) */}
               <div 
-                className="relative w-[1200px] h-[800px] bg-contain bg-center bg-no-repeat"
+                className="relative w-[800px] h-[600px] bg-contain bg-center bg-no-repeat hover:scale-[1.02] transition-transform duration-300"
                 style={{
                   backgroundImage: `url('/images/garden/sara.jpg')`
                 }}
