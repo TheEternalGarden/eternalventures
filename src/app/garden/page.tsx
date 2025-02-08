@@ -233,46 +233,6 @@ export default function Garden() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              {/* Kai */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <img
-                  src="/images/garden/kaicompressed.jpg"
-                  alt="Kai"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              {/* Kevin */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <img
-                  src="/images/garden/kevincompressed.jpg"
-                  alt="Kevin"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              {/* Refisings */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <img
-                  src="/images/garden/refisings.jpg"
-                  alt="Refisings"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              {/* Domino */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <img
-                  src="/images/garden/dominocompressed.jpg"
-                  alt="Domino"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              {/* TK */}
-              <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <img
-                  src="/images/garden/tkcompressed.jpg"
-                  alt="TK"
-                  className="w-full h-full object-cover"
-                />
-              </div>
             </div>
           </div>
         </div>
