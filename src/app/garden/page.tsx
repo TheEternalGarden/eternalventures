@@ -285,18 +285,6 @@ export default function Garden() {
                   />
                 </div>
               </div>
-              {/* Seventh Image */}
-              <div className="flex-none w-full h-full snap-center flex justify-center items-center">
-                <div className="w-[1000px] h-[750px] relative">
-                  <Image
-                    src="/images/garden/lithian2compressed.jpg"
-                    alt="Lithian"
-                    fill
-                    className="object-contain"
-                    priority
-                  />
-                </div>
-              </div>
             </div>
           </div>
         </div>
