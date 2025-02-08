@@ -265,6 +265,16 @@ export default function Garden() {
                   />
                 </div>
               </div>
+              {/* Fifth Image */}
+              <div className="flex-none w-full h-full snap-center flex justify-center items-center">
+                <div className="w-[1000px] h-[750px]">
+                  <img
+                    src="/images/garden/kevincompressed.jpg"
+                    alt="Kevin"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
