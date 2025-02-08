@@ -219,8 +219,12 @@ export default function Music() {
                 className="w-full h-full"
                 controls
                 playsInline
-                preload="metadata"
+                autoPlay={false}
+                loop={false}
+                muted={false}
+                preload="none"
                 poster="/images/ETERNAL VENTURES - no ventures.png"
+                controlsList="nodownload"
               >
                 <source 
                   src="/videos/darksidetrailer.mp4" 
