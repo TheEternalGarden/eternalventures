@@ -245,9 +245,15 @@ export default function Music() {
                   });
                   setVideoError(error?.message || 'Error loading video');
                 }}
+                onCanPlay={() => {
+                  console.log('Video can play');
+                  if (videoRef.current) {
+                    videoRef.current.muted = false;
+                  }
+                }}
               >
                 <source 
-                  src="videos/darksidetrailer.mp4"
+                  src="/darksidetrailer.mp4"
                   type="video/mp4"
                 />
                 {videoError && (
