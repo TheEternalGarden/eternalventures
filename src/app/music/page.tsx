@@ -2,6 +2,9 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
 
 export default function Music() {
   const [showMenu, setShowMenu] = useState(false);
@@ -180,20 +183,21 @@ export default function Music() {
             transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out'
           }}>
             <div className="w-[1280px] h-[720px] relative bg-black rounded-lg overflow-hidden">
-              <video
-                className="w-full h-full object-contain"
-                controls
-                playsInline
-                autoPlay={false}
-                muted
-                controlsList="nodownload"
-                style={{ backgroundColor: 'black' }}
-              >
-                <source 
-                  src="/videos/darksidetrailer.mp4#t=0.1" 
-                  type="video/mp4" 
-                />
-              </video>
+              <ReactPlayer
+                url="/videos/darksidetrailer.mp4"
+                width="100%"
+                height="100%"
+                controls={true}
+                playing={false}
+                muted={true}
+                config={{
+                  file: {
+                    attributes: {
+                      controlsList: 'nodownload'
+                    }
+                  }
+                }}
+              />
             </div>
           </div>
         </div>
