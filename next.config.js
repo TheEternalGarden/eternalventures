@@ -10,9 +10,7 @@ const nextConfig = {
   // Configure static file serving
   distDir: 'out',
   experimental: {
-    staticPageGenerationTimeout: 300,
-    optimizeCss: true,
-    optimizeImages: true
+    staticPageGenerationTimeout: 300
   }
 }
 

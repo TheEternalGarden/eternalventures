@@ -214,50 +214,20 @@ export default function Music() {
             transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out'
           }}>
             <div className="w-[1280px] h-[720px] relative bg-black rounded-lg overflow-hidden">
-              {videoError ? (
-                <div className="absolute inset-0 flex items-center justify-center text-white">
-                  {videoError}
-                </div>
-              ) : (
-                <video
-                  ref={videoRef}
-                  className="w-full h-full"
-                  controls
-                  playsInline
-                  preload="metadata"
-                  poster="/images/ETERNAL VENTURES - no ventures.png"
-                  onLoadStart={() => {
-                    console.log('Video load started');
-                    if (videoRef.current) {
-                      videoRef.current.muted = true; // Start muted
-                    }
-                  }}
-                  onCanPlay={() => {
-                    console.log('Video can play');
-                    if (videoRef.current) {
-                      videoRef.current.muted = false; // Unmute once ready
-                    }
-                  }}
-                  onError={(e) => {
-                    const target = e.target as HTMLVideoElement;
-                    const error = target.error;
-                    console.error('Video error details:', {
-                      code: error?.code,
-                      message: error?.message,
-                      networkState: target.networkState,
-                      readyState: target.readyState,
-                      currentSrc: target.currentSrc
-                    });
-                    setVideoError(`Error loading video (${error?.code}): ${error?.message || 'Unknown error'}`);
-                  }}
-                >
-                  <source 
-                    src="/videos/darksidetrailer.mp4" 
-                    type="video/mp4"
-                  />
-                  Your browser does not support the video tag.
-                </video>
-              )}
+              <video
+                ref={videoRef}
+                className="w-full h-full"
+                controls
+                playsInline
+                preload="metadata"
+                poster="/images/ETERNAL VENTURES - no ventures.png"
+              >
+                <source 
+                  src="/videos/darksidetrailer.mp4" 
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </div>
