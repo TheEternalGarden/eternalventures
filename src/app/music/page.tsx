@@ -20,6 +20,7 @@ export default function Music() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoError, setVideoError] = useState<string | null>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   const eternalMusicText = "ETERNAL MUSIC";
   const musicText = "MUSIC";
@@ -133,7 +134,21 @@ export default function Music() {
     if (videoRef.current) {
       videoRef.current.addEventListener('error', (e) => {
         console.error('Video error:', e);
-        setVideoError('Error loading video');
+        const error = e.target as HTMLVideoElement;
+        setVideoError(`Error loading video: ${error.error?.message || 'Unknown error'}`);
+      });
+
+      videoRef.current.addEventListener('loadeddata', () => {
+        console.log('Video loaded successfully');
+        setVideoLoaded(true);
+      });
+
+      // Log the video element's properties
+      console.log('Video element:', {
+        src: videoRef.current.currentSrc,
+        readyState: videoRef.current.readyState,
+        networkState: videoRef.current.networkState,
+        error: videoRef.current.error
       });
     }
   }, []);
@@ -187,7 +202,7 @@ export default function Music() {
         </main>
 
         {/* Second Page - Video */}
-        <div className="h-screen relative snap-start bg-white">
+        <div className="h-screen relative snap-start bg-black">
           <div className="h-full flex items-center justify-center" style={{ 
             opacity: scrollProgress < 0.5 ? 0 : (scrollProgress > 1.5 ? 0 : 1),
             transform: `translateY(${(scrollProgress - 1) * 20}px)`,
@@ -198,12 +213,19 @@ export default function Music() {
                 <div className="absolute inset-0 flex items-center justify-center text-white">
                   {videoError}
                 </div>
+              ) : !videoLoaded ? (
+                <div className="absolute inset-0 flex items-center justify-center text-white">
+                  Loading video...
+                </div>
               ) : (
                 <video
                   ref={videoRef}
                   className="w-full h-full"
                   controls
+                  playsInline
                   preload="auto"
+                  poster="/images/ETERNAL VENTURES - no ventures.png"
+                  muted
                 >
                   <source src="/videos/darksidetrailer.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
