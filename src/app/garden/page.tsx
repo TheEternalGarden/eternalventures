@@ -245,6 +245,16 @@ export default function Garden() {
                   />
                 </div>
               </div>
+              {/* Third Image */}
+              <div className="flex-none w-full h-full snap-center flex justify-center items-center">
+                <div className="w-[1000px] h-[750px]">
+                  <img
+                    src="/images/garden/refisings.jpg"
+                    alt="Refisings"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
