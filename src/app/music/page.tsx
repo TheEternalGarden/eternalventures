@@ -2,9 +2,6 @@
 import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-
-const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
 
 export default function Music() {
   const [showMenu, setShowMenu] = useState(false);
@@ -219,9 +216,10 @@ export default function Music() {
                   className="w-full h-full"
                   controls
                   playsInline
-                  preload="auto"
+                  autoPlay={false}
+                  preload="metadata"
                   poster="/images/ETERNAL VENTURES - no ventures.png"
-                  muted
+                  muted={false}
                   onLoadStart={() => console.log('Video load started')}
                   onLoadedMetadata={() => console.log('Video metadata loaded')}
                   onLoadedData={() => console.log('Video data loaded')}
