@@ -3,6 +3,9 @@ import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+// Import video
+import videoUrl from '../../../public/videos/darksidetrailer.mp4';
+
 export default function Music() {
   const [showMenu, setShowMenu] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
@@ -273,11 +276,8 @@ export default function Music() {
                     videoRef.current.muted = false;
                   }
                 }}
+                src="/videos/darksidetrailer.mp4"
               >
-                <source 
-                  src="./videos/darksidetrailer.mp4"
-                  type="video/mp4"
-                />
                 {videoError && (
                   <div className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50">
                     {videoError}
