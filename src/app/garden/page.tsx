@@ -227,20 +227,22 @@ export default function Garden() {
             <div className="flex gap-8 px-8 min-w-max mx-auto">
               {/* Sara */}
               <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <img
+                <Image
                   src="/images/garden/sara.jpg"
                   alt="Sara"
-                  className="w-full h-full object-contain"
-                  loading="eager"
+                  fill
+                  className="object-contain"
+                  priority
                 />
               </div>
               {/* TK */}
               <div className="relative w-[800px] h-[600px] hover:scale-[1.02] transition-transform duration-300 bg-white">
-                <img
+                <Image
                   src="/images/garden/tkcompressed.jpg"
                   alt="TK"
-                  className="w-full h-full object-contain"
-                  loading="eager"
+                  fill
+                  className="object-contain"
+                  priority
                 />
               </div>
             </div>
