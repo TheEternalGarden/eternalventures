@@ -222,16 +222,50 @@ export default function Garden() {
           </div>
 
           {/* Gallery Container */}
-          <div className="absolute top-1/2 left-0 right-0 transform -translate-y-1/2 z-0 overflow-x-auto scrollbar-hide">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full z-0 overflow-x-auto scrollbar-hide">
             <div className="flex gap-8 px-8 min-w-max mx-auto transition-transform duration-300 ease-in-out">
-              {/* First Image (sara.jpg) */}
+              {/* Sara */}
               <div 
                 className="relative w-[800px] h-[600px] bg-contain bg-center bg-no-repeat hover:scale-[1.02] transition-transform duration-300"
                 style={{
                   backgroundImage: `url('/images/garden/sara.jpg')`
                 }}
               />
-              {/* Additional gallery images will be added here */}
+              {/* Kai */}
+              <div 
+                className="relative w-[800px] h-[600px] bg-contain bg-center bg-no-repeat hover:scale-[1.02] transition-transform duration-300"
+                style={{
+                  backgroundImage: `url('/images/garden/kaicompressed.jpg')`
+                }}
+              />
+              {/* Kevin */}
+              <div 
+                className="relative w-[800px] h-[600px] bg-contain bg-center bg-no-repeat hover:scale-[1.02] transition-transform duration-300"
+                style={{
+                  backgroundImage: `url('/images/garden/kevincompressed.jpg')`
+                }}
+              />
+              {/* Refisings */}
+              <div 
+                className="relative w-[800px] h-[600px] bg-contain bg-center bg-no-repeat hover:scale-[1.02] transition-transform duration-300"
+                style={{
+                  backgroundImage: `url('/images/garden/refisings.jpg')`
+                }}
+              />
+              {/* Domino */}
+              <div 
+                className="relative w-[800px] h-[600px] bg-contain bg-center bg-no-repeat hover:scale-[1.02] transition-transform duration-300"
+                style={{
+                  backgroundImage: `url('/images/garden/dominocompressed.jpg')`
+                }}
+              />
+              {/* TK */}
+              <div 
+                className="relative w-[800px] h-[600px] bg-contain bg-center bg-no-repeat hover:scale-[1.02] transition-transform duration-300"
+                style={{
+                  backgroundImage: `url('/images/garden/tkcompressed.jpg')`
+                }}
+              />
             </div>
           </div>
         </div>
