@@ -94,3 +94,10 @@ Required: Add an image to the center of the garden page and create a gallery tha
 Step 28: at text to top of Garden page
 Actual: missing text
 Required: Above the image on the second page of the garden page add the following text with the typewriter effect: A SCI-FI FANTASY EPIC ABOUT A MYSTICAL SEED THAT SPAWNS INFINITE WORLDS. 
+Step 29: Move text lower on the page
+Actual: text is too high
+Required: Move text from step 28 lower on the page above sara.jpg
+Step 30: Add a gallery that scrolls horizontally to the second page of the garden page where the image is located
+Step 31: Add a second image to the gallery on the second page of the garden page
+Actual: Missing image
+Required: Add a second image to the gallery on the second page of the garden page: tkcompressed.jpg
