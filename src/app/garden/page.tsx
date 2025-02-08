@@ -214,19 +214,19 @@ export default function Garden() {
       >
         {/* First Page */}
         <main className="h-screen flex flex-col items-center justify-center gap-8 relative snap-start">
+          {/* Top Text */}
+          <div 
+            className="absolute top-20 left-1/2 transform -translate-x-1/2 text-black text-xs tracking-wider font-thin"
+            style={{ fontFamily: 'var(--font-helios-ext)' }}
+          >
+            {topText}{showTopCursor && <span className="opacity-50">|</span>}
+          </div>
+
           <div className="flex flex-col items-center gap-4" style={{ 
             opacity: scrollProgress > 0.5 ? 0 : 1,
             transform: `translateY(${scrollProgress * 20}px)`,
             transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out'
           }}>
-            {/* Top Text */}
-            <div 
-              className="absolute top-20 text-black text-xs tracking-wider font-thin"
-              style={{ fontFamily: 'var(--font-helios-ext)' }}
-            >
-              {topText}{showTopCursor && <span className="opacity-50">|</span>}
-            </div>
-
             {/* Logo */}
             <img
               src="/images/ETERNAL VENTURES - no ventures.png"
