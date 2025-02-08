@@ -190,7 +190,7 @@ export default function Garden() {
             <div 
               className="relative w-[1200px] h-[800px] bg-contain bg-center bg-no-repeat"
               style={{
-                backgroundImage: `url('/images/sara.jpg')`,
+                backgroundImage: `url('/images/sara.jpg')`
               }}
             />
           </div>
@@ -342,3 +342,7 @@ export default function Garden() {
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  );
+} 
