@@ -223,11 +223,13 @@ export default function Music() {
                 controls
                 playsInline
                 preload="auto"
+                crossOrigin="anonymous"
                 poster="/images/ETERNAL VENTURES - no ventures.png"
                 onLoadStart={() => {
                   console.log('Video load started');
                   if (videoRef.current) {
                     const videoElement = videoRef.current;
+                    videoElement.load(); // Force reload
                     console.log('Initial video state:', {
                       src: videoElement.currentSrc || videoElement.src,
                       readyState: videoElement.readyState,
@@ -270,7 +272,10 @@ export default function Music() {
                   }
                 }}
               >
-                <source src="/static/media/darksidetrailer.mp4" type="video/mp4" />
+                <source 
+                  src={videoUrl} 
+                  type="video/mp4" 
+                />
                 {videoError && (
                   <div className="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-50">
                     {videoError}
