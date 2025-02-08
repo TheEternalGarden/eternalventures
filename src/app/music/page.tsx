@@ -20,7 +20,6 @@ export default function Music() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoError, setVideoError] = useState<string | null>(null);
-  const [videoLoaded, setVideoLoaded] = useState(false);
 
   const eternalMusicText = "ETERNAL MUSIC";
   const musicText = "MUSIC";
@@ -133,22 +132,23 @@ export default function Music() {
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.addEventListener('error', (e) => {
-        console.error('Video error:', e);
-        const error = e.target as HTMLVideoElement;
-        setVideoError(`Error loading video: ${error.error?.message || 'Unknown error'}`);
+        console.error('Video error event:', e);
+        const video = e.target as HTMLVideoElement;
+        const errorMessage = video.error ? 
+          `Error code: ${video.error.code}, Message: ${video.error.message}` : 
+          'Unknown video error';
+        console.error('Detailed error:', errorMessage);
+        setVideoError(errorMessage);
       });
 
-      videoRef.current.addEventListener('loadeddata', () => {
-        console.log('Video loaded successfully');
-        setVideoLoaded(true);
-      });
-
-      // Log the video element's properties
-      console.log('Video element:', {
+      // Log initial video element state
+      console.log('Video element initial state:', {
         src: videoRef.current.currentSrc,
         readyState: videoRef.current.readyState,
         networkState: videoRef.current.networkState,
-        error: videoRef.current.error
+        error: videoRef.current.error,
+        paused: videoRef.current.paused,
+        muted: videoRef.current.muted
       });
     }
   }, []);
@@ -213,10 +213,6 @@ export default function Music() {
                 <div className="absolute inset-0 flex items-center justify-center text-white">
                   {videoError}
                 </div>
-              ) : !videoLoaded ? (
-                <div className="absolute inset-0 flex items-center justify-center text-white">
-                  Loading video...
-                </div>
               ) : (
                 <video
                   ref={videoRef}
@@ -226,8 +222,16 @@ export default function Music() {
                   preload="auto"
                   poster="/images/ETERNAL VENTURES - no ventures.png"
                   muted
+                  onLoadStart={() => console.log('Video load started')}
+                  onLoadedMetadata={() => console.log('Video metadata loaded')}
+                  onLoadedData={() => console.log('Video data loaded')}
+                  onError={(e) => console.error('Video error from onError prop:', e)}
                 >
-                  <source src="/videos/darksidetrailer.mp4" type="video/mp4" />
+                  <source 
+                    src="/videos/darksidetrailer.mp4" 
+                    type="video/mp4"
+                    onError={(e) => console.error('Source error:', e)}
+                  />
                   Your browser does not support the video tag.
                 </video>
               )}
