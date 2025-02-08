@@ -275,6 +275,16 @@ export default function Garden() {
                   />
                 </div>
               </div>
+              {/* Sixth Image */}
+              <div className="flex-none w-full h-full snap-center flex justify-center items-center">
+                <div className="w-[1000px] h-[750px]">
+                  <img
+                    src="/images/garden/dominocompressed.jpg"
+                    alt="Domino"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
