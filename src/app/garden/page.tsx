@@ -179,7 +179,7 @@ export default function Garden() {
         <div className="h-screen flex flex-col items-center justify-center relative snap-start bg-white">
           {/* Gallery Description Text */}
           <div 
-            className="text-black text-xs tracking-wider font-thin mb-64 text-center max-w-[800px] whitespace-nowrap px-4"
+            className="text-black text-xs tracking-wider font-thin mb-64 mt-96 text-center max-w-[800px] whitespace-nowrap px-4"
             style={{ fontFamily: 'var(--font-helios-ext)' }}
           >
             {galleryText}{showGalleryCursor && <span className="opacity-50">|</span>}
