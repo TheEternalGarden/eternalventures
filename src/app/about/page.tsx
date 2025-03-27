@@ -128,7 +128,7 @@ export default function About() {
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <Image
-            src="/images/@FLORA.jpg"
+            src="/images/FLORA.jpg"
             alt="Flora Background"
             fill
             style={{ 
