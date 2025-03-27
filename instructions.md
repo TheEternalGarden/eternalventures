@@ -101,3 +101,15 @@ Step 30: Add a gallery that scrolls horizontally to the second page of the garde
 Step 31: Add a second image to the gallery on the second page of the garden page
 Actual: Missing image
 Required: Add a second image to the gallery on the second page of the garden page: tkcompressed.jpg
+Step 32: Add text to the about page
+Actual: Missing text
+Required: Add text to the about page under the VENTURES text and have it appear with the typewriter effect: ETERNAL VENTURES IS A STUDIO SPECIALIZING IN CREATIVE RESEARCH.
+Step 33: Add text to the about page
+Actual: Missing text
+Required: Add text to the about page under the VENTURES text and have it appear with the typewriter effect: ETERNAL VENTURES IS A STUDIO SPECIALIZING IN CREATIVE RESEARCH.
+Step 34: Add text to the about page
+Actual: Missing text
+Required: Add text to the about page under the line of text in step 33 and have it appear with the typewriter effect: SPEARHEADED BY ETERNAL LABS, OUR TEAM BUILDS AT THE INTERSECTION OF TECHNOLOGY, ART, AND STORYTELLING. THESE INNOVATIONS FUEL THE OUTPUT OF OUR OTHER CORE VENTURES, ETERNAL GARDEN AND ETERNAL MUSIC.
+Step 35: Add text to the about page
+Actual: Missing text
+Required: Add text to the about page under the line of text in step 35 and have it appear via the typewriter effect: FOUNDED IN 2023.
