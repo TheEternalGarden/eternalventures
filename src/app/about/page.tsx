@@ -126,6 +126,13 @@ export default function About() {
       {/* Second Section */}
       <div className="h-screen snap-start flex flex-col items-center justify-center p-4">
         <div className="flex flex-col items-center gap-8">
+          <Image
+            src="/images/@EV.png"
+            alt="Eternal Ventures Logo"
+            width={150}
+            height={150}
+            priority
+          />
         </div>
       </div>
 
