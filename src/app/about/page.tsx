@@ -140,16 +140,6 @@ export default function About() {
             quality={100}
           />
         </div>
-        {/* Content */}
-        <div className="flex flex-col items-center gap-8 relative z-10">
-          <Image
-            src="/images/@EV.png"
-            alt="Eternal Ventures Logo"
-            width={150}
-            height={150}
-            priority
-          />
-        </div>
       </div>
 
       {/* Hamburger Menu */}
