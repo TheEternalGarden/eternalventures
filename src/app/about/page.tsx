@@ -94,18 +94,6 @@ export default function About(): JSX.Element {
           priority
           quality={100}
         />
-        
-        {/* Content Container */}
-        <div className="relative z-10 h-full flex items-center justify-center">
-          <Image
-            src="/images/EV.png"
-            alt="EV Logo"
-            width={150}
-            height={150}
-            className="opacity-90"
-            priority
-          />
-        </div>
       </div>
 
       {/* Hamburger Menu */}
