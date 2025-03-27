@@ -100,7 +100,7 @@ export default function Labs() {
   return (
     <div className="scroll-container h-screen overflow-y-auto snap-y snap-mandatory bg-white">
       {/* First Section */}
-      <div className="h-screen snap-start flex flex-col items-center justify-center">
+      <div className="h-screen snap-start flex flex-col items-center justify-center p-4">
         <div className="flex flex-col items-center gap-8">
           <Image
             src="/images/ETERNAL VENTURES - no ventures.png"
@@ -119,14 +119,9 @@ export default function Labs() {
       </div>
 
       {/* Second Section */}
-      <div className="h-screen snap-start flex flex-col items-center justify-center">
+      <div className="h-screen snap-start flex flex-col items-center justify-center p-4">
         <div className="flex flex-col items-center gap-8">
-          <h2 className="text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-            OUR RESEARCH
-          </h2>
-          <div className="text-center text-xs font-thin max-w-[800px]" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-            EXPLORING THE INTERSECTION OF TECHNOLOGY AND CREATIVITY
-          </div>
+          {/* Empty section for future content */}
         </div>
       </div>
 

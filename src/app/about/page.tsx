@@ -70,21 +70,76 @@ export default function About() {
     return () => clearInterval(cursorInterval);
   }, []);
 
+  // Add smooth scroll behavior
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const container = document.querySelector('.scroll-container');
+      if (!container) return;
+
+      const scrollAmount = e.deltaY;
+      container.scrollBy({
+        top: scrollAmount,
+        behavior: 'smooth'
+      });
+    };
+
+    const container = document.querySelector('.scroll-container');
+    if (container) {
+      container.addEventListener('wheel', handleWheel as EventListener, { passive: false });
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('wheel', handleWheel as EventListener);
+      }
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
-      <div className="flex flex-col items-center gap-8">
-        <Image
-          src="/images/ETERNAL VENTURES - no ventures.png"
-          alt="Eternal Ventures Logo"
-          width={150}
-          height={150}
-          priority
-        />
-        <h1 className="text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-          ABOUT
-        </h1>
-        <div className="text-center text-xs font-thin max-w-[800px] whitespace-nowrap" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-          {text}{showCursor && <span className="opacity-50">|</span>}
+    <div className="scroll-container h-screen overflow-y-auto snap-y snap-mandatory bg-white">
+      {/* First Section */}
+      <div className="h-screen snap-start flex flex-col items-center justify-center p-4">
+        <div className="flex flex-col items-center gap-8">
+          <Image
+            src="/images/ETERNAL VENTURES - no ventures.png"
+            alt="Eternal Ventures Logo"
+            width={150}
+            height={150}
+            priority
+          />
+          <div className="text-center text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+            VENTURES
+          </div>
+          <div className="text-center text-xs font-thin max-w-[800px]" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+            ETERNAL VENTURES IS A STUDIO SPECIALIZING IN CREATIVE RESEARCH.
+          </div>
+          <div className="text-center text-xs font-thin max-w-[800px]" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+            SPEARHEADED BY ETERNAL LABS, OUR TEAM BUILDS AT THE INTERSECTION OF TECHNOLOGY, ART, AND STORYTELLING. THESE INNOVATIONS FUEL THE OUTPUT OF OUR OTHER CORE VENTURES, ETERNAL GARDEN AND ETERNAL MUSIC.
+          </div>
+          <div className="text-center text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+            FOUNDED IN 2023
+          </div>
+        </div>
+      </div>
+
+      {/* Second Section */}
+      <div className="h-screen snap-start flex flex-col items-center justify-center p-4">
+        <div className="flex flex-col items-center gap-8">
+          <div className="text-center text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+            OUR VENTURES
+          </div>
+          <div className="flex flex-col items-center gap-6">
+            <div className="text-center text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+              LABS
+            </div>
+            <div className="text-center text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+              MUSIC
+            </div>
+            <div className="text-center text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+              GARDEN
+            </div>
+          </div>
         </div>
       </div>
 
