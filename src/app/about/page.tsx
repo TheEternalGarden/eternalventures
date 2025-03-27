@@ -131,8 +131,9 @@ export default function About() {
             src="/images/@FLORA.jpg"
             alt="Flora Background"
             fill
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', filter: 'brightness(0.8) contrast(1.1)' }}
             priority
+            quality={100}
           />
         </div>
         {/* Content */}
