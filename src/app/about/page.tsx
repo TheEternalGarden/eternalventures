@@ -124,14 +124,18 @@ export default function About() {
       </div>
 
       {/* Second Section */}
-      <div className="h-screen snap-start flex flex-col items-center justify-center p-4 relative">
+      <div className="h-screen snap-start flex flex-col items-center justify-center p-4 relative overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 w-full h-full">
           <Image
             src="/images/@FLORA.jpg"
             alt="Flora Background"
             fill
-            style={{ objectFit: 'cover', filter: 'brightness(0.8) contrast(1.1)' }}
+            style={{ 
+              objectFit: 'cover',
+              objectPosition: 'center',
+              filter: 'brightness(0.8) contrast(1.1)'
+            }}
             priority
             quality={100}
           />
