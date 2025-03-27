@@ -1,92 +1,12 @@
 'use client';
+
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface MenuItemProps {
-  href: string;
-  text: string;
-  isHovered: boolean;
-  onHover: (item: string | null) => void;
-}
-
-const MenuItem: React.FC<MenuItemProps> = ({ href, text, isHovered, onHover }) => (
-  <Link 
-    href={href}
-    className={`menu-item ${isHovered ? 'hovered' : ''}`}
-    onMouseEnter={() => onHover(text)}
-    onMouseLeave={() => onHover(null)}
-  >
-    {text}
-  </Link>
-);
-
 export default function About(): JSX.Element {
-  const [text, setText] = useState<string>("");
-  const [showCursor, setShowCursor] = useState<boolean>(true);
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const fullText = "BUILDING WORLDS THROUGH TECHNOLOGY AND STORYTELLING.";
-
-  // Symbol generation functions
-  const getRandomSymbol = (): string => {
-    const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
-    return symbols[Math.floor(Math.random() * symbols.length)];
-  };
-
-  const getRandomSymbols = (length: number): string => {
-    return Array(length).fill(0).map(() => getRandomSymbol()).join('');
-  };
-
-  // Typewriter effect
-  useEffect(() => {
-    let currentIndex = 0;
-    let isTypingFirst = true;
-    let isDeleting = false;
-    let timeoutId: ReturnType<typeof setTimeout>;
-    
-    const typeText = () => {
-      if (!isDeleting) {
-        if (currentIndex <= fullText.length) {
-          const symbolsForRest = currentIndex < fullText.length ? 
-            getRandomSymbols(fullText.length - currentIndex) : '';
-          setText(fullText.slice(0, currentIndex) + symbolsForRest);
-          currentIndex++;
-          if (currentIndex > fullText.length) {
-            timeoutId = setTimeout(() => {
-              isDeleting = true;
-              currentIndex = fullText.length;
-            }, 2000);
-          }
-        }
-      } else {
-        if (currentIndex > 0) {
-          const symbolsForRest = getRandomSymbols(currentIndex - 1);
-          setText(fullText.slice(0, currentIndex - 1) + symbolsForRest);
-          currentIndex--;
-        } else {
-          isDeleting = false;
-          currentIndex = 0;
-        }
-      }
-    };
-
-    const interval = setInterval(typeText, isDeleting ? 40 : 65);
-
-    return () => {
-      clearInterval(interval);
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-  }, []);
-
-  // Blinking cursor effect
-  useEffect(() => {
-    const cursorInterval = setInterval(() => {
-      setShowCursor((prev: boolean) => !prev);
-    }, 530);
-
-    return () => clearInterval(cursorInterval);
-  }, []);
 
   // Add smooth scroll behavior
   useEffect(() => {
@@ -115,14 +35,215 @@ export default function About(): JSX.Element {
   }, []);
 
   return (
-    <main className="scroll-container min-h-screen bg-black text-white relative overflow-hidden">
-      <div className="flex flex-col items-center justify-center min-h-screen relative">
-        <div className="text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-8">
-            {text}{showCursor ? '|' : ''}
-          </h1>
+    <div className="scroll-container h-screen overflow-y-auto snap-y snap-mandatory bg-white">
+      {/* First Section */}
+      <div className="h-screen snap-start flex flex-col items-center justify-center p-4">
+        <div className="flex flex-col items-center gap-8">
+          <Image
+            src="/images/ETERNAL VENTURES - no ventures.png"
+            alt="Eternal Ventures Logo"
+            width={150}
+            height={150}
+            priority
+          />
+          <div className="text-center text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+            VENTURES
+          </div>
+          <div className="text-center text-xs font-thin max-w-[800px]" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+            ETERNAL VENTURES IS A STUDIO SPECIALIZING IN CREATIVE RESEARCH.
+          </div>
+          <div className="text-center text-xs font-thin max-w-[800px]" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+            SPEARHEADED BY ETERNAL LABS, OUR TEAM BUILDS AT THE INTERSECTION OF TECHNOLOGY, ART, AND STORYTELLING. THESE INNOVATIONS FUEL THE OUTPUT OF OUR OTHER CORE VENTURES, ETERNAL GARDEN AND ETERNAL MUSIC.
+          </div>
+          <div className="text-center text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+            FOUNDED IN 2023
+          </div>
+          {/* Scroll Arrow */}
+          <div 
+            className="mt-8 cursor-pointer transform transition-transform hover:translate-y-1"
+            onClick={() => {
+              const container = document.querySelector('.scroll-container');
+              if (container) {
+                container.scrollTo({
+                  top: window.innerHeight,
+                  behavior: 'smooth'
+                });
+              }
+            }}
+          >
+            <div className="w-6 h-6 relative">
+              <div className="absolute w-full h-[1px] bg-black rotate-45 origin-left"></div>
+              <div className="absolute w-full h-[1px] bg-black -rotate-45 origin-right"></div>
+            </div>
+          </div>
         </div>
       </div>
-    </main>
+
+      {/* Second Section */}
+      <div className="h-screen snap-start flex flex-col items-center justify-center p-4 relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src="/images/FLORA.jpg"
+            alt="Flora Background"
+            fill
+            style={{ 
+              objectFit: 'cover',
+              objectPosition: 'center',
+              filter: 'brightness(0.8) contrast(1.1)'
+            }}
+            priority
+            quality={100}
+          />
+        </div>
+      </div>
+
+      {/* Hamburger Menu */}
+      <div 
+        className="fixed top-8 right-8 z-50 cursor-default"
+        onMouseEnter={() => setShowMenu(true)}
+        onMouseLeave={() => {
+          setShowMenu(false);
+          setHoveredItem(null);
+        }}
+      >
+        {/* Menu Icon */}
+        <div className="flex flex-col items-end gap-1.5">
+          <div className="w-6 h-px bg-black"></div>
+          <div className="w-6 h-px bg-black"></div>
+        </div>
+
+        {/* Menu Container */}
+        <div className={`fixed inset-0 flex items-center justify-center transition-opacity duration-300 ${
+          showMenu ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}>
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-white opacity-90"></div>
+          
+          {/* Menu Content */}
+          <div className="relative z-10 flex flex-col gap-10 items-center">
+            {/* Home Link */}
+            <div className={`relative menu-item-container ${hoveredItem === 'home' ? 'menu-item-hover' : ''}`}>
+              <Link
+                href="/"
+                onMouseEnter={() => setHoveredItem('home')}
+                onMouseLeave={() => setHoveredItem(null)}
+                className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
+                style={{
+                  fontFamily: 'var(--font-helios-ext)',
+                  opacity: !hoveredItem || hoveredItem === 'home' ? 1 : 0.3
+                }}
+              >
+                HOME
+              </Link>
+              <div 
+                className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
+                style={{ transform: hoveredItem === 'home' ? 'scaleX(1)' : 'scaleX(0)' }}
+              ></div>
+            </div>
+
+            {/* Garden Link */}
+            <div className={`relative menu-item-container ${hoveredItem === 'garden' ? 'menu-item-hover' : ''}`}>
+              <Link
+                href="/garden"
+                onMouseEnter={() => setHoveredItem('garden')}
+                onMouseLeave={() => setHoveredItem(null)}
+                className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
+                style={{
+                  fontFamily: 'var(--font-helios-ext)',
+                  opacity: !hoveredItem || hoveredItem === 'garden' ? 1 : 0.3
+                }}
+              >
+                GARDEN
+              </Link>
+              <div 
+                className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
+                style={{ transform: hoveredItem === 'garden' ? 'scaleX(1)' : 'scaleX(0)' }}
+              ></div>
+            </div>
+
+            {/* Labs Link */}
+            <div className={`relative menu-item-container ${hoveredItem === 'labs' ? 'menu-item-hover' : ''}`}>
+              <Link
+                href="/labs"
+                onMouseEnter={() => setHoveredItem('labs')}
+                onMouseLeave={() => setHoveredItem(null)}
+                className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
+                style={{
+                  fontFamily: 'var(--font-helios-ext)',
+                  opacity: !hoveredItem || hoveredItem === 'labs' ? 1 : 0.3
+                }}
+              >
+                LABS
+              </Link>
+              <div 
+                className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
+                style={{ transform: hoveredItem === 'labs' ? 'scaleX(1)' : 'scaleX(0)' }}
+              ></div>
+            </div>
+
+            {/* Music Link */}
+            <div className={`relative menu-item-container ${hoveredItem === 'music' ? 'menu-item-hover' : ''}`}>
+              <Link
+                href="/music"
+                onMouseEnter={() => setHoveredItem('music')}
+                onMouseLeave={() => setHoveredItem(null)}
+                className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
+                style={{
+                  fontFamily: 'var(--font-helios-ext)',
+                  opacity: !hoveredItem || hoveredItem === 'music' ? 1 : 0.3
+                }}
+              >
+                MUSIC
+              </Link>
+              <div 
+                className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
+                style={{ transform: hoveredItem === 'music' ? 'scaleX(1)' : 'scaleX(0)' }}
+              ></div>
+            </div>
+
+            {/* About Link */}
+            <div className={`relative menu-item-container ${hoveredItem === 'about' ? 'menu-item-hover' : ''}`}>
+              <Link
+                href="/about"
+                onMouseEnter={() => setHoveredItem('about')}
+                onMouseLeave={() => setHoveredItem(null)}
+                className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
+                style={{
+                  fontFamily: 'var(--font-helios-ext)',
+                  opacity: !hoveredItem || hoveredItem === 'about' ? 1 : 0.3
+                }}
+              >
+                ABOUT
+              </Link>
+              <div 
+                className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
+                style={{ transform: hoveredItem === 'about' ? 'scaleX(1)' : 'scaleX(0)' }}
+              ></div>
+            </div>
+
+            {/* Team Link */}
+            <div className={`relative menu-item-container ${hoveredItem === 'team' ? 'menu-item-hover' : ''}`}>
+              <Link
+                href="/team"
+                onMouseEnter={() => setHoveredItem('team')}
+                onMouseLeave={() => setHoveredItem(null)}
+                className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
+                style={{
+                  fontFamily: 'var(--font-helios-ext)',
+                  opacity: !hoveredItem || hoveredItem === 'team' ? 1 : 0.3
+                }}
+              >
+                TEAM
+              </Link>
+              <div 
+                className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
+                style={{ transform: hoveredItem === 'team' ? 'scaleX(1)' : 'scaleX(0)' }}
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
