@@ -120,6 +120,24 @@ export default function About() {
           <div className="text-center text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
             FOUNDED IN 2023
           </div>
+          {/* Scroll Arrow */}
+          <div 
+            className="mt-8 cursor-pointer transform transition-transform hover:translate-y-1"
+            onClick={() => {
+              const container = document.querySelector('.scroll-container');
+              if (container) {
+                container.scrollTo({
+                  top: window.innerHeight,
+                  behavior: 'smooth'
+                });
+              }
+            }}
+          >
+            <div className="w-6 h-6 relative">
+              <div className="absolute w-full h-[1px] bg-black rotate-45 origin-left"></div>
+              <div className="absolute w-full h-[1px] bg-black -rotate-45 origin-right"></div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -267,27 +285,4 @@ export default function About() {
             </div>
 
             {/* Team Link */}
-            <div className={`relative menu-item-container ${hoveredItem === 'team' ? 'menu-item-hover' : ''}`}>
-              <Link
-                href="/team"
-                onMouseEnter={() => setHoveredItem('team')}
-                onMouseLeave={() => setHoveredItem(null)}
-                className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
-                style={{
-                  fontFamily: 'var(--font-helios-ext)',
-                  opacity: !hoveredItem || hoveredItem === 'team' ? 1 : 0.3
-                }}
-              >
-                TEAM
-              </Link>
-              <div 
-                className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
-                style={{ transform: hoveredItem === 'team' ? 'scaleX(1)' : 'scaleX(0)' }}
-              ></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+          
