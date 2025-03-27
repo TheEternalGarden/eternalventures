@@ -126,20 +126,6 @@ export default function About() {
       {/* Second Section */}
       <div className="h-screen snap-start flex flex-col items-center justify-center p-4">
         <div className="flex flex-col items-center gap-8">
-          <div className="text-center text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-            OUR VENTURES
-          </div>
-          <div className="flex flex-col items-center gap-6">
-            <div className="text-center text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-              LABS
-            </div>
-            <div className="text-center text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-              MUSIC
-            </div>
-            <div className="text-center text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-              GARDEN
-            </div>
-          </div>
         </div>
       </div>
 
