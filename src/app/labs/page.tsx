@@ -11,6 +11,32 @@ export default function Labs() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const fullText = "RESEARCHING AND SHAPING THE WORLD OF CREATIVE TECHNOLOGY.";
 
+  // Add smooth scroll behavior
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const container = document.querySelector('.scroll-container');
+      if (!container) return;
+
+      const scrollAmount = e.deltaY;
+      container.scrollBy({
+        top: scrollAmount,
+        behavior: 'smooth'
+      });
+    };
+
+    const container = document.querySelector('.scroll-container');
+    if (container) {
+      container.addEventListener('wheel', handleWheel as EventListener, { passive: false });
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('wheel', handleWheel as EventListener);
+      }
+    };
+  }, []);
+
   // Symbol generation functions
   const getRandomSymbol = () => {
     const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
@@ -72,20 +98,35 @@ export default function Labs() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
-      <div className="flex flex-col items-center gap-8">
-        <Image
-          src="/images/ETERNAL VENTURES - no ventures.png"
-          alt="Eternal Labs Logo"
-          width={150}
-          height={150}
-          priority
-        />
-        <h1 className="text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-          LABS
-        </h1>
-        <div className="text-center text-xs font-thin max-w-[800px] whitespace-nowrap" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-          {text}{showCursor && <span className="opacity-50">|</span>}
+    <div className="scroll-container h-screen overflow-y-auto snap-y snap-mandatory bg-white">
+      {/* First Section */}
+      <div className="h-screen snap-start flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center gap-8">
+          <Image
+            src="/images/ETERNAL VENTURES - no ventures.png"
+            alt="Eternal Labs Logo"
+            width={150}
+            height={150}
+            priority
+          />
+          <h1 className="text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+            LABS
+          </h1>
+          <div className="text-center text-xs font-thin max-w-[800px] whitespace-nowrap" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+            {text}{showCursor && <span className="opacity-50">|</span>}
+          </div>
+        </div>
+      </div>
+
+      {/* Second Section */}
+      <div className="h-screen snap-start flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center gap-8">
+          <h2 className="text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+            OUR RESEARCH
+          </h2>
+          <div className="text-center text-xs font-thin max-w-[800px]" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+            EXPLORING THE INTERSECTION OF TECHNOLOGY AND CREATIVITY
+          </div>
         </div>
       </div>
 
