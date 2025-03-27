@@ -124,8 +124,19 @@ export default function About() {
       </div>
 
       {/* Second Section */}
-      <div className="h-screen snap-start flex flex-col items-center justify-center p-4">
-        <div className="flex flex-col items-center gap-8">
+      <div className="h-screen snap-start flex flex-col items-center justify-center p-4 relative">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/@FLORA.jpg"
+            alt="Flora Background"
+            fill
+            style={{ objectFit: 'cover' }}
+            priority
+          />
+        </div>
+        {/* Content */}
+        <div className="flex flex-col items-center gap-8 relative z-10">
           <Image
             src="/images/@EV.png"
             alt="Eternal Ventures Logo"
