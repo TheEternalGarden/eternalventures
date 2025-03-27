@@ -80,35 +80,31 @@ export default function About(): JSX.Element {
       </div>
 
       {/* Second Section */}
-      <div className="h-screen snap-start flex flex-col items-center justify-center p-4 relative overflow-hidden">
+      <div className="h-screen snap-start relative overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0 w-full h-full">
+        <Image
+          src="/images/FLORA.jpg"
+          alt="Flora Background"
+          fill
+          style={{ 
+            objectFit: 'cover',
+            objectPosition: 'center',
+            filter: 'brightness(0.8) contrast(1.1)'
+          }}
+          priority
+          quality={100}
+        />
+        
+        {/* Content Container */}
+        <div className="relative z-10 h-full flex items-center justify-center">
           <Image
-            src="/images/FLORA.jpg"
-            alt="Flora Background"
-            fill
-            style={{ 
-              objectFit: 'cover',
-              objectPosition: 'center',
-              filter: 'brightness(0.8) contrast(1.1)'
-            }}
+            src="/images/EV.png"
+            alt="EV Logo"
+            width={150}
+            height={150}
+            className="opacity-90"
             priority
-            quality={100}
           />
-        </div>
-        {/* EV Logo Overlay */}
-        <div className="relative z-10 flex items-center justify-center w-full">
-          <div className="relative w-[150px] h-[150px]">
-            <Image
-              src="/images/EV.png"
-              alt="EV Logo"
-              fill
-              style={{ objectFit: 'contain' }}
-              className="opacity-90"
-              priority
-              quality={100}
-            />
-          </div>
         </div>
       </div>
 
