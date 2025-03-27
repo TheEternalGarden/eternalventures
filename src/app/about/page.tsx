@@ -99,7 +99,7 @@ export default function About(): JSX.Element {
         {/* EV Logo Overlay */}
         <div className="relative z-10 flex items-center justify-center w-full">
           <Image
-            src="/images/@EV.png"
+            src="/images/EV.png"
             alt="EV Logo"
             width={150}
             height={150}
