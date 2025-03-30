@@ -81,11 +81,11 @@ export default function About(): JSX.Element {
 
       {/* Second Section */}
       <div className="h-screen snap-start flex flex-col items-center justify-center bg-white p-8">
-        <div className="relative w-full max-w-[1000px] h-auto">
+        <div className="relative w-full max-w-[1200px] h-auto">
           <img
             src="/images/evbreakdownfinal.jpg"
             alt="EV Breakdown"
-            className="w-full h-auto max-h-[75vh] object-contain"
+            className="w-full h-auto max-h-[85vh] object-contain"
             onError={(e) => {
               console.error('Image failed to load:', e);
               const img = e.target as HTMLImageElement;
