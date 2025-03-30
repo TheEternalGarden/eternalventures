@@ -86,6 +86,11 @@ export default function About(): JSX.Element {
             src="/images/evbreakdownfinal.jpg"
             alt="EV Breakdown"
             className="w-full h-auto max-h-[80vh] object-contain"
+            onError={(e) => {
+              console.error('Image failed to load:', e);
+              const img = e.target as HTMLImageElement;
+              console.log('Attempted src:', img.src);
+            }}
           />
         </div>
       </div>
