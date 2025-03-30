@@ -99,7 +99,7 @@ export default function About(): JSX.Element {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative w-[800px] h-[800px]">
             <Image
-              src="/images/EV-BREAKDOWN.png"
+              src="/images/evbreakdown.png"
               alt="EV Breakdown"
               fill
               sizes="(max-width: 768px) 90vw, 800px"
