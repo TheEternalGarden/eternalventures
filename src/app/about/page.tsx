@@ -81,7 +81,7 @@ export default function About(): JSX.Element {
 
       {/* Second Section */}
       <div className="h-screen snap-start flex flex-col items-center justify-center bg-black p-8">
-        <div className="relative w-full max-w-[90vw] h-auto border-2 border-white bg-gray-900 p-4">
+        <div className="relative w-full max-w-[90vw] h-auto">
           <img
             src="/images/evbreakdownfinal.jpg"
             alt="EV Breakdown"
