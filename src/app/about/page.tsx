@@ -80,21 +80,7 @@ export default function About(): JSX.Element {
       </div>
 
       {/* Second Section */}
-      <div className="h-screen snap-start relative overflow-hidden">
-        {/* Background Image */}
-        <Image
-          src="/images/FLORA.jpg"
-          alt="Flora Background"
-          fill
-          style={{ 
-            objectFit: 'cover',
-            objectPosition: 'center',
-            filter: 'brightness(0.8) contrast(1.1)'
-          }}
-          priority
-          quality={100}
-        />
-        
+      <div className="h-screen snap-start relative overflow-hidden bg-black">
         {/* EV Breakdown Overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <Image
