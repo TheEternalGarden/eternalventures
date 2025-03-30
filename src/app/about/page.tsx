@@ -97,14 +97,18 @@ export default function About(): JSX.Element {
         
         {/* EV Breakdown Overlay */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative w-[600px] h-[600px]">
+          <div className="relative w-[800px] h-[800px]">
             <Image
-              src="/images/@EV BREAKDOWN.png"
+              src="/images/EV-BREAKDOWN.png"
               alt="EV Breakdown"
               fill
-              style={{ objectFit: 'contain' }}
-              className="opacity-90"
+              sizes="(max-width: 768px) 90vw, 800px"
+              style={{ 
+                objectFit: 'contain',
+                opacity: 0.9
+              }}
               priority
+              quality={75}
             />
           </div>
         </div>
