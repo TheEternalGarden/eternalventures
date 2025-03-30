@@ -94,6 +94,20 @@ export default function About(): JSX.Element {
           priority
           quality={100}
         />
+        
+        {/* EV Breakdown Overlay */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="relative w-[600px] h-[600px]">
+            <Image
+              src="/images/@EV BREAKDOWN.png"
+              alt="EV Breakdown"
+              fill
+              style={{ objectFit: 'contain' }}
+              className="opacity-90"
+              priority
+            />
+          </div>
+        </div>
       </div>
 
       {/* Hamburger Menu */}
