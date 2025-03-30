@@ -80,23 +80,14 @@ export default function About(): JSX.Element {
       </div>
 
       {/* Second Section */}
-      <div className="h-screen snap-start relative overflow-hidden bg-black">
-        {/* EV Breakdown Overlay */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <Image
-            src="/images/evbreakdownfinal.jpg"
-            alt="EV Breakdown"
-            width={800}
-            height={800}
-            style={{ 
-              maxWidth: '90vw',
-              maxHeight: '90vh',
-              objectFit: 'contain'
-            }}
-            priority
-            quality={100}
-          />
-        </div>
+      <div className="h-screen snap-start flex flex-col items-center justify-center bg-black">
+        <Image
+          src="/images/evbreakdownfinal.jpg"
+          alt="EV Breakdown"
+          width={1000}
+          height={1000}
+          priority
+        />
       </div>
 
       {/* Hamburger Menu */}
