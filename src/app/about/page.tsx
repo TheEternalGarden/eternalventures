@@ -81,16 +81,11 @@ export default function About(): JSX.Element {
 
       {/* Second Section */}
       <div className="h-screen snap-start flex flex-col items-center justify-center bg-black p-8">
-        <div className="relative w-full max-w-[90vw] h-auto">
+        <div className="relative w-full max-w-[90vw] h-auto border-2 border-white bg-gray-900 p-4">
           <img
             src="/images/evbreakdownfinal.jpg"
             alt="EV Breakdown"
-            style={{ 
-              width: '100%',
-              height: 'auto',
-              maxHeight: '90vh',
-              objectFit: 'contain'
-            }}
+            className="w-full h-auto max-h-[80vh] object-contain"
           />
         </div>
       </div>
