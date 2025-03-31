@@ -18,14 +18,14 @@ export default function Team() {
   const [claireRoleText, setClaireRoleText] = useState("");
   const [showClaireRoleCursor, setShowClaireRoleCursor] = useState(true);
   const [isTkRoleComplete, setIsTkRoleComplete] = useState(false);
-  const [peteRoleText, setPeteRoleText] = useState("");
-  const [showPeteRoleCursor, setShowPeteRoleCursor] = useState(true);
+  const [ladiRoleText, setLadiRoleText] = useState("");
+  const [showLadiRoleCursor, setShowLadiRoleCursor] = useState(true);
   const [isClaireRoleComplete, setIsClaireRoleComplete] = useState(false);
   
   const title = "TEAM";
   const tkRole = "TK // CEO & FOUNDER";
   const claireRole = "CLAIRE // CO-FOUNDER";
-  const peteRole = "PETE // AI AND RESEARCH LEAD";
+  const ladiRole = "LADI // LABEL MANAGEMENT";
 
   // Set initial page height
   useEffect(() => {
@@ -121,17 +121,17 @@ export default function Team() {
     return () => clearInterval(interval);
   }, [isTkRoleComplete]);
 
-  // Pete role text animation - starts after Claire's role is complete
+  // Ladi role text animation - starts after Claire's role is complete
   useEffect(() => {
     if (!isClaireRoleComplete) return;
     
     let currentIndex = 0;
     
     const typeText = () => {
-      if (currentIndex <= peteRole.length) {
-        const symbolsForRest = currentIndex < peteRole.length ? 
-          getRandomSymbols(peteRole.length - currentIndex) : '';
-        setPeteRoleText(peteRole.slice(0, currentIndex) + symbolsForRest);
+      if (currentIndex <= ladiRole.length) {
+        const symbolsForRest = currentIndex < ladiRole.length ? 
+          getRandomSymbols(ladiRole.length - currentIndex) : '';
+        setLadiRoleText(ladiRole.slice(0, currentIndex) + symbolsForRest);
         currentIndex++;
       }
     };
@@ -147,7 +147,7 @@ export default function Team() {
       setShowCursor(prev => !prev);
       setShowRoleCursor(prev => !prev);
       setShowClaireRoleCursor(prev => !prev);
-      setShowPeteRoleCursor(prev => !prev);
+      setShowLadiRoleCursor(prev => !prev);
     }, 530);
 
     return () => clearInterval(cursorInterval);
@@ -362,15 +362,15 @@ export default function Team() {
         </div>
       </main>
 
-      {/* Third Page - Pete */}
+      {/* Third Page - Ladi */}
       <main className="min-h-screen flex flex-col items-center justify-center gap-4"
         style={{ 
           opacity: Math.min(1, Math.max(0, (scrollPosition / pageHeight - 1.5) * 2)),
           transition: 'opacity 0.3s ease-in-out'
         }}>
         <Image
-          src="/images/peteheadshot.png"
-          alt="Pete Headshot"
+          src="/images/ladiheadshot.png"
+          alt="Ladi Headshot"
           width={300}
           height={300}
           priority
@@ -379,7 +379,7 @@ export default function Team() {
           className="text-black text-xs tracking-wider font-thin"
           style={{ fontFamily: 'var(--font-helios-ext)' }}
         >
-          {peteRoleText}{showPeteRoleCursor && <span className="opacity-50">|</span>}
+          {ladiRoleText}{showLadiRoleCursor && <span className="opacity-50">|</span>}
         </div>
       </main>
     </div>
