@@ -120,95 +120,76 @@ export default function About(): JSX.Element {
       <div className="h-screen snap-start flex flex-col items-center justify-center bg-white relative">
         {/* Typewriter Text */}
         <div 
-          className="mb-16 h-8 flex items-center justify-center"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-8 flex items-center justify-center"
           style={{ fontFamily: 'var(--font-helios-ext)' }}
         >
-          <span className="text-lg font-thin">
+          <span className="text-lg font-thin whitespace-nowrap">
             {currentText}
             <span className="animate-blink">|</span>
           </span>
         </div>
 
-        <div className="relative w-full max-w-[90vw] overflow-hidden">
-          <div className="flex flex-row gap-8 transition-transform duration-500 ease-in-out">
-            {/* Publishing and Media */}
-            <div className="min-w-[300px] h-[400px] border border-black p-6 flex flex-col gap-4">
-              <div className="text-sm font-bold" style={{ fontFamily: 'var(--font-helios-ext)' }}>PUBLISHING AND MEDIA</div>
-              <div className="text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-                Crafts engaging narrative, features creative process, leverages AI-assisted storytelling workflows
-              </div>
-            </div>
-
-            {/* Merchandise */}
-            <div className="min-w-[300px] h-[400px] border border-black p-6 flex flex-col gap-4">
-              <div className="text-sm font-bold" style={{ fontFamily: 'var(--font-helios-ext)' }}>MERCHANDISE</div>
-              <div className="text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-                Physical IP expansion, thematic products inspired by narrative and expanded storytelling, and additional material for rollouts
-              </div>
-            </div>
-
-            {/* Research and Development */}
-            <div className="min-w-[300px] h-[400px] border border-black p-6 flex flex-col gap-4">
-              <div className="text-sm font-bold" style={{ fontFamily: 'var(--font-helios-ext)' }}>RESEARCH AND DEVELOPMENT</div>
-              <div className="text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-                Optimizes creation process for storytelling content & enhances output, a hub for building creative tools internally
-              </div>
-            </div>
-
-            {/* Music */}
-            <div className="min-w-[300px] h-[400px] border border-black p-6 flex flex-col gap-4">
-              <div className="text-sm font-bold" style={{ fontFamily: 'var(--font-helios-ext)' }}>MUSIC</div>
-              <div className="text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-                Expands IP via sonics, provides a soundtrack wrapper to all storytelling content & is the material layer underneath all AI-generated media
-              </div>
-            </div>
-
-            {/* Events and Experiences */}
-            <div className="min-w-[300px] h-[400px] border border-black p-6 flex flex-col gap-4">
-              <div className="text-sm font-bold" style={{ fontFamily: 'var(--font-helios-ext)' }}>EVENTS AND EXPERIENCES</div>
-              <div className="text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-                Thematic live experiences & performances that expand all mediums through immersive storytelling
-              </div>
-            </div>
-
-            {/* Community */}
-            <div className="min-w-[300px] h-[400px] border border-black p-6 flex flex-col gap-4">
-              <div className="text-sm font-bold" style={{ fontFamily: 'var(--font-helios-ext)' }}>COMMUNITY</div>
-              <div className="text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-                Building connections through shared experiences, collaborative creation, and meaningful engagement with our creative ecosystem
-              </div>
+        {/* Circular Gallery */}
+        <div className="relative w-[800px] h-[800px]">
+          {/* Publishing and Media */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-[200px] h-[120px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-105 transition-transform">
+            <div className="text-xs font-bold" style={{ fontFamily: 'var(--font-helios-ext)' }}>PUBLISHING AND MEDIA</div>
+            <div className="text-[10px] font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+              Crafts engaging narrative, features creative process, leverages AI-assisted storytelling workflows
             </div>
           </div>
 
-          {/* Navigation Arrows */}
-          <button 
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center border border-black bg-white hover:bg-black hover:text-white transition-colors"
-            onClick={() => {
-              const container = document.querySelector('.flex.flex-row.gap-8') as HTMLElement;
-              if (container) {
-                container.scrollBy({
-                  left: -316, // 300px width + 16px gap
-                  behavior: 'smooth'
-                });
-              }
-            }}
-          >
-            ←
-          </button>
-          <button 
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center border border-black bg-white hover:bg-black hover:text-white transition-colors"
-            onClick={() => {
-              const container = document.querySelector('.flex.flex-row.gap-8') as HTMLElement;
-              if (container) {
-                container.scrollBy({
-                  left: 316, // 300px width + 16px gap
-                  behavior: 'smooth'
-                });
-              }
-            }}
-          >
-            →
-          </button>
+          {/* Merchandise */}
+          <div className="absolute top-1/4 right-0 translate-x-1/2 min-w-[200px] h-[120px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-105 transition-transform">
+            <div className="text-xs font-bold" style={{ fontFamily: 'var(--font-helios-ext)' }}>MERCHANDISE</div>
+            <div className="text-[10px] font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+              Physical IP expansion, thematic products inspired by narrative and expanded storytelling
+            </div>
+          </div>
+
+          {/* Research and Development */}
+          <div className="absolute bottom-1/4 right-0 translate-x-1/2 min-w-[200px] h-[120px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-105 transition-transform">
+            <div className="text-xs font-bold" style={{ fontFamily: 'var(--font-helios-ext)' }}>RESEARCH AND DEVELOPMENT</div>
+            <div className="text-[10px] font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+              Optimizes creation process for storytelling content & enhances output
+            </div>
+          </div>
+
+          {/* Music */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 min-w-[200px] h-[120px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-105 transition-transform">
+            <div className="text-xs font-bold" style={{ fontFamily: 'var(--font-helios-ext)' }}>MUSIC</div>
+            <div className="text-[10px] font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+              Expands IP via sonics, provides a soundtrack wrapper to all storytelling content
+            </div>
+          </div>
+
+          {/* Events and Experiences */}
+          <div className="absolute bottom-1/4 left-0 -translate-x-1/2 min-w-[200px] h-[120px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-105 transition-transform">
+            <div className="text-xs font-bold" style={{ fontFamily: 'var(--font-helios-ext)' }}>EVENTS AND EXPERIENCES</div>
+            <div className="text-[10px] font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+              Thematic live experiences & performances that expand all mediums
+            </div>
+          </div>
+
+          {/* Community */}
+          <div className="absolute top-1/4 left-0 -translate-x-1/2 min-w-[200px] h-[120px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-105 transition-transform">
+            <div className="text-xs font-bold" style={{ fontFamily: 'var(--font-helios-ext)' }}>COMMUNITY</div>
+            <div className="text-[10px] font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+              Building connections through shared experiences and collaborative creation
+            </div>
+          </div>
+
+          {/* Connecting Lines */}
+          <svg className="absolute inset-0 w-full h-full" style={{ transform: 'rotate(30deg)' }}>
+            <circle 
+              cx="50%" 
+              cy="50%" 
+              r="350" 
+              fill="none" 
+              stroke="black" 
+              strokeWidth="1"
+            />
+          </svg>
         </div>
       </div>
 
