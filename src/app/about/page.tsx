@@ -118,23 +118,23 @@ export default function About(): JSX.Element {
 
       {/* Second Section - Horizontal Gallery */}
       <div className="h-screen snap-start flex flex-col items-center justify-center bg-white relative">
-        {/* Center Text */}
-        <div 
-          className="absolute z-10 h-8 flex items-center justify-center"
-          style={{ fontFamily: 'var(--font-helios-ext)' }}
-        >
-          <span className="text-2xl font-bold tracking-wider whitespace-nowrap">
-            {currentText}
-            <span className="animate-blink">|</span>
-          </span>
-        </div>
+        {/* Circular Gallery Container */}
+        <div className="relative w-[600px] h-[600px] flex items-center justify-center mx-auto">
+          {/* Center Text */}
+          <div 
+            className="absolute z-10 h-8 flex items-center justify-center"
+            style={{ fontFamily: 'var(--font-helios-ext)' }}
+          >
+            <span className="text-2xl font-bold tracking-wider whitespace-nowrap">
+              {currentText}
+              <span className="animate-blink">|</span>
+            </span>
+          </div>
 
-        {/* Circular Gallery */}
-        <div className="relative w-[700px] h-[700px] flex items-center justify-center mx-auto">
           <div className="absolute inset-0 flex items-center justify-center">
             {/* Publishing and Media */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-circle-rotate" style={{ transformOrigin: 'center center', animationDelay: '0s' }}>
-              <div className="w-[280px] h-[100px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
+              <div className="w-[250px] h-[90px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
                 <div className="text-xs font-bold tracking-wider" style={{ fontFamily: 'var(--font-helios-ext)' }}>PUBLISHING AND MEDIA</div>
                 <div className="text-[10px] font-thin line-clamp-3" style={{ fontFamily: 'var(--font-helios-ext)' }}>
                   Crafts engaging narrative, features creative process, leverages AI-assisted storytelling workflows
@@ -144,7 +144,7 @@ export default function About(): JSX.Element {
 
             {/* Merchandise */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-circle-rotate" style={{ transformOrigin: 'center center', animationDelay: '-5s' }}>
-              <div className="w-[280px] h-[100px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
+              <div className="w-[250px] h-[90px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
                 <div className="text-xs font-bold tracking-wider" style={{ fontFamily: 'var(--font-helios-ext)' }}>MERCHANDISE</div>
                 <div className="text-[10px] font-thin line-clamp-3" style={{ fontFamily: 'var(--font-helios-ext)' }}>
                   Physical IP expansion, thematic products inspired by narrative and expanded storytelling
@@ -154,7 +154,7 @@ export default function About(): JSX.Element {
 
             {/* Research and Development */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-circle-rotate" style={{ transformOrigin: 'center center', animationDelay: '-10s' }}>
-              <div className="w-[280px] h-[100px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
+              <div className="w-[250px] h-[90px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
                 <div className="text-xs font-bold tracking-wider" style={{ fontFamily: 'var(--font-helios-ext)' }}>RESEARCH AND DEVELOPMENT</div>
                 <div className="text-[10px] font-thin line-clamp-3" style={{ fontFamily: 'var(--font-helios-ext)' }}>
                   Optimizes creation process for storytelling content & enhances output
@@ -164,7 +164,7 @@ export default function About(): JSX.Element {
 
             {/* Music */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-circle-rotate" style={{ transformOrigin: 'center center', animationDelay: '-15s' }}>
-              <div className="w-[280px] h-[100px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
+              <div className="w-[250px] h-[90px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
                 <div className="text-xs font-bold tracking-wider" style={{ fontFamily: 'var(--font-helios-ext)' }}>MUSIC</div>
                 <div className="text-[10px] font-thin line-clamp-3" style={{ fontFamily: 'var(--font-helios-ext)' }}>
                   Expands IP via sonics, provides a soundtrack wrapper to all storytelling content
@@ -174,7 +174,7 @@ export default function About(): JSX.Element {
 
             {/* Events and Experiences */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-circle-rotate" style={{ transformOrigin: 'center center', animationDelay: '-20s' }}>
-              <div className="w-[280px] h-[100px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
+              <div className="w-[250px] h-[90px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
                 <div className="text-xs font-bold tracking-wider" style={{ fontFamily: 'var(--font-helios-ext)' }}>EVENTS AND EXPERIENCES</div>
                 <div className="text-[10px] font-thin line-clamp-3" style={{ fontFamily: 'var(--font-helios-ext)' }}>
                   Thematic live experiences & performances that expand all mediums
@@ -184,7 +184,7 @@ export default function About(): JSX.Element {
 
             {/* Community */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-circle-rotate" style={{ transformOrigin: 'center center', animationDelay: '-25s' }}>
-              <div className="w-[280px] h-[100px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
+              <div className="w-[250px] h-[90px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
                 <div className="text-xs font-bold tracking-wider" style={{ fontFamily: 'var(--font-helios-ext)' }}>COMMUNITY</div>
                 <div className="text-[10px] font-thin line-clamp-3" style={{ fontFamily: 'var(--font-helios-ext)' }}>
                   Building connections through shared experiences and collaborative creation
