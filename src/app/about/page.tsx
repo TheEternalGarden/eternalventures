@@ -79,22 +79,6 @@ export default function About(): JSX.Element {
         </div>
       </div>
 
-      {/* Second Section */}
-      <div className="h-screen snap-start flex flex-col items-center justify-center bg-white">
-        <div className="relative w-full h-screen">
-          <img
-            src="/images/evbreakdownfinal.jpg"
-            alt="EV Breakdown"
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              console.error('Image failed to load:', e);
-              const img = e.target as HTMLImageElement;
-              console.log('Attempted src:', img.src);
-            }}
-          />
-        </div>
-      </div>
-
       {/* Hamburger Menu */}
       <div 
         className="fixed top-8 right-8 z-50 cursor-default"
