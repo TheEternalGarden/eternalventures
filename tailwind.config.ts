@@ -33,12 +33,17 @@ const config: Config = {
             transform: 'perspective(1000px) rotateX(0deg) translateY(0)',
             opacity: '1'
           }
+        },
+        circleRotate: {
+          '0%': { transform: 'rotate(0deg) translateX(300px) rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg) translateX(300px) rotate(-360deg)' }
         }
       },
       animation: {
         blink: 'blink 1s step-end infinite',
         ripple: 'ripple 1s ease-out forwards',
-        fadeIn: 'fadeInFromBottom 1s ease-out forwards'
+        fadeIn: 'fadeInFromBottom 1s ease-out forwards',
+        'circle-rotate': 'circleRotate 30s linear infinite'
       },
     },
   },
