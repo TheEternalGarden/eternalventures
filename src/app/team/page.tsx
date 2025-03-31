@@ -371,8 +371,8 @@ export default function Team() {
         <Image
           src="/images/ladieternalfinal.png"
           alt="Ladi Headshot"
-          width={300}
-          height={300}
+          width={250}
+          height={250}
           priority
         />
         <div 
