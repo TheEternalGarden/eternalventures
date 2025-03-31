@@ -125,7 +125,7 @@ export default function About(): JSX.Element {
             className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
             style={{ fontFamily: 'var(--font-helios-ext)' }}
           >
-            <span className="text-2xl font-bold tracking-wider whitespace-nowrap">
+            <span className="text-xl font-bold tracking-wider whitespace-nowrap">
               {currentText}
               <span className="animate-blink">|</span>
             </span>
