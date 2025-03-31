@@ -35,8 +35,8 @@ const config: Config = {
           }
         },
         circleRotate: {
-          '0%': { transform: 'translate(-50%, -50%) rotate(0deg) translateX(250px) rotate(0deg)' },
-          '100%': { transform: 'translate(-50%, -50%) rotate(360deg) translateX(250px) rotate(-360deg)' }
+          '0%': { transform: 'translate(-50%, -50%) rotate(0deg) translateX(300px) rotate(0deg)' },
+          '100%': { transform: 'translate(-50%, -50%) rotate(360deg) translateX(300px) rotate(-360deg)' }
         }
       },
       animation: {
