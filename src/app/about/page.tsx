@@ -157,7 +157,7 @@ export default function About(): JSX.Element {
               <div className="w-[250px] h-[90px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
                 <div className="text-xs font-bold tracking-wider" style={{ fontFamily: 'var(--font-helios-ext)' }}>RESEARCH AND DEVELOPMENT</div>
                 <div className="text-[10px] font-thin line-clamp-3" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-                  Optimizes creation process for storytelling content & enhances output
+                  Optimizes creation, production and execution process and provides a funnel for development of internal products
                 </div>
               </div>
             </div>
