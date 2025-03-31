@@ -15,33 +15,32 @@ export default function About(): JSX.Element {
 
   // Typewriter effect
   useEffect(() => {
-    if (!currentText && !isDeleting) {
-      setCurrentText(texts[0]);
-      setTimeout(() => setIsDeleting(true), 2000);
-      return;
-    }
-
+    let timer: NodeJS.Timeout;
+    
     const type = () => {
+      const fullText = texts[currentIndex];
+      
       if (isDeleting) {
         if (currentText.length === 0) {
           setIsDeleting(false);
           setCurrentIndex((prev) => (prev + 1) % texts.length);
-          setCurrentText(texts[(currentIndex + 1) % texts.length]);
-          setTimeout(() => setIsDeleting(true), 2000);
+          setTypingSpeed(150);
           return;
         }
         setCurrentText(currentText.slice(0, -1));
         setTypingSpeed(50);
       } else {
-        const fullText = texts[currentIndex];
-        if (currentText !== fullText) {
-          setCurrentText(fullText);
-          setTimeout(() => setIsDeleting(true), 2000);
+        if (currentText === fullText) {
+          setTypingSpeed(2000); // Pause at the end
+          setIsDeleting(true);
+          return;
         }
+        setCurrentText(fullText.slice(0, currentText.length + 1));
+        setTypingSpeed(150);
       }
     };
 
-    const timer = setTimeout(type, typingSpeed);
+    timer = setTimeout(type, typingSpeed);
     return () => clearTimeout(timer);
   }, [currentText, currentIndex, isDeleting, texts, typingSpeed]);
 
@@ -88,9 +87,6 @@ export default function About(): JSX.Element {
           </div>
           <div className="text-center text-xs font-thin max-w-[800px]" style={{ fontFamily: 'var(--font-helios-ext)' }}>
             ETERNAL VENTURES IS A STUDIO SPECIALIZING IN CREATIVE RESEARCH.
-          </div>
-          <div className="text-center text-xs font-thin max-w-[800px]" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-            SPEARHEADED BY ETERNAL LABS, OUR TEAM BUILDS AT THE INTERSECTION OF TECHNOLOGY, ART, AND STORYTELLING. THESE INNOVATIONS FUEL THE OUTPUT OF OUR OTHER CORE VENTURES, ETERNAL GARDEN AND ETERNAL MUSIC.
           </div>
           <div className="text-center text-xs font-thin" style={{ fontFamily: 'var(--font-helios-ext)' }}>
             FOUNDED IN 2023
