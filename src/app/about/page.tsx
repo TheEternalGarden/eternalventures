@@ -117,20 +117,26 @@ export default function About(): JSX.Element {
       </div>
 
       {/* Second Section - Horizontal Gallery */}
-      <div className="h-screen snap-start flex flex-col items-center justify-center bg-white relative">
-        {/* Typewriter Text */}
-        <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-8 flex items-center justify-center"
-          style={{ fontFamily: 'var(--font-helios-ext)' }}
-        >
-          <span className="text-lg font-thin whitespace-nowrap">
-            {currentText}
-            <span className="animate-blink">|</span>
-          </span>
+      <section className="relative w-full min-h-screen bg-white flex flex-col items-center justify-center">
+        <div className="absolute top-8 left-8">
+          <Image
+            src="/images/logo.png"
+            alt="Eternal Ventures Logo"
+            width={150}
+            height={150}
+            className="w-auto h-auto"
+          />
+        </div>
+
+        {/* Eternal Music Text */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold" style={{ fontFamily: 'var(--font-helios-ext)' }}>
+            ETERNAL MUSIC
+          </h1>
         </div>
 
         {/* Circular Gallery */}
-        <div className="relative w-[800px] h-[800px] flex items-center justify-center">
+        <div className="relative w-[900px] h-[900px] flex items-center justify-center mx-auto">
           <div className="absolute inset-0 flex items-center justify-center">
             {/* Publishing and Media */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-circle-rotate" style={{ transformOrigin: 'center left', animationDelay: '0s' }}>
@@ -198,14 +204,14 @@ export default function About(): JSX.Element {
             <circle 
               cx="50%" 
               cy="50%" 
-              r="350" 
+              r="400" 
               fill="none" 
               stroke="black" 
               strokeWidth="1"
             />
           </svg>
         </div>
-      </div>
+      </section>
 
       {/* Hamburger Menu */}
       <div 
