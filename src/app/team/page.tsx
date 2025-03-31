@@ -363,7 +363,7 @@ export default function Team() {
       </main>
 
       {/* Third Page - Ladi */}
-      <main className="min-h-screen flex flex-col items-center justify-center gap-4"
+      <main className="min-h-screen flex flex-col items-center justify-center gap-8"
         style={{ 
           opacity: Math.min(1, Math.max(0, (scrollPosition / pageHeight - 1.5) * 2)),
           transition: 'opacity 0.3s ease-in-out'
