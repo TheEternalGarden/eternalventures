@@ -119,8 +119,14 @@ export default function About(): JSX.Element {
       {/* Second Section - Horizontal Gallery */}
       <div className="h-screen snap-start flex flex-col items-center justify-center bg-white relative">
         {/* Center Text */}
-        <div className="absolute z-10 text-2xl font-bold tracking-wider" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-          ETERNAL LABS
+        <div 
+          className="absolute z-10 h-8 flex items-center justify-center"
+          style={{ fontFamily: 'var(--font-helios-ext)' }}
+        >
+          <span className="text-2xl font-bold tracking-wider whitespace-nowrap">
+            {currentText}
+            <span className="animate-blink">|</span>
+          </span>
         </div>
 
         {/* Circular Gallery */}
