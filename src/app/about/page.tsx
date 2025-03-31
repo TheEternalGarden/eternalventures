@@ -11,45 +11,39 @@ export default function About(): JSX.Element {
   const [currentIndex, setCurrentIndex] = useState(0);
   const texts = ['ETERNAL LABS', 'ETERNAL MUSIC', 'ETERNAL GARDEN'];
   const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(100);
+  const [typingSpeed, setTypingSpeed] = useState(150);
 
   // Typewriter effect
   useEffect(() => {
-    // Start typing immediately
-    if (currentText === '') {
-      setCurrentText(texts[0].charAt(0));
+    if (!currentText && !isDeleting) {
+      setCurrentText(texts[0]);
+      setTimeout(() => setIsDeleting(true), 2000);
       return;
     }
 
-    const text = texts[currentIndex];
-    
     const type = () => {
       if (isDeleting) {
-        // Deleting text
-        if (currentText.length > 0) {
-          setCurrentText(prev => prev.slice(0, -1));
-          setTypingSpeed(30); // Even faster when deleting
-        } else {
+        if (currentText.length === 0) {
           setIsDeleting(false);
-          setCurrentIndex(prev => (prev + 1) % texts.length);
-          setTypingSpeed(100);
-        }
-      } else {
-        // Typing text
-        if (currentText.length < text.length) {
-          setCurrentText(prev => text.slice(0, prev.length + 1));
-          setTypingSpeed(100);
-        } else {
-          // Pause at the end before deleting
-          setTimeout(() => setIsDeleting(true), 1500); // Shorter pause
+          setCurrentIndex((prev) => (prev + 1) % texts.length);
+          setCurrentText(texts[(currentIndex + 1) % texts.length]);
+          setTimeout(() => setIsDeleting(true), 2000);
           return;
+        }
+        setCurrentText(currentText.slice(0, -1));
+        setTypingSpeed(50);
+      } else {
+        const fullText = texts[currentIndex];
+        if (currentText !== fullText) {
+          setCurrentText(fullText);
+          setTimeout(() => setIsDeleting(true), 2000);
         }
       }
     };
 
     const timer = setTimeout(type, typingSpeed);
     return () => clearTimeout(timer);
-  }, [currentText, isDeleting, currentIndex, texts, typingSpeed]);
+  }, [currentText, currentIndex, isDeleting, texts, typingSpeed]);
 
   // Add smooth scroll behavior
   useEffect(() => {
@@ -126,12 +120,11 @@ export default function About(): JSX.Element {
       <div className="h-screen snap-start flex flex-col items-center justify-center bg-white relative">
         {/* Center Text */}
         <div 
-          key="typewriter-text"
           className="absolute z-10 h-8 flex items-center justify-center"
           style={{ fontFamily: 'var(--font-helios-ext)' }}
         >
           <span className="text-2xl font-bold tracking-wider whitespace-nowrap">
-            {currentText || texts[0].charAt(0)}
+            {currentText}
             <span className="animate-blink">|</span>
           </span>
         </div>
@@ -199,18 +192,6 @@ export default function About(): JSX.Element {
               </div>
             </div>
           </div>
-
-          {/* Connecting Lines */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none">
-            <circle 
-              cx="50%" 
-              cy="50%" 
-              r="300" 
-              fill="none" 
-              stroke="black" 
-              strokeWidth="1"
-            />
-          </svg>
         </div>
       </div>
 
