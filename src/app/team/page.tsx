@@ -369,7 +369,7 @@ export default function Team() {
           transition: 'opacity 0.3s ease-in-out'
         }}>
         <Image
-          src="/images/ladieternalventures.png"
+          src="/images/ladieternalfinal.png"
           alt="Ladi Headshot"
           width={300}
           height={300}
