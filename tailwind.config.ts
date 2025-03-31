@@ -37,17 +37,4 @@ const config: Config = {
         circleRotate: {
           '0%': { transform: 'translate(-50%, -50%) rotate(0deg) translateX(200px) rotate(0deg)' },
           '100%': { transform: 'translate(-50%, -50%) rotate(360deg) translateX(200px) rotate(-360deg)' },
-        },
-      },
-      animation: {
-        blink: 'blink 1s step-end infinite',
-        ripple: 'ripple 1s ease-out forwards',
-        fadeIn: 'fadeInFromBottom 1s ease-out forwards',
-        'circle-rotate': 'circleRotate 30s linear infinite'
-      },
-    },
-  },
-  plugins: [],
-};
-
-export default config;
+       

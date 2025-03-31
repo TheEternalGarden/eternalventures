@@ -122,7 +122,7 @@ export default function About(): JSX.Element {
         <div className="relative w-[600px] h-[600px] flex items-center justify-center mx-auto">
           {/* Center Text */}
           <div 
-            className="absolute z-10 h-8 flex items-center justify-center"
+            className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
             style={{ fontFamily: 'var(--font-helios-ext)' }}
           >
             <span className="text-2xl font-bold tracking-wider whitespace-nowrap">
