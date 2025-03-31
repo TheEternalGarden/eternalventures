@@ -9,20 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        helios: ['var(--font-helios-ext)'],
+        helios: ['var(--font-helios-ext)']
       },
       colors: {
         background: "var(--background)",
-        foreground: "var(--foreground)",
+        foreground: "var(--foreground)"
       },
       keyframes: {
         blink: {
           '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0' },
+          '50%': { opacity: '0' }
         },
         ripple: {
           '0%': { transform: 'translate(-50%, -50%) scale(0)', opacity: '0.6' },
-          '100%': { transform: 'translate(-50%, -50%) scale(1)', opacity: '0' },
+          '100%': { transform: 'translate(-50%, -50%) scale(1)', opacity: '0' }
         },
         fadeInFromBottom: {
           'from': { 
@@ -36,5 +36,19 @@ const config: Config = {
         },
         circleRotate: {
           '0%': { transform: 'translate(-50%, -50%) rotate(0deg) translateX(200px) rotate(0deg)' },
-          '100%': { transform: 'translate(-50%, -50%) rotate(360deg) translateX(200px) rotate(-360deg)' },
-       
+          '100%': { transform: 'translate(-50%, -50%) rotate(360deg) translateX(200px) rotate(-360deg)' }
+        }
+      },
+      animation: {
+        'blink': 'blink 1s step-end infinite',
+        'ripple': 'ripple 1s ease-out forwards',
+        'fadeIn': 'fadeInFromBottom 1s ease-out forwards',
+        'circle-rotate': 'circleRotate 30s linear infinite'
+      }
+    }
+  },
+  plugins: []
+};
+
+export default config;
+   
