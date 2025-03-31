@@ -183,7 +183,7 @@ export default function About(): JSX.Element {
               <div className="w-[350px] h-[100px] border border-black p-4 flex flex-col gap-2 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
                 <div className="text-xs font-bold tracking-wider" style={{ fontFamily: 'var(--font-helios-ext)' }}>COMMUNITY</div>
                 <div className="text-[10px] font-thin line-clamp-3" style={{ fontFamily: 'var(--font-helios-ext)' }}>
-                  Building connections through shared experiences and collaborative creation
+                  Expanding IP and open sourcing knowledge base through collaborative creation, workshops and incentivized UGC development
                 </div>
               </div>
             </div>

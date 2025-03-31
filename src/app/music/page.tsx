@@ -429,6 +429,26 @@ export default function Music() {
                   style={{ transform: hoveredItem === 'team' ? 'scaleX(1)' : 'scaleX(0)' }}
                 ></div>
               </div>
+
+              {/* Contact Link */}
+              <div className={`relative menu-item-container ${hoveredItem === 'contact' ? 'menu-item-hover' : ''}`}>
+                <Link
+                  href="/contact"
+                  onMouseEnter={() => setHoveredItem('contact')}
+                  onMouseLeave={() => setHoveredItem(null)}
+                  className="text-black text-xs transition-all tracking-wider font-thin cursor-default"
+                  style={{
+                    fontFamily: 'var(--font-helios-ext)',
+                    opacity: !hoveredItem || hoveredItem === 'contact' ? 1 : 0.3
+                  }}
+                >
+                  CONTACT
+                </Link>
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left"
+                  style={{ transform: hoveredItem === 'contact' ? 'scaleX(1)' : 'scaleX(0)' }}
+                ></div>
+              </div>
             </div>
           </div>
         </div>

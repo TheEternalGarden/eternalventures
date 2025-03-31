@@ -86,10 +86,10 @@ export default function Contact(): JSX.Element {
         >
           FOR INQUIRIES, PLEASE EMAIL US AT{' '}
           <a 
-            href="mailto:eternal@gardenx.xyz" 
+            href="mailto:ETERNAL@GARDENX.XYZ" 
             className="underline hover:opacity-70 transition-opacity"
           >
-            eternal@gardenx.xyz
+            ETERNAL@GARDENX.XYZ
           </a>
         </div>
       </main>
