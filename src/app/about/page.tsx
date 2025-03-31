@@ -7,6 +7,43 @@ import Link from 'next/link';
 export default function About(): JSX.Element {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [currentText, setCurrentText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const texts = ['ETERNAL LABS', 'ETERNAL MUSIC', 'ETERNAL GARDEN'];
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  // Typewriter effect
+  useEffect(() => {
+    const text = texts[currentIndex];
+    
+    const type = () => {
+      if (isDeleting) {
+        // Deleting text
+        if (currentText.length > 0) {
+          setCurrentText(prev => prev.slice(0, -1));
+          setTypingSpeed(50); // Faster when deleting
+        } else {
+          setIsDeleting(false);
+          setCurrentIndex(prev => (prev + 1) % texts.length);
+          setTypingSpeed(150);
+        }
+      } else {
+        // Typing text
+        if (currentText.length < text.length) {
+          setCurrentText(prev => text.slice(0, prev.length + 1));
+          setTypingSpeed(150);
+        } else {
+          // Pause at the end before deleting
+          setTimeout(() => setIsDeleting(true), 2000);
+          return;
+        }
+      }
+    };
+
+    const timer = setTimeout(type, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, currentIndex, texts, typingSpeed]);
 
   // Add smooth scroll behavior
   useEffect(() => {
@@ -80,7 +117,18 @@ export default function About(): JSX.Element {
       </div>
 
       {/* Second Section - Horizontal Gallery */}
-      <div className="h-screen snap-start flex items-center justify-center bg-white relative">
+      <div className="h-screen snap-start flex flex-col items-center justify-center bg-white relative">
+        {/* Typewriter Text */}
+        <div 
+          className="mb-16 h-8 flex items-center justify-center"
+          style={{ fontFamily: 'var(--font-helios-ext)' }}
+        >
+          <span className="text-lg font-thin">
+            {currentText}
+            <span className="animate-blink">|</span>
+          </span>
+        </div>
+
         <div className="relative w-full max-w-[90vw] overflow-hidden">
           <div className="flex flex-row gap-8 transition-transform duration-500 ease-in-out">
             {/* Publishing and Media */}
