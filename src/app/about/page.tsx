@@ -130,8 +130,8 @@ export default function About(): JSX.Element {
         </div>
 
         {/* Circular Gallery */}
-        <div className="relative w-[600px] h-[600px]">
-          <div className="absolute inset-0" style={{ transformOrigin: 'center center' }}>
+        <div className="relative w-[800px] h-[800px] flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center">
             {/* Publishing and Media */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-circle-rotate" style={{ transformOrigin: 'center left', animationDelay: '0s' }}>
               <div className="w-[300px] h-[120px] border border-black p-4 flex flex-col gap-3 bg-white transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-out cursor-pointer">
@@ -198,7 +198,7 @@ export default function About(): JSX.Element {
             <circle 
               cx="50%" 
               cy="50%" 
-              r="300" 
+              r="350" 
               fill="none" 
               stroke="black" 
               strokeWidth="1"
