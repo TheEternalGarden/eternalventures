@@ -11,10 +11,16 @@ export default function About(): JSX.Element {
   const [currentIndex, setCurrentIndex] = useState(0);
   const texts = ['ETERNAL LABS', 'ETERNAL MUSIC', 'ETERNAL GARDEN'];
   const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(150);
+  const [typingSpeed, setTypingSpeed] = useState(100);
 
   // Typewriter effect
   useEffect(() => {
+    // Start typing immediately
+    if (currentText === '') {
+      setCurrentText(texts[0].charAt(0));
+      return;
+    }
+
     const text = texts[currentIndex];
     
     const type = () => {
@@ -22,20 +28,20 @@ export default function About(): JSX.Element {
         // Deleting text
         if (currentText.length > 0) {
           setCurrentText(prev => prev.slice(0, -1));
-          setTypingSpeed(50); // Faster when deleting
+          setTypingSpeed(30); // Even faster when deleting
         } else {
           setIsDeleting(false);
           setCurrentIndex(prev => (prev + 1) % texts.length);
-          setTypingSpeed(150);
+          setTypingSpeed(100);
         }
       } else {
         // Typing text
         if (currentText.length < text.length) {
           setCurrentText(prev => text.slice(0, prev.length + 1));
-          setTypingSpeed(150);
+          setTypingSpeed(100);
         } else {
           // Pause at the end before deleting
-          setTimeout(() => setIsDeleting(true), 2000);
+          setTimeout(() => setIsDeleting(true), 1500); // Shorter pause
           return;
         }
       }
@@ -120,11 +126,12 @@ export default function About(): JSX.Element {
       <div className="h-screen snap-start flex flex-col items-center justify-center bg-white relative">
         {/* Center Text */}
         <div 
+          key="typewriter-text"
           className="absolute z-10 h-8 flex items-center justify-center"
           style={{ fontFamily: 'var(--font-helios-ext)' }}
         >
           <span className="text-2xl font-bold tracking-wider whitespace-nowrap">
-            {currentText}
+            {currentText || texts[0].charAt(0)}
             <span className="animate-blink">|</span>
           </span>
         </div>
